@@ -1,0 +1,40 @@
+body {
+    font-family: var(--font-primary);
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+%heading {
+    font-family: var(--font-display);
+    font-weight: 400;
+}
+
+.heading-1 {
+    @extend %heading;
+    font-size: 4.5rem;
+    color: var(--color-grey-light-1);
+    line-height: 1;
+}
+
+.heading-2 {
+    @extend %heading;
+    font-size: 3rem;
+    font-style: italic;
+    line-height: 1;
+    margin-bottom: 6rem;
+
+    background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
+    -webkit-background-clip: text;
+    color: transparent;
+    
+    // &--light { color: var(--color-grey-light-1); }
+    // &--medium { color: var(--color-primary-light); }
+    // &--dark { color: var(--color-grey-dark-1); }
+}
+
+.heading-3 {
+    @extend %heading;
+    font-size: 1.6rem;
+    color: var(--color-primary);
+    text-transform: uppercase;
+}

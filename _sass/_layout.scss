@@ -1,0 +1,46 @@
+.section-about {
+}
+
+.text {
+
+    :first-child {
+        margin-top: 0;
+    }
+
+    font-family: 'Lora', 'Times New Roman', serif;
+    margin: 3rem 0;
+    font-size: 1.8rem;
+    color: var(--color-grey-dark-1);
+
+    &__link {
+        color: $color-primary-dark;;
+    }
+}
+
+.section-books {
+}
+
+.books {
+    &__list {
+        margin-top: 5rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 25rem);
+        justify-content: space-between;
+        justify-items: center;
+        grid-row-gap: 10rem;
+    }
+    &__link:link,
+    &__link:visited {
+        height: 100%;
+        transition: all .2s;
+        &:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-dark);
+        }
+    }
+    &__img {
+        width: 20rem;
+        height: 28rem;
+        display: block;
+    }
+}
