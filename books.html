@@ -1,0 +1,33 @@
+---
+layout: page
+title: Books
+---
+
+<section class="section-books">
+    <h3 class="heading-2 heading-2--medium">Technical Books</h1>
+	<div class="books__list">
+        {% for book in site.data.books_technical %}
+            <a href="{{ book.amazon_url }}" target="_blank" class="books__link">
+                <img src="/assets/img/books/{{ book.image_url }}" class="books__img"/>
+            </a>
+        {% endfor %}
+    </div>
+
+    <h3 class="heading-2 heading-2--medium mt-hg">Self Help</h1>
+    <div class="books__list">
+        {% for book in site.data.books_self_help %}
+            <a href="{{ book.amazon_url }}" target="_blank" class="books__link">
+                <img src="/assets/img/books/{{ book.image_url }}" class="books__img"/>
+            </a>
+        {% endfor %}
+    </div>
+
+    <h3 class="heading-2 heading-2--medium mt-hg">Novels</h1>
+    <div class="books__list">
+        {% for book in site.data.books_novels %}
+            <a href="{{ book.amazon_url }}" target="_blank" class="books__link">
+                <img src="/assets/img/books/{{ book.image_url }}" class="books__img"/>
+            </a>
+        {% endfor %}
+    </div>
+</section>
