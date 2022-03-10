@@ -1,0 +1,18 @@
+{% assign readTimeMinutes = post.content | number_of_words | divided_by: 180 | round %}
+<div class="post">
+    <a class="heading-2 heading-2--skew mb-sm" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+
+    <p class="post_content">
+        {{ post.excerpt }}
+    </p>
+
+    <div class="post__meta">
+        {{ post.date | date: "%B %-d, %Y" }}{% if post.meta %} • {{ post.meta }}{% endif %}
+        | {{ readTimeMinutes }} min read
+        <div class="categories">
+            {% for category in post.categories %}
+                <a href="/tags/{{ category }}" class="post__category">#{{ category }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</div>

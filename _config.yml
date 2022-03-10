@@ -11,6 +11,8 @@ github_username:  syedwaseemjan
 linked_username:  syedwaseemjan
 stackoverflow_username: 818731/waseem
 
-# Build settings
-plugins:
-  - jekyll-feed
+permalink: /blog/:slug
+
+collections:
+  tags:
+    output: true

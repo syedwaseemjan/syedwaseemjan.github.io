@@ -1,0 +1,26 @@
+---
+layout: page
+---
+<section class="section-post">
+
+    {% assign readTimeMinutes = content | number_of_words | divided_by: 180 | round %}
+    <div class="post">
+        <header class="post__header">
+            <h2 class="heading-2">{{ page.title }}</h2>
+            <div class="post__meta">
+                {{ page.date | date: "%B %-d, %Y" }}{% if page.meta %} • {{ page.meta }}{% endif %}
+                | {{ site.title }} | {{ readTimeMinutes }} min read
+                <div class="post__categories">
+                    {% for category in post.categories %}
+                        <a href="/tags/{{ category }}" class="post__category">#{{ category }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </header>
+
+        <article class="post__content">
+            {{ content }}
+        </article>
+    </div>
+
+</section>

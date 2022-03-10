@@ -17,7 +17,6 @@
 
 .books {
     &__list {
-        margin-top: 5rem;
         display: grid;
         grid-template-columns: repeat(auto-fill, 25rem);
         justify-content: space-between;
@@ -59,19 +58,46 @@
         outline: .8rem solid #55c57a;
         border-radius: 1rem;
     }
-    &__link:link,
-    &__link:visited {
-        text-decoration: none;
-        display: inline-block;
-        letter-spacing: 0.3rem;
-
-        &:hover {
-            transform: skewY(2deg) skewX(15deg) scale(1.05);
-            text-shadow: .5rem 1rem 2rem rgba($color-black, .2);
-        }
-    }
 
     &:not(:last-of-type) {
         margin-bottom: 15rem;
+    }
+}
+
+.post {
+    font-size: 1.6rem;
+
+    margin-bottom: 22px;
+    background-color: #fff;
+    box-shadow: $shadow-light;
+    border-radius: 5px;
+    padding: 2rem 3rem;
+
+    p {
+        color: $color-grey-dark-2;
+    }
+
+    &__meta {
+        font-size: 1.3rem;
+        color: $color-grey-dark-2;
+        margin-top: 2rem;
+
+        padding-top: 1rem;
+        border-top: 1px solid #ddd;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__category {
+        text-decoration: none;
+        color: $color-grey-dark-2;
+
+        &:not(:last-of-type) {
+            margin-right: 1rem;
+        }
+
+        &:hover {
+            color: $color-grey-dark-1;
+        }
     }
 }
