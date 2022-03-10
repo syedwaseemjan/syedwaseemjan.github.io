@@ -12,14 +12,13 @@ html {
 }
 
 .container {
-    min-height: 62rem;
     max-width: 114rem;
-    margin: 0 auto;
+    margin: 5rem auto;
     margin-top: 11rem;
-    padding: 3rem;
+    padding: 3rem 0;
 }
 
 ::selection {
-    background-color: $color-primary-light;
+    background-color: $color-primary;
     color: $color-white;
 }
