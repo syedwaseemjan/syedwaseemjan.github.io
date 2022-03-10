@@ -11,12 +11,16 @@ html {
     font-size: 62.5%; // 10px/16px = 62.5% -> 1rem = 10px
 }
 
+body {
+    background-color: $color-grey-light-1;
+}
+
 .container {
     min-height: 56rem;
     max-width: 114rem;
     margin: 5rem auto;
     margin-top: 11rem;
-    padding: 3rem 0;
+    padding: 3rem;
 }
 
 ::selection {
