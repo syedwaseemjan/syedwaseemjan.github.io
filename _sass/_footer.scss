@@ -1,7 +1,7 @@
 .footer {
     padding: 2rem 0;
-    background-color: $color-grey-dark-3;
-    border-top: var(--line);
+    background-color: $color-grey-dark-1;
+    border-top: $line;
 
     display: flex;
     justify-content: center;
@@ -26,14 +26,14 @@
         font-size: 1.4rem;
         color: $color-white;
         &:hover {
-            background-image: linear-gradient(to right, #7ed56f, #28b485);
+            background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
             -webkit-background-clip: text;
             color: transparent;
             transform: scale(1.2);
         }
     }
     &__link:hover &__icon {
-        color: $color-primary-dark;
+        color: $color-primary;
         
     }
 }

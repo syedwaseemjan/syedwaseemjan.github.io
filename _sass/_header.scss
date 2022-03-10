@@ -8,7 +8,7 @@
     background-image: linear-gradient(to right,
         rgba($color-primary-light, .85), 
         rgba($color-primary-dark, .85));
-    border-bottom: var(--line);
+    border-bottom: $line;
     padding: 0 3rem;
 
     display: flex;
