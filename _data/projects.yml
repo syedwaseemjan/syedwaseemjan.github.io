@@ -1,0 +1,20 @@
+- title: Chef Galaxy
+  link: null
+  details: Built Chef Galaxy, a social marketplace for dishes and culinary services like matching Patrons with Chefs for their events.
+  thumbnail: /assets/img/projects/chef-galaxy.png
+  thumbnailalt: Chef Galaxy
+- title: Vocabulary Warehouse
+  link: https://www.artstor.org/
+  details: Built highly interactive graphical interfaces for a digital library ARTstor which contains more than one million images in the arts, architecture, humanities, and sciences.
+  thumbnail: /assets/img/projects/artstor.png
+  thumbnailalt: Artstor Vocabulary Warehouse
+- title: My Personal Website
+  link: https://syedwaseemjan.github.io
+  details: I designed and built this personal website without using any templates or frameworks using only vanilla CSS. Applied "7-1 Sass Architecture", "CSS BEM methodogy" and used CSS3 flexbox and grid.
+  thumbnail: /assets/img/projects/personal-website.png
+  thumbnailalt: Waseem's Personal Website
+- title: Widroid
+  link: http://widroid.blogspot.com
+  details: WiDroid is a Free Android App which lets you use your Android device as a wireless Touchpad, Keyboard, Game controller, Steering controller, Powerpoint presentation controller and Mediaplayer controller.
+  thumbnail: /assets/img/projects/widroid.png
+  thumbnailalt: Final year project
