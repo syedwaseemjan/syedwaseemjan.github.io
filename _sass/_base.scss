@@ -23,6 +23,10 @@ body {
     padding: 3rem;
 }
 
+a {
+    color: $color-primary-dark;
+}
+
 ::selection {
     background-color: $color-primary;
     color: $color-white;
