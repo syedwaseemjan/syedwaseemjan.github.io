@@ -19,20 +19,6 @@
         justify-items: center;
         grid-row-gap: 10rem;
     }
-    &__link:link,
-    &__link:visited {
-        height: 100%;
-        transition: all .2s;
-        &:hover {
-            transform: scale(1.1);
-            box-shadow: $shadow-dark;
-        }
-    }
-    &__img {
-        width: 20rem;
-        height: 28rem;
-        display: block;
-    }
 }
 
 .section-projects {
