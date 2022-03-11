@@ -1,13 +1,14 @@
 ---
 ---
 
-@import "variables";
-@import "base";
-@import "footer";
-@import "header";
-@import "layout";
-@import "mixins";
-@import "typography";
-@import "utilities";
+@import "abstracts/mixins";
+@import "abstracts/variables";
+@import "base/base";
+@import "base/typography";
+@import "base/utilities";
+@import "layout/footer";
+@import "layout/header";
+@import "layout/layout";
 @import "components/book";
 @import "components/tag";
+@import "pages/home";
