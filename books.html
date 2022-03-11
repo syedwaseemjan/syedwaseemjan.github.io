@@ -7,27 +7,21 @@ title: Books
     <h3 class="heading-2">Technical Books</h3>
 	<div class="books__list">
         {% for book in site.data.books_technical %}
-            <a href="{{ book.amazon_url }}" target="_blank" class="books__link">
-                <img src="/assets/img/books/{{ book.image_url }}" class="books__img"/>
-            </a>
+            {% include book.html book=book %}
         {% endfor %}
     </div>
 
     <h3 class="heading-2 mt-hg">Self Help</h3>
     <div class="books__list">
         {% for book in site.data.books_self_help %}
-            <a href="{{ book.amazon_url }}" target="_blank" class="books__link">
-                <img src="/assets/img/books/{{ book.image_url }}" class="books__img"/>
-            </a>
+            {% include book.html book=book %}
         {% endfor %}
     </div>
 
     <h3 class="heading-2 mt-hg">Novels</h3>
     <div class="books__list">
         {% for book in site.data.books_novels %}
-            <a href="{{ book.amazon_url }}" target="_blank" class="books__link">
-                <img src="/assets/img/books/{{ book.image_url }}" class="books__img"/>
-            </a>
+            {% include book.html book=book %}
         {% endfor %}
     </div>
 </section>
