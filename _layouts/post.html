@@ -5,18 +5,17 @@ layout: page
 
     {% assign readTimeMinutes = content | number_of_words | divided_by: 180 | round %}
     <div class="post">
-        <header class="post__header">
-            <h2 class="heading-2">{{ page.title }}</h2>
-            <div class="post__meta">
-                {{ page.date | date: "%B %-d, %Y" }}{% if page.meta %} • {{ page.meta }}{% endif %}
-                | {{ site.title }} | {{ readTimeMinutes }} min read
-                <div class="post__categories">
-                    {% for category in post.categories %}
-                        <a href="/tags/{{ category }}" class="post__category">#{{ category }}</a>
-                    {% endfor %}
-                </div>
-            </div>
-        </header>
+        <h1 class="heading-1 mb-sm ">{{ page.title }}</h1>
+        <div class="post__meta">
+            <span class="post__date-posted">{{ page.date | date: "%B %-d, %Y" }}{% if page.meta %} • {{ page.meta }}{% endif %}</span>
+            <span class="post__title">{{ site.title }}</span>
+            <span class="post__readtime">{{ readTimeMinutes }} min read</span>
+            <span class="post__categories">
+                {% for category in page.categories %}
+                    <a href="/tags/{{ category }}" class="tag"># {{ category }}</a>
+                {% endfor %}
+            </span>
+        </div>
 
         <article class="post__content">
             {{ content }}

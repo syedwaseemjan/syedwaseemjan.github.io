@@ -1,0 +1,17 @@
+.tag {
+	opacity: .9;
+    text-decoration: none;
+    color: $color-white;
+    font-weight: 600;
+    text-transform: capitalize;
+    line-height: 1rem;
+    font-size: 1.2rem;
+    display: inline-block;
+    padding: .8rem 1.2rem;
+    background: linear-gradient(to right, $color-primary-light, $color-primary-dark);
+    border-radius: .8rem;
+
+    &:hover {
+        opacity: 1;
+    }
+}

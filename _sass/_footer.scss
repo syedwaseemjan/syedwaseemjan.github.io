@@ -12,13 +12,12 @@
     &__list {
         list-style: none;
         display: flex;
-    }
-    &__item {
 
-        &:not(:last-child) {
+        & :not(:last-child) {
             margin-right: 1rem;
         }
     }
+    
     &__link:link,
     &__link:visited {
         display: inline-block;
