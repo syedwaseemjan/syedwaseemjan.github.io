@@ -9,6 +9,18 @@
 html {
     box-sizing: border-box;
     font-size: 62.5%; // 10px/16px = 62.5% -> 1rem = 10px
+
+    @include respond(tab-land) { // width < 1200?
+        font-size: 56.25%; //1 rem = 9px, 9/16 = 50%
+    }
+
+    @include respond(tab-port) { // width < 900?
+        font-size: 50%; //1 rem = 8px, 8/16 = 50%
+    }
+    
+    @include respond(big-desktop) {
+        font-size: 75%; //1rem = 12, 12/16
+    }
 }
 
 body {
@@ -16,11 +28,18 @@ body {
 }
 
 .container {
-    min-height: 56rem;
+    min-height: calc(100vh - 29.5rem);
     max-width: 114rem;
     margin: 5rem auto;
     margin-top: 11rem;
     padding: 3rem;
+
+    @include respond(tab-land) {
+        margin-top: 3rem;
+    }
+    @include respond(tab-port) {
+        margin-top: 0;
+    }
 }
 
 a {

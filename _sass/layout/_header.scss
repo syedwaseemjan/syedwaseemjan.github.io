@@ -15,6 +15,16 @@
     justify-content: space-between;
     align-items: center;
 
+    @include respond(tab-land) {
+        position: static;
+    }
+
+    @include respond(tab-port) {
+        flex-direction: column;
+        height: auto;
+        row-gap: 1rem;
+    }
+
     &__link {
         font-size: 3rem;
         text-decoration: none;
@@ -22,13 +32,18 @@
         color: $color-white;
         font-weight: 400;
         letter-spacing: 1.75rem;
+        text-align: center;
     }
 
     &__avatar {
         width: 10rem;
         border-radius: 50%;
-        box-shadow: 0 0 .5rem rgba(0,0,0,.8);
-        transform: translateY(20px);
+        box-shadow: $shadow-light;
+        transform: translateY(2rem);
+
+        @include respond(tab-port) {
+            transform: translateY(0);
+        }
     }
 }
 
@@ -37,6 +52,8 @@
 
     &__list {
         display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         height: 100%;
         list-style: none;
     }
@@ -54,6 +71,10 @@
 
         &:hover {
             background-color: $color-primary-dark;
+        }
+
+        @include respond(tab-port) {
+            font-size: 2rem;
         }
     }
 }

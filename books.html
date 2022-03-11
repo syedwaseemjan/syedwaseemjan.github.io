@@ -4,22 +4,22 @@ title: Books
 ---
 
 <section class="section-books">
-    <h3 class="heading-2">Technical Books</h3>
-	<div class="books__list">
+    <h3 class="heading-2 section-books__heading">Technical Books</h3>
+	<div class="section-books__list">
         {% for book in site.data.books_technical %}
             {% include book.html book=book %}
         {% endfor %}
     </div>
 
-    <h3 class="heading-2 mt-hg">Self Help</h3>
-    <div class="books__list">
+    <h3 class="heading-2 section-books__heading mt-hg">Self Help</h3>
+    <div class="section-books__list">
         {% for book in site.data.books_self_help %}
             {% include book.html book=book %}
         {% endfor %}
     </div>
 
-    <h3 class="heading-2 mt-hg">Novels</h3>
-    <div class="books__list">
+    <h3 class="heading-2 section-books__heading mt-hg">Novels</h3>
+    <div class="section-books__list">
         {% for book in site.data.books_novels %}
             {% include book.html book=book %}
         {% endfor %}

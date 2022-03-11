@@ -2,7 +2,6 @@
     padding: 2rem 0;
     background-color: $color-grey-dark-1;
     border-top: $line;
-
     display: flex;
     justify-content: center;
 }
@@ -12,9 +11,12 @@
     &__list {
         list-style: none;
         display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        row-gap: 1rem;
 
-        & :not(:last-child) {
-            margin-right: 1rem;
+        & > :not(:last-child) {
+            margin-right: 4rem;
         }
     }
     

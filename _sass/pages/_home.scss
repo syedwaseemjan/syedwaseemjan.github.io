@@ -8,18 +8,30 @@
     font-size: 1.6rem;
 }
 
-.books {
+.section-books {
     &__list {
         display: grid;
-        grid-template-columns: repeat(auto-fill, 25rem);
+        grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
         justify-content: space-between;
         justify-items: center;
         grid-row-gap: 10rem;
+    }
+    &__heading {
+        display: block;
+        text-align: center;
     }
 }
 
 .section-projects {
     margin-top: 6rem;
+
+    @include respond(tab-port) {
+        margin-top: 4rem;
+    }
+
+    @include respond(phone) {
+        margin-top: 0rem;
+    }
 }
 
 .project {
@@ -27,6 +39,11 @@
     display: grid;
     grid-template-columns: 1fr 40%;
     grid-column-gap: 10rem;
+
+    @include respond(phone) {
+        grid-template-columns: 1fr;
+        grid-row-gap: 3rem;
+    }
 
     &__img {
         display: block;
@@ -40,6 +57,10 @@
 
     &:not(:last-of-type) {
         margin-bottom: 15rem;
+
+        @include respond(phone) {
+            margin-bottom: 8rem;
+        }
     }
 }
 

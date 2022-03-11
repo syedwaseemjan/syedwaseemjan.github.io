@@ -9,6 +9,7 @@
         position: relative;
         transition: all .4s;
         border-radius: 1rem;
+        box-shadow: $shadow-dark;
 
         &::before {
             content: "";
@@ -31,7 +32,6 @@
 
     &:hover &__img {
         transform: scale(1.1);
-        box-shadow: $shadow-dark;
     }
 
     &:hover &__box::before {
