@@ -1,20 +1,20 @@
 - title: Chef Galaxy
   link: null
-  details: Built Chef Galaxy, a social marketplace for dishes and culinary services like matching Patrons with Chefs for their events.
+  details: I co-founded Chef Galaxy, a social marketplace for dishes and culinary services like matching Patrons with Chefs for their events. It used Python and Flask on the backend and vanilla Javascript with Bootstrap on the Frontend. It was deployed on AWS using EC2, S3, VPC, Elasticache and Opensearch. Chef Galaxy couldn't get successful but it gave me a lot to learn.
   thumbnail: /assets/img/projects/chef-galaxy.png
   thumbnailalt: Chef Galaxy
 - title: Vocabulary Warehouse
   link: https://www.artstor.org/
-  details: Built highly interactive graphical interfaces for a digital library ARTstor which contains more than one million images in the arts, architecture, humanities, and sciences.
+  details: Built highly interactive graphical interfaces for a digital library ARTstor which contains more than one million images in the arts, architecture, humanities, and sciences. Developed in ExtJS4 and Javascript, I extensively customized ExtJS components to enhance the user experience, provided cross-browser support including for Internet Explorer and used some of the advanced features of ExtJS for custom Themes, Internationalization.
   thumbnail: /assets/img/projects/artstor.png
   thumbnailalt: Artstor Vocabulary Warehouse
 - title: My Personal Website
   link: https://syedwaseemjan.github.io
-  details: I designed and built this personal website without using any templates or frameworks using only vanilla CSS. Applied "7-1 Sass Architecture", "CSS BEM methodogy" and used CSS3 flexbox and grid.
+  details: I designed and built this personal website without using any templates or frameworks using only vanilla CSS. Applied <a href="https://sass-guidelin.es/#the-7-1-pattern" target="_blank">7-1 Sass Architecture</a>, <a href="http://getbem.com/introduction/" target="_blank">CSS BEM methodogy</a> and used CSS3 flexbox, grid and some cool animations. Additionally, I added dozens of media queries to provide support for <a href="https://github.com/syedwaseemjan/syedwaseemjan.github.io/blob/main/_sass/abstracts/_mixins.scss" target="_blank">different screen sizes</a>. My personal website also contains a link to my <a href="/blog" target="_blank">personal blog</a>.
   thumbnail: /assets/img/projects/personal-website.png
   thumbnailalt: Waseem's Personal Website
 - title: Widroid
   link: http://widroid.blogspot.com
-  details: WiDroid is a Free Android App which lets you use your Android device as a wireless Touchpad, Keyboard, Game controller, Steering controller, Powerpoint presentation controller and Mediaplayer controller.
+  details: WiDroid was a free android app to let the user use his android device as a wireless touchpad, keyboard, game controller, steering controller, powerpoint presentation controller and mediaplayer controller. Developed in 2012 as part of my FYP (Bachelor's Final Year Project), its backend server was written in C# and the android client app was written in Java.
   thumbnail: /assets/img/projects/widroid.png
   thumbnailalt: Final year project

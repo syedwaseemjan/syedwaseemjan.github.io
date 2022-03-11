@@ -9,24 +9,32 @@
 }
 
 .section-books {
+    margin-top: 4rem;
+
+    @include respond(tab-port) {
+        margin-top: 3rem;
+    }
+
+    @include respond(phone) {
+        margin-top: 0rem;
+    }
+
     &__list {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
         justify-content: space-between;
-        justify-items: center;
         grid-row-gap: 10rem;
     }
     &__heading {
         display: block;
-        text-align: center;
     }
 }
 
 .section-projects {
-    margin-top: 6rem;
+    margin-top: 4rem;
 
     @include respond(tab-port) {
-        margin-top: 4rem;
+        margin-top: 3rem;
     }
 
     @include respond(phone) {

@@ -29,7 +29,9 @@ body {
     font-size: 2.4rem;
     margin-bottom: 3rem;
 
-    
+    &--dark {
+        color: $color-grey-dark-1;
+    }
 
     &--skew:link,
     &--skew:visited {
@@ -44,5 +46,4 @@ body {
     @extend %heading;
     font-size: 1.6rem;
     color: $color-primary;
-    text-transform: uppercase;
 }
