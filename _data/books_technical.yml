@@ -1,6 +1,6 @@
 - title: HTML & CSS
   author: Jon Duckett
-  image_url: html-and-css.jpeg
+  image_url: html-and-css.png
   amazon_url: https://www.amazon.com/HTML-CSS-Design-Build-Websites/dp/1118008189
 - title: Code Complete
   author: Steve McConnell
@@ -12,11 +12,11 @@
   amazon_url: https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882
 - title: Dive into Python
   author: Mark Pilgrim
-  image_url: dive-into-python.jpeg
+  image_url: dive-into-python.png
   amazon_url: https://www.amazon.com/Dive-Into-Python-Mark-Pilgrim/dp/1590593561
 - title: "Javascript: The Good Parts"
   author: Douglas Crockford
-  image_url: javascript-the-good-parts.jpeg
+  image_url: javascript-the-good-parts.png
   amazon_url: https://www.amazon.com/JavaScript-Good-Parts-ebook/dp/B0026OR2ZY
 - title: The Clean Coder
   author: Douglas Crockford
