@@ -4,25 +4,30 @@ title: Books
 ---
 
 <section class="section-books">
-    <h2 class="heading-2 heading-2--dark mb-lg">Here is the list of the few books I have read though I am still struggling to develop my book reading habit.</h2>
-    <h3 class="heading-2 section-books__heading">Novels</h3>
-    <div class="section-books__list">
-        {% for book in site.data.books_novels %}
-            {% include book.html book=book %}
-        {% endfor %}
+    <div class="section-books__category">
+        <h2 class="heading-2 heading-2--dark mb-hg">Here is the list of the few books I have read though I am still struggling to develop my book reading habit.</h2>
+        <h3 class="heading-2 section-books__heading">Novels</h3>
+        <div class="section-books__list">
+            {% for book in site.data.books_novels %}
+                {% include book.html book=book %}
+            {% endfor %}
+        </div>
     </div>
-
-    <h3 class="heading-2 section-books__heading mt-hg">Self Help</h3>
-    <div class="section-books__list">
-        {% for book in site.data.books_self_help %}
-            {% include book.html book=book %}
-        {% endfor %}
+    <div class="section-books__category">
+        <h3 class="heading-2 section-books__heading">Self Help</h3>
+        <div class="section-books__list">
+            {% for book in site.data.books_self_help %}
+                {% include book.html book=book %}
+            {% endfor %}
+        </div>
+        
     </div>
-
-    <h3 class="heading-2 section-books__heading mt-hg">Technical Books</h3>
-	<div class="section-books__list">
-        {% for book in site.data.books_technical %}
-            {% include book.html book=book %}
-        {% endfor %}
+    <div class="section-books__category">
+        <h3 class="heading-2 section-books__heading">Technical Books</h3>
+        <div class="section-books__list">
+            {% for book in site.data.books_technical %}
+                {% include book.html book=book %}
+            {% endfor %}
+        </div>
     </div>
 </section>

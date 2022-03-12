@@ -38,7 +38,7 @@ body {
         margin-top: 3rem;
     }
     @include respond(tab-port) {
-        margin-top: 0;
+        margin-top: 1rem;
     }
 }
 
