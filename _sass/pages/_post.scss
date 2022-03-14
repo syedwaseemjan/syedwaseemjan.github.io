@@ -1,0 +1,99 @@
+.post {
+
+    @media only screen and (min-width: 56.25em) {
+        width: 80rem;
+        margin: 0 auto;
+    }
+
+    &__meta {
+        font-size: 1.5rem;
+        color: $color-grey-dark-2;
+
+        & > :not(:last-child):after {
+            content: "";
+            border-right: 1px solid #ddd;
+            margin: 0 8px 0 10px;
+        }
+    }
+
+    &__content {
+        color: $color-grey-dark-1;
+        margin: 4rem 0;
+        font-size: 1.6rem;
+
+        p {
+            margin: 2rem 0;
+        }
+
+        div.highlight {
+            background-color: $color-white;
+        }
+
+        pre.highlight {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            font-size: 15px;
+            overflow-y: hidden;
+            overflow-x: scroll;
+        }
+
+        img {
+            width: 100%;
+        }
+    }
+}
+
+.post pre,
+.post code {
+    border: 1px solid #ddd;
+    background-color: #f6f6f6;
+    padding: 8px 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    font-size: 15px;
+    overflow-y: hidden;
+    overflow-x: scroll;
+}
+
+.post .highlight pre,
+.post .highlight code {
+    white-space: pre;
+    overflow: auto;
+    word-wrap: normal;
+}
+
+.post code { padding: 0; }
+
+.post ul,
+.post ol { margin-left: 1.35em; }
+
+.post pre code { border: none; }
+
+.post .post-image-small {
+    max-width: 50%;
+}
+
+.anchor,
+.anchor:visited,
+.anchor:hover,
+.anchor:active {
+    font-size: .7em;
+    color: #ccc;
+    vertical-align: middle;
+}
+
+/* terminal */
+.post pre.terminal {
+    border: 1px solid #000;
+    background-color: #333;
+    color: #FFF;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.post pre.terminal code { background-color: #333; }
