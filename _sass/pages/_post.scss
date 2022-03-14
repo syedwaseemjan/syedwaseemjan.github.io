@@ -12,7 +12,7 @@
         & > :not(:last-child):after {
             content: "";
             border-right: 1px solid #ddd;
-            margin: 0 8px 0 10px;
+            margin: 0 .8rem 0 1rem;
         }
     }
 
@@ -31,11 +31,11 @@
 
         pre.highlight {
             border: 1px solid #ddd;
-            padding: 8px 12px;
-            -webkit-border-radius: 3px;
-            -moz-border-radius: 3px;
-            border-radius: 3px;
-            font-size: 15px;
+            padding: .8rem 1.2rem;
+            -webkit-border-radius: .3rem;
+            -moz-border-radius: .3rem;
+            border-radius: .3rem;
+            font-size: 1.5rem;
             overflow-y: hidden;
             overflow-x: scroll;
         }
@@ -52,19 +52,19 @@
         h5,
         h6 {
             line-height: 1.5rem;
-            margin: 40px 0 20px;
+            margin: 4rem 0 2rem;
         }
 
         h2 {
-            font-size: 1.6rem;
+            font-size: 2.6rem;
         }
 
         h3 {
-            font-size: 1.4rem;
+            font-size: 2.2rem;
         }
 
         h4 {
-            font-size: 1.2rem;
+            font-size: 1.9rem;
         }
 
         p {
@@ -72,16 +72,16 @@
         }
 
         blockquote {
-            border-left: 4px solid #e8e8e8;
-            padding-left: 20px;
-            font-size: 16px;
+            border-left: .4rem solid #e8e8e8;
+            padding-left: 2rem;
+            font-size: 1.6rem;
             opacity: .6;
             font-style: italic;
-            margin: 30px 0;
+            margin: 3rem 0;
         }
 
         ul,
-        ol { padding-left: 40px; }
+        ol { padding-left: 4rem; }
 
         img {
             max-width: 100%;
@@ -90,13 +90,13 @@
 
     pre,
     code {
-        border: 1px solid #ddd;
-        background-color: #f6f6f6;
-        padding: 8px 12px;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px;
-        font-size: 15px;
+        border: $line;
+        background-color: $color-grey-light-1;
+        padding: .8rem 1.2rem;
+        -webkit-border-radius: .3rem;
+        -moz-border-radius: .3rem;
+        border-radius: .3rem;
+        font-size: 1.5rem;
         overflow-y: hidden;
         overflow-x: scroll;
     }
@@ -124,19 +124,19 @@
     .anchor:hover,
     .anchor:active {
         font-size: .7rem;
-        color: #ccc;
+        color: $color-grey-light-3;
         vertical-align: middle;
     }
 
     /* terminal */
     pre.terminal {
-        border: 1px solid #000;
-        background-color: #333;
-        color: #FFF;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px;
+        border: 1px solid $color-black;
+        background-color: $color-grey-dark-1;
+        color: $color-white;
+        -webkit-border-radius: .3rem;
+        -moz-border-radius: .3rem;
+        border-radius: .3rem;
     }
 
-    pre.terminal code { background-color: #333; }
+    pre.terminal code { background-color: $color-grey-dark-1; }
 }
