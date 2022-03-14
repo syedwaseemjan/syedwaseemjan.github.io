@@ -67,7 +67,7 @@ Other things to take into consideration for building a team are trust, honesty, 
 
 ## Ready for failure
 
-When the product was completed and launched, I moved to another city and got a fulltime job there as I felt I can do the rest of the work for ChefGalxy quite easily in my part time unless of course, it becomes viral in which case I could always have resigned from my fulltime job. Now I feel like moving to another city and taking a fulltime job long before I shut down the server for Chef Galaxy was really a good decision. I think if I was still in the same place working on Chef Galaxy it would have been really hard for me to let it go and it would definitely have taken an emotional and financial toll on me.
+When the product was completed and launched, I moved to another city and got a fulltime job there as I felt I can do the rest of the work for Chef Galaxy quite easily in my part time unless of course, it becomes viral in which case I could always have resigned from my fulltime job. Now I feel like moving to another city and taking a fulltime job long before I shut down the server for Chef Galaxy was really a good decision. I think if I was still in the same place working on Chef Galaxy it would have been really hard for me to let it go and it would definitely have taken an emotional and financial toll on me.
 
 
 
