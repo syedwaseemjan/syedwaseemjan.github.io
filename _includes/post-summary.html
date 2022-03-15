@@ -1,4 +1,4 @@
-{% assign readTimeMinutes = post.content | number_of_words | divided_by: 180 | round %}
+{% include reading-time-calculator.html post=post.content %}
 <div class="post-item">
     <a class="heading-2 heading-2--skew mb-sm" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
 
@@ -8,7 +8,7 @@
 
     <div class="post-item__meta">
         {{ post.date | date: "%B %-d, %Y" }}{% if post.meta %} • {{ post.meta }}{% endif %}
-        | {{ readTimeMinutes }} min read
+        | {{ reading_time }}
         <div class="post-item__categories">
             {% for category in post.categories %}
                 <a href="/tags/{{ category }}" class="tag"># {{ category }}</a>

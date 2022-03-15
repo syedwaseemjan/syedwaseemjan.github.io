@@ -2,14 +2,13 @@
 layout: page
 ---
 <section class="section-post">
-
-    {% assign readTimeMinutes = content | number_of_words | divided_by: 180 | round %}
+    {% include reading-time-calculator.html post=content %}
     <div class="post">
         <h1 class="heading-1 mb-sm ">{{ page.title }}</h1>
         <div class="post__meta">
             <span class="post__date-posted">{{ page.date | date: "%B %-d, %Y" }}{% if page.meta %} • {{ page.meta }}{% endif %}</span>
             <span class="post__title">{{ site.title }}</span>
-            <span class="post__readtime">{{ readTimeMinutes }} min read</span>
+            <span class="post__readtime">{{ reading_time }}</span>
             <span class="post__categories">
                 {% for category in page.categories %}
                     <a href="/tags/{{ category }}" class="tag"># {{ category }}</a>

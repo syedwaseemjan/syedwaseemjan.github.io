@@ -1,0 +1,6 @@
+{% assign reading_time = include.post | strip_html | number_of_words | divided_by: 180.0 | round %}
+{% if reading_time <= 1 %}
+    {% assign reading_time = 1 | append: ' min read' %}
+{% else %}
+    {% assign reading_time = reading_time | append: ' min read' %}
+{% endif %}

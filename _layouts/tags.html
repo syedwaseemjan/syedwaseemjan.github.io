@@ -5,7 +5,6 @@ layout: page
 <section class="section-tag">
     <h3 class="heading-2 mb-md">#{{ page.tag}}</h3>
     {% for post in site.categories[page.tag] %}
-        {% include post.html post=post %}
+        {% include post-summary.html post=post %}
     {% endfor %}
-
 </section>
