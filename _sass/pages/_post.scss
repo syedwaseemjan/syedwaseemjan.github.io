@@ -72,7 +72,7 @@
         }
 
         blockquote {
-            border-left: .4rem solid #e8e8e8;
+            border-left: .4rem solid $color-grey-light-2;
             padding-left: 2rem;
             font-size: 1.6rem;
             opacity: .6;
@@ -128,13 +128,10 @@
         vertical-align: middle;
     }
 
-    /* terminal */
     pre.terminal {
         border: 1px solid $color-black;
         background-color: $color-grey-dark-1;
         color: $color-white;
-        -webkit-border-radius: .3rem;
-        -moz-border-radius: .3rem;
         border-radius: .3rem;
     }
 
