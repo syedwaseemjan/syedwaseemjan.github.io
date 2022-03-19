@@ -2,6 +2,7 @@
 layout: post
 title:  "Building my own house"
 date:   2018-11-15 23:01:00
+categories: life
 ---
 After working as a software engineer for multiple years, doing part time jobs and spending my money frugally, I had enough savings by the start of 2016 and started building my own house which is almost complete now after nearly two years of construction and I will be moving there soon.
 
