@@ -8,6 +8,8 @@ In 2014 I was hired for a small contract on Upwork for building a module related
 
 It was a startup related to the culinary industry named Chef Galaxy. The basic idea of Chef Galaxy was to connect customers with chefs for their events like birthdays, weddings, etc, an Upwork for chefs.
 
+<img src="/assets/img/posts/what-i-learned-from-my-failed-startup/img-1.png" alt="Chef Galaxy landing page" />
+
 After spending 4 years on it, we finally shut down the server on 23rd August 2018. It FAILED, but I still learned a lot from it. Here is what I learned from it.
 
 
