@@ -4,9 +4,9 @@ title:  "Building my own house"
 date:   2018-11-15 23:01:00
 categories: life
 ---
-After working as a software engineer for multiple years, doing part time jobs and spending my money frugally, I had enough savings by the start of 2016 and started building my own house which is almost complete now after nearly two years of construction and I will be moving there soon.
+Having my own house was always my dream. After working as a software engineer for multiple years, doing part time jobs and spending my money frugally, I had enough savings by the start of 2016 and started building my own house which is almost complete now after nearly two years of construction and I will be moving there soon.
 
-Currently, I am living with my parents and siblings, 6 people in total, in a small 1200 sqft house. The place around our current house has become commercial, yes it can happen in Pakistan. There are no strict rules and regulations in most of the cities and residential places can be used for commercial purpose by making shops and plazas there. So this place has become too crowdy for us, every time we have to leave or get back home, we have to pass through streets jam packed with motorbikes. Moreover, there are electricity blackout problems in this area. Blackout problems are everywhere in Pakistan but in some places, it is worse and ours is among the worse areas.
+Currently, I am living with my parents and siblings, 6 people in total, in a small 1200 sqft house. The place around our current house has become commercial, yes it can happen in Pakistan. There are no strict rules and regulations in most of the cities and residential places can be used for commercial purposes by making shops and plazas there. So this place has become too crowdy for us, every time we have to leave or get back home, we have to pass through streets jam packed with motorbikes. Moreover, there are electricity blackout problems in this area. Blackout problems are everywhere in Pakistan but in some places, it is worse and ours is among the worse areas.
 
 We could also just had buy a house instead of constructing it but the place I bought land in was a relatively new Gated society with not many houses available for sale. I bought 2700 sqft of land there. Some of the reasons for buying land in that particular place were
 
@@ -37,7 +37,9 @@ A few things I wish I had done differently are
 1. I should have installed electrical pipes inside walls for the future installation of Solar panels. Things will look a little ugly and messy when I install solar panels in the future because of all the wires and stuff. 
 2. Staircase should have been more wide. I realized it only when we were moving some furniture upstairs.
 
+Regardless of the few small issues, I feel it's a nice house and never really expected it will come out so cool, especially the front elevation as I never designed it as the 3D design needed learning some additional skills and I didn't have time for it. 
+
 <img src="/assets/img/posts/building-my-own-house/img-3.jpeg" alt="My house's interior" />
 <img src="/assets/img/posts/building-my-own-house/img-4.jpeg" alt="My house's interior" />
 
-In the end, I built a nice house and never really expected it will come out so cool, especially the front elevation as I never designed it as the 3D design needed learning some additional skills and I didn't have time for it. We are planning to move there soon and I will be living there for years to come.
+My father was able to build his house only after getting retired from service and I have always been told that building the house can take ages. Building my house somewhat early in my career feels a huge accomplishment for me. We are planning to move there soon and I will be living there for years to come.
