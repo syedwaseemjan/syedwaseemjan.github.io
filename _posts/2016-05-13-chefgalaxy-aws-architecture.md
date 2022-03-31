@@ -50,7 +50,7 @@ Let's go through each layer one by one.
 
 ### Our Presentation layer:
 
-Our presentation layer consists of AWS elastic load balancer. It has a public endpoint that users can call directly. ELB is responsible for equally distributing the customer requests between our EC2 hosted applications in two Availability Zones. ELB can automatically scale to handle the increased workload. We are also using default health checks so that ELB can send requests only to healthy EC2 instances. Additionally, it is also responsible for decrypting our HTTPS requests.
+Our presentation layer consists of AWS elastic load balancer. It has a public endpoint that users can call directly. ELB is responsible for equally distributing the customer requests between our EC2 hosted applications in the second layer in two Availability Zones. ELB can automatically scale to handle the increased workload. We are also using default health checks so that ELB can send requests only to healthy EC2 instances. Additionally, it is also responsible for decrypting our HTTPS requests.
 
 We also have an OpenVPN EC2 instance in our `us-east-1a` public subnet to give us access to our application servers, database, and Redis cache.
 
