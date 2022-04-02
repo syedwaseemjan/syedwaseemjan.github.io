@@ -2,7 +2,7 @@
 layout: post
 title:  "Chef Galaxy's AWS architecture explained"
 date:   2016-05-13 12:43:00
-categories: AWS chefgalaxy
+categories: aws chefgalaxy
 ---
 
 Chef Galaxy(Co-founded by me) is a website that connects customers with chefs for their events like birthdays and weddings, in other words, it's an **Upwork** for foodies. It also provides a social network for foodies, in other words, it's a **Facebook** for foodies. Additionally, it has a knowledge engine where customers can ask questions related to food and professional chefs can provide answers, in other words, it's a **Quora** for foodies.
