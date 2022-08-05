@@ -19,8 +19,8 @@ Chef Galaxy(Co-founded by me) is a website that connects customers with chefs fo
 3. Frontend is simple **Jinja** templates using **Jquery**, **Bootstrap** and vanilla **Javascript**. 
 4. Database is **Postgres** and **Redis** cache is used for notifications and as a Celery messaging queue.
 5. **Elasticsearch** for advance searching for dishes, chefs, and also for searching some items in the knowledge section.
-6. And of course, everything is deployed on **AWS**.
-7. For logs, we are using Sentry.
+6. For logs, we are using Sentry.
+7. And of course, everything is deployed on **AWS**.
 
 
 #### Here is how our AWS architecture looks
