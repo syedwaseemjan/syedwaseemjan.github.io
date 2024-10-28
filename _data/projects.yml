@@ -15,6 +15,6 @@
   thumbnailalt: Waseem's Personal Website
 - title: Widroid
   link: http://widroid.blogspot.com
-  details: WiDroid was a free android app to let the user use his android device as a wireless touchpad, keyboard, game controller, steering controller, powerpoint presentation controller and mediaplayer controller. Developed in 2012 as part of my FYP (Bachelor's Final Year Project), its backend server was written in C# and the android client app was written in Java.
+  details: As part of my Bachelor's Final Year Project, I developed WiDroid, a free Android app that allows users to transform their Android devices into versatile wireless controllers, including a touchpad, keyboard, game controller, steering controller, PowerPoint presentation controller, and media player controller. Developed in 2012, WiDroid featured a backend server written in C# while the Android client app was crafted using Java. Ironically, the project's website, widroid.blogspot.com, remains online even after 12 years, showcasing the enduring relevance of the app. This project not only enhanced my technical skills in mobile and server-side development but also provided valuable insights into user interface design and wireless communication protocols.
   thumbnail: /assets/img/projects/widroid-small.png
   thumbnailalt: Final year project
