@@ -5,8 +5,6 @@ date:   2024-04-13 12:43:00
 categories: aws chefgalaxy
 ---
 
-#### **Introduction**
-
 At Tasq.io, I led a challenging yet rewarding initiative: transitioning several loosely connected repositories into a cohesive monolithic repository. This task, however, wasn’t just about merging code; it also involved addressing fundamental issues within each repo, from missing unit tests to inconsistent code quality. Through a structured migration process and the introduction of automated tools like Black, Ruff, and Sourcery, I transformed our development workflow into one that’s efficient, maintainable, and scalable.
 
 
