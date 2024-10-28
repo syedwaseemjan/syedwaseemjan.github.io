@@ -1,12 +1,9 @@
 ---
 layout: post
-title:  "Chef Galaxy's AWS architecture explained"
-date:   2016-05-13 12:43:00
+title:  "From Chaos to Cohesion: Migrating Multiple Repositories to a Monolithic Architecture"
+date:   2024-04-13 12:43:00
 categories: aws chefgalaxy
 ---
-
-### **From Chaos to Cohesion: Migrating Multiple Repositories to a Monolithic Architecture**
-
 
 #### **Introduction**
 
