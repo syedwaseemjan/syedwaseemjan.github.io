@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Bringing Structure to Our Pull Request Process: How I Developed PR Guidelines for My Team at Tasq"
-date:   2024-04-13 12:43:00
+date:   2023-06-11 12:43:00
 categories: backend
 ---
 
