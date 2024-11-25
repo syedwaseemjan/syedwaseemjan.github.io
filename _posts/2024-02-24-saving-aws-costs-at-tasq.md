@@ -56,7 +56,7 @@ This streamlined log management, reduced storage costs, and cut data transfer ex
 By implementing these optimizations, we achieved substantial cost savings:
 
 - **VPC Interface Endpoints**: By minimizing traffic through the NAT Gateway for DynamoDB and S3, we saved over **$15,000 annually** on data transfer charges.
-- **S3 Storage Optimization**: The new lifecycle policies and version cleanup reduced storage costs by over **30%**, saving an additional **$5,000** annually.
+- **S3 Storage Optimization**: The new lifecycle policies and version cleanup reduced storage costs by over **30%**, saving an additional **$3,000** annually.
 - **CloudWatch Logs Management**: The log retention policies, cleanup, and compression led to further savings in both storage and data transfer costs.
 
 In total, these optimizations resulted in a **$20,000 reduction in annual AWS costs**. Not only did we save money, but we also improved the security and performance of our cloud environment. With traffic now routed over the AWS private network, we saw reduced latency and faster data transfer times, ultimately enhancing the overall user experience.
