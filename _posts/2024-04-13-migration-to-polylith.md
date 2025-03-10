@@ -5,12 +5,12 @@ date:   2024-04-13 12:43:00
 categories: backend
 ---
 
-At Tasq.io, I led a challenging yet rewarding initiative: transitioning several loosely connected repositories into a cohesive monolithic repository. This task, however, wasn’t just about merging code; it also involved addressing fundamental issues within each repo, from missing unit tests to inconsistent code quality. Through a structured migration process and the introduction of automated tools like Black, Ruff, and Sourcery, I transformed our development workflow into one that’s efficient, maintainable, and scalable.
+At Tasq.io, I led a challenging yet rewarding initiative: transitioning several loosely connected repositories into a cohesive monolithic repository. This task, however, wasn’t just about merging code; it also involved addressing fundamental issues within each repo, from missing unit tests to inconsistent code quality. Through a structured migration process and the introduction of automated tools like Black, Ruff, and Sourcery, I transformed our development workflow into one that’s maintainable.
 
 
 #### **Why Move to a Monolith?**
 
-Managing multiple repositories can complicate code management and collaboration, leading to issues like:
+Managing multiple repositories can complicate code management leading to issues like:
    - **Code Duplication**: Shared logic is often duplicated across projects.
    - **Dependency Management**: Each repository requires separate dependency tracking.
    - **Deployment Inefficiencies**: CI/CD pipelines become challenging to maintain across repos.
@@ -51,14 +51,14 @@ After the migration, I introduced several automated tools to improve code qualit
    - **Ruff**: A fast, Python linter that ensured our code adhered to best practices, catching potential bugs and enforcing style consistency.
    - **Sourcery**: A tool to detect and remove code smells, simplify logic, and provide intelligent code suggestions, Sourcery helped maintain cleaner and more efficient code.
 
-With these tools, I configured a unified GitHub workflow for automated linting and formatting, ensuring code quality checks were part of our CI/CD pipeline.
+With these tools, I configured a GitHub workflow for automated linting and formatting, ensuring code quality checks were part of our CI/CD pipeline.
 
 
 #### **Incrementally Adding Unit Tests**
 
 The lack of unit tests in the initial repos posed a risk to functionality during migration. Here’s how I approached testing:
-   - **Module-by-Module Testing**: After migrating each repository, I added unit tests for its core functions, focusing on critical components first.
-   - **Automation**: Unit tests were integrated into the GitHub workflow, enabling automated testing for each pull request.
+   - **Module-by-Module Testing**: Before migrating each repository, I added unit tests for its core functions, focusing on critical components first.
+   - **Automation**: After migration, unit tests were integrated into the GitHub workflow, enabling automated testing for each pull request.
    - **Code Coverage Tracking**: I set up code coverage tracking to measure test completeness and ensure no gaps.
 
 With these steps, we ensured the monolithic repo was more reliable and resilient.
@@ -66,7 +66,7 @@ With these steps, we ensured the monolithic repo was more reliable and resilient
 
 #### **Results and Key Takeaways**
 
-The transition to a monolith not only streamlined our development process but also brought improvements in code quality and efficiency. Here are the key takeaways:
+The transition to a monolith not only streamlined our development process but also brought improvements in code quality. Here are the key takeaways:
    - **Improved Collaboration**: A single repository reduced the complexity of collaborating across projects.
    - **Enhanced Code Quality**: Automated tools like Black, Ruff, and Sourcery maintained consistent, high-quality code.
    - **Reduced Redundancy**: Consolidating duplicated code reduced technical debt and improved maintainability.
@@ -74,5 +74,5 @@ The transition to a monolith not only streamlined our development process but al
 
 
 
-Migrating to a monolithic repository is more than a simple structural change. It’s an opportunity to improve processes, enhance collaboration, and set up a robust framework for sustainable growth. By combining Polylith’s modular approach, Pants build, and automated quality tools, I transformed our codebase into a cohesive, maintainable monolith. This journey required both technical and organizational changes, but the results were well worth the effort.
+Migrating to a monolithic repository is more than a simple structural change. It’s an opportunity to improve processes, enhance collaboration, and set up a robust framework for sustainable growth. By combining Polylith’s modular approach, Pants build, and automated quality tools, I transformed our codebase into a maintainable monolith. This journey required a lot of changes, but the results were well worth the effort.
 

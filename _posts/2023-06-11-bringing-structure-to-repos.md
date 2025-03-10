@@ -14,10 +14,10 @@ Seeing this gap in our process, I set out to develop a comprehensive set of PR g
 Before implementing these guidelines, our team faced several challenges:
 
 - **No Standard Process**: Some developers pushed changes without PRs, and even when PRs were created, there was no consistency. Many PRs lacked descriptions of the problem, how to test the solution, and reasoning behind the changes.
-- **Limited Collaboration**: Without a clear process, changes were often made in isolation. Other developers were left in the dark regarding recent modifications, impacting both project visibility and collaboration.
+- **Limited Collaboration**: Without a clear process, changes were often made in isolation. Other developers were left in the dark regarding recent modifications, impacting project visibility.
 - **Quality Control Issues**: The absence of structured reviews led to frequent issues with code quality. Without a second set of eyes, bugs and stylistic inconsistencies were harder to catch, resulting in more work later to clean up issues.
 
-To address these issues, I developed a set of PR guidelines that would instill a culture of transparency, consistency, and collaboration within our team.
+To address these issues, I developed a set of PR guidelines that would instill a culture of transparency and consistency within our team.
 
 ### 2. **Creating a Clear, Visual PR Workflow**
 
@@ -38,7 +38,7 @@ One of the first improvements was adding structured checklists in GitHub. Each c
 - **Testing Checklist** prompts developers and reviewers to verify test coverage, ensuring that each PR meets our testing standards before it’s approved.
 - **Pre-Merge Checklist** reminds developers to complete any final tasks before merging. This is especially helpful for documentation and migration scripts, which were often overlooked in the previous workflow.
 
-By implementing these checklists, I created a unified process that team members could easily follow, significantly raising the baseline quality of our PRs and minimizing the chance of missed steps.
+By implementing these checklists, I created a process that team members could easily follow, significantly raising the baseline quality of our PRs and minimizing the chance of missed steps.
 
 ### 4. **Detailed Code Review Guidelines to Elevate Quality and Collaboration**
 
@@ -83,10 +83,10 @@ By enforcing these best practices, we ensured every PR was prepared thoughtfully
 
 ### 8. **Code Review Etiquette and Responsibility of PR Owners**
 
-To foster a collaborative, positive review culture, I included etiquette guidelines for reviewers and PR owners:
+To encourage positive review culture, I included etiquette guidelines for reviewers and PR owners:
 
 - **Reviewers**: Encouraged to provide constructive, courteous feedback, explaining “why” behind suggestions to make reviews a learning experience. This helped keep reviews productive and respectful, especially for junior team members.
-- **PR Owners**: Developers were encouraged to perform self-reviews before submitting a PR, enhancing code quality from the start. PR owners were also reminded to welcome feedback, ask questions, and seek clarification if necessary, promoting open communication.
+- **PR Owners**: Developers were encouraged to perform self-reviews before submitting a PR. PR owners were also reminded to welcome feedback, ask questions, and seek clarification if necessary, creating open communication.
 
 
 Implementing these PR guidelines and transitioning to trunk-based development brought substantial improvements to our workflow. With clear stages, structured checklists, consistent labels, and a simplified release process, we saw a marked improvement in both code quality and collaboration. 
