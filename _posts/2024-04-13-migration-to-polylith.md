@@ -64,10 +64,9 @@ The lack of unit tests in the initial repos posed a risk to functionality during
 With these steps, we ensured the monolithic repo was more reliable and resilient.
 
 
-#### **Results and Key Takeaways**
 
-The transition to a monolith not only streamlined our development process but also brought improvements in code quality. Here are the key takeaways:
-   - **Improved Collaboration**: A single repository reduced the complexity of collaborating across projects.
+The transition to a monolith not only streamlined our development process but also brought improvements in code quality. Important conclusions:
+   - **Reduced Complexity**: A single repository reduced the complexity of working across multiple repos.
    - **Enhanced Code Quality**: Automated tools like Black, Ruff, and Sourcery maintained consistent, high-quality code.
    - **Reduced Redundancy**: Consolidating duplicated code reduced technical debt and improved maintainability.
    - **Optimized Build and Testing**: With Pants, our CI/CD process became more efficient, reducing time spent on builds and tests.
