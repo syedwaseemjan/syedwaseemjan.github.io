@@ -61,16 +61,12 @@ The lack of unit tests in the initial repos posed a risk to functionality during
    - **Automation**: After migration, unit tests were integrated into the GitHub workflow, enabling automated testing for each pull request.
    - **Code Coverage Tracking**: I set up code coverage tracking to measure test completeness and ensure no gaps.
 
-With these steps, we ensured the monolithic repo was more reliable and resilient.
-
-
 
 The transition to a monolith not only streamlined our development process but also brought improvements in code quality. Important conclusions:
    - **Reduced Complexity**: A single repository reduced the complexity of working across multiple repos.
    - **Enhanced Code Quality**: Automated tools like Black, Ruff, and Sourcery maintained consistent, high-quality code.
    - **Reduced Redundancy**: Consolidating duplicated code reduced technical debt and improved maintainability.
    - **Optimized Build and Testing**: With Pants, our CI/CD process became more efficient, reducing time spent on builds and tests.
-
 
 
 It was an opportunity to improve some processes and establish a robust framework for sustainable growth. By combining Polylith’s modular approach, Pants build, and automated quality tools, I transformed our codebase into a maintainable monolith. This took a significant amount of time and required many changes, but the results were well worth the effort.
