@@ -73,5 +73,5 @@ The transition to a monolith not only streamlined our development process but al
 
 
 
-Migrating to a monolithic repository is more than a simple structural change. It’s an opportunity to improve processes, enhance collaboration, and set up a robust framework for sustainable growth. By combining Polylith’s modular approach, Pants build, and automated quality tools, I transformed our codebase into a maintainable monolith. This journey required a lot of changes, but the results were well worth the effort.
+It was an opportunity to improve some processes and establish a robust framework for sustainable growth. By combining Polylith’s modular approach, Pants build, and automated quality tools, I transformed our codebase into a maintainable monolith. This took a significant amount of time and required many changes, but the results were well worth the effort.
 
