@@ -1,13 +1,13 @@
 ---
 layout: post
-title:  "Bringing Structure to Our Pull Request Process: How I Developed PR Guidelines for My Team at Tasq"
+title:  "Why I Developed PR Guidelines for My Team at Tasq"
 date:   2023-06-11 11:30:00
 categories: backend
 ---
 
 When I joined Tasq, the engineering team had yet to adopt a consistent pull request (PR) workflow. Many developers were pushing changes directly to the main branch without PRs, while others created PRs without descriptions, context, or reviews. This approach left little visibility into changes for the rest of the team, made it difficult to understand the intent behind updates, and often led to unnoticed bugs or misalignments with project goals.
 
-Seeing this gap in our process, I set out to develop a comprehensive set of PR guidelines. These would ensure each PR was crafted thoughtfully, reviewed carefully, and documented thoroughly. In this post, I’ll share the guidelines I established, the challenges they addressed, and the improvements we saw as a result.
+Seeing this gap in our process, I set out to develop a comprehensive set of PR guidelines. These would ensure each PR was created, reviewed, and documented carefully. In this post, I’ll share the guidelines I established, the challenges they addressed, and the improvements we saw as a result.
 
 ### 1. **Identifying the Problem: A Lack of Structure and Visibility**
 
