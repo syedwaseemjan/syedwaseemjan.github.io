@@ -5,7 +5,7 @@ date:   2024-02-24 09:21:00
 categories: backend
 ---
 
-As we scaled at Tasq.io, we started noticing a troubling trend: our AWS costs were climbing, particularly in areas like network traffic, storage, and monitoring. After diving deeper into our infrastructure setup, it became clear that several inefficiencies were driving up costs. The biggest culprits were the NAT Gateway, inefficient S3 storage management, and poorly configured CloudWatch logs. This post explores how I identified these pain points and optimized our infrastructure to reduce costs by $20,000 annually without sacrificing performance or security.
+As we scaled at Tasq.io we started noticing a troubling trend, our AWS costs were climbing particularly in areas like network traffic, storage, and monitoring. After diving deeper into our infrastructure setup, it became clear that several inefficiencies were driving up costs. The biggest culprits were the NAT Gateway, inefficient S3 storage management, and poorly configured CloudWatch logs. This post explores how I identified these pain points and optimized our infrastructure to reduce costs by $20,000 annually without sacrificing performance or security.
 
 ### The Challenge
 
