@@ -13,36 +13,43 @@ import { projects } from '../data/projects';
 
     <ol class="work-list">
       {
-        projects.map((project) => (
-          <li class="work-item">
-            <div class="work-item__body">
+        projects.map((project) =>
+          project.kind === 'gap' ? (
+            <li class="work-item work-item--gap">
               <p class="work-item__period">{project.period}</p>
-              <div class="work-item__heading">
-                {project.link ? (
-                  <a
-                    href={project.link}
-                    class="work-item__title"
-                    target="_blank"
-                    rel="noopener noreferrer">
-                    {project.title}
-                  </a>
-                ) : (
-                  <h3 class="work-item__title">{project.title}</h3>
-                )}
-                <span class="work-item__role">{project.role}</span>
+              <p class="work-item__details">{project.details}</p>
+            </li>
+          ) : (
+            <li class="work-item">
+              <div class="work-item__body">
+                <p class="work-item__period">{project.period}</p>
+                <div class="work-item__heading">
+                  {project.link ? (
+                    <a
+                      href={project.link}
+                      class="work-item__title"
+                      target="_blank"
+                      rel="noopener noreferrer">
+                      {project.title}
+                    </a>
+                  ) : (
+                    <h3 class="work-item__title">{project.title}</h3>
+                  )}
+                  <span class="work-item__role">{project.role}</span>
+                </div>
+                <p class="work-item__details" set:html={project.details} />
               </div>
-              <p class="work-item__details" set:html={project.details} />
-            </div>
-            <img
-              src={project.thumbnail}
-              alt={project.thumbnailalt}
-              class:list={['work-item__img', project.visual === 'mark' && 'work-item__img--mark']}
-              loading="lazy"
-              width="160"
-              height="120"
-            />
-          </li>
-        ))
+              <img
+                src={project.thumbnail}
+                alt={project.thumbnailalt}
+                class:list={['work-item__img', project.visual === 'mark' && 'work-item__img--mark']}
+                loading="lazy"
+                width="160"
+                height="120"
+              />
+            </li>
+          ),
+        )
       }
     </ol>
   </section>

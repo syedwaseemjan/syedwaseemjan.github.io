@@ -1,4 +1,5 @@
-export interface Project {
+export interface WorkRole {
+  kind?: 'role';
   title: string;
   link: string | null;
   period: string;
@@ -9,6 +10,14 @@ export interface Project {
   /** Real screenshot vs illustrative mark */
   visual: 'photo' | 'mark';
 }
+
+export interface WorkGap {
+  kind: 'gap';
+  period: string;
+  details: string;
+}
+
+export type Project = WorkRole | WorkGap;
 
 export const projects: Project[] = [
   {
@@ -21,6 +30,12 @@ export const projects: Project[] = [
     thumbnail: '/assets/img/projects/xtel.svg',
     thumbnailalt: 'Illustration for promotion and pricing work at XTEL',
     visual: 'mark',
+  },
+  {
+    kind: 'gap',
+    period: 'May 2024 - Aug 2025',
+    details:
+      'Took a break after almost a decade of remote work. Time to relax, and to sharpen skills by reading books and blogs and watching videos. Then came back at XTEL.',
   },
   {
     title: 'Tasq.io',

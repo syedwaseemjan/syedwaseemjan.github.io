@@ -93,6 +93,21 @@
         border-bottom: none;
     }
 
+    &--gap {
+        display: block;
+        padding-bottom: 3.2rem;
+        margin-bottom: 3.2rem;
+
+        .work-item__period {
+            margin-bottom: 0.4rem;
+        }
+
+        .work-item__details {
+            color: $color-grey-dark-2;
+            font-size: 1.5rem;
+        }
+    }
+
     &__period {
         font-size: 1.3rem;
         font-weight: 500;
