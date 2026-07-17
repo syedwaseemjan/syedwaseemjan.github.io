@@ -91,4 +91,4 @@ To encourage positive review culture, I included etiquette guidelines for review
 
 Implementing these PR guidelines and transitioning to trunk-based development brought substantial improvements to our workflow. With clear stages, structured checklists, consistent labels, and a simplified release process, we saw a marked improvement in both code quality and collaboration. 
 
-These guidelines have helped us create a culture of transparency, responsibility, and continuous learning—values that make our team stronger and our code more resilient.
+These guidelines have helped us create a culture of transparency, responsibility, and continuous learning, values that make our team stronger and our code more resilient.
