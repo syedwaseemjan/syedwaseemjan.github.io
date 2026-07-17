@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.11",
+    "@emnapi/core": "1.11.2",
+    "@emnapi/runtime": "1.11.2",
     "astro": "^7.1.0",
     "sass": "^1.87.0"
   }
