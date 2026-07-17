@@ -17,8 +17,7 @@ export const SITE = {
     repo: 'syedwaseemjan/syedwaseemjan.github.io',
     repoId: 'R_kgDOGuoWeg',
     category: 'Announcements',
-    // From https://giscus.app after enabling Discussions + installing the Giscus app
-    categoryId: '',
+    categoryId: 'DIC_kwDOGuoWes4DBY8l',
   },
 } as const;
 
