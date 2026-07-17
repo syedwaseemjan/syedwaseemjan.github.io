@@ -1,0 +1,16 @@
+{
+  "name": "syedwaseemjan.github.io",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/rss": "^4.0.11",
+    "astro": "^7.1.0",
+    "sass": "^1.87.0"
+  }
+}

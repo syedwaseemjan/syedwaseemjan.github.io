@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../consts';
+import { projects } from '../data/projects';
+---
+
+<BaseLayout title={`Work | ${SITE.title}`} canonicalPath="/projects">
+  <section class="section-projects">
+    <h2 class="heading-2 heading-2--dark mb-md">Work</h2>
+    <p class="text text--lead mb-hg">
+      Over {SITE.experienceYears} years I've worked across startups, enterprise platforms, and cloud
+      infrastructure. Many projects can't be shown here due to proprietary restrictions, these are
+      the highlights.
+    </p>
+    {
+      projects.map((project) => (
+        <div class="project">
+          <div class="project__text">
+            {project.link ? (
+              <a
+                href={project.link}
+                class="heading-2 heading-2--link mb-sm"
+                target="_blank"
+                rel="noopener noreferrer">
+                {project.title}
+              </a>
+            ) : (
+              <h3 class="heading-2 heading-2--dark mb-sm">{project.title}</h3>
+            )}
+            {(project.role || project.stack) && (
+              <p class="project__meta">
+                {project.role}
+                {project.role && project.stack && ' · '}
+                {project.stack && <span class="project__stack">{project.stack}</span>}
+              </p>
+            )}
+            <p set:html={project.details} />
+          </div>
+          {project.thumbnail ? (
+            <img src={project.thumbnail} alt={project.thumbnailalt} class="project__img" />
+          ) : (
+            <div class="project__placeholder" aria-hidden="true">
+              {project.title}
+            </div>
+          )}
+        </div>
+      ))
+    }
+  </section>
+</BaseLayout>

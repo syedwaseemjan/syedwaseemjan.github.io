@@ -1,0 +1,23 @@
+---
+import { SITE } from '../consts';
+---
+
+<header class="header">
+  <a href="/" class="header__link">{SITE.title}</a>
+
+  <nav class="main-nav">
+    <ul class="main-nav__list">
+      <li><a href="/" class="main-nav__link">About</a></li>
+      <li><a href="/projects" class="main-nav__link">Work</a></li>
+      <li><a href="/blog" class="main-nav__link">Blog</a></li>
+      <li>
+        <a
+          href={SITE.resumeUrl}
+          class="main-nav__link main-nav__link--cta"
+          target="_blank"
+          rel="noopener noreferrer">Resume</a
+        >
+      </li>
+    </ul>
+  </nav>
+</header>

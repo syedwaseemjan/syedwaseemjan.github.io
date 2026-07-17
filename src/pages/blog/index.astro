@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostSummary from '../../components/PostSummary.astro';
+import { SITE } from '../../consts';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+
+<BaseLayout title={`Blog | ${SITE.title}`} canonicalPath="/blog">
+  <section class="section-blog">
+    {
+      posts.map((post) => (
+        <PostSummary
+          title={post.data.title}
+          href={`/blog/${post.id}`}
+          date={post.data.date}
+          body={post.body ?? ''}
+          categories={post.data.categories}
+          meta={post.data.meta}
+        />
+      ))
+    }
+  </section>
+</BaseLayout>

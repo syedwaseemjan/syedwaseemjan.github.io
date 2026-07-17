@@ -1,0 +1,52 @@
+export interface Project {
+  title: string;
+  link: string | null;
+  role: string;
+  stack: string;
+  details: string;
+  thumbnail: string | null;
+  thumbnailalt: string;
+}
+
+export const projects: Project[] = [
+  {
+    title: 'Tasq.io',
+    link: 'https://www.tasq.io/',
+    role: 'Full Stack Software Engineer',
+    stack: 'Python · AWS · PostgreSQL',
+    details:
+      'At Tasq I work across backend architecture, infrastructure, and full-stack development. I led the migration of multiple repositories into a cohesive monolithic architecture using Polylith, introduced automated linting and formatting tooling, and drove AWS cost optimization initiatives. Read more in my posts on <a href="/blog/migration-to-polylith">repository consolidation</a> and <a href="/blog/saving-aws-costs-at-tasq">AWS cost reduction</a>.',
+    thumbnail: null,
+    thumbnailalt: 'Tasq.io',
+  },
+  {
+    title: 'Chef Galaxy',
+    link: null,
+    role: 'Co-founder & Lead Engineer',
+    stack: 'Python · Flask · AWS · JavaScript',
+    details:
+      "Co-founded a social marketplace connecting patrons with chefs for events and gatherings. As the sole engineer, I built the full stack Python/Flask backend, vanilla JavaScript frontend, and AWS deployment across EC2, S3, VPC, ElastiCache, and OpenSearch. The venture didn't reach long-term success, but it was formative experience in full-stack development, cloud architecture, and building a product from zero.",
+    thumbnail: '/assets/img/projects/chef-galaxy-small.png',
+    thumbnailalt: 'Chef Galaxy',
+  },
+  {
+    title: 'Vocabulary Warehouse',
+    link: 'https://www.artstor.org/',
+    role: 'Frontend Engineer',
+    stack: 'ExtJS · JavaScript',
+    details:
+      'Built highly interactive graphical interfaces for ARTstor, a digital library of over one million images across the arts, architecture, humanities, and sciences. Customized ExtJS components for cross-browser support, theming, and internationalization, serving scholars, educators, and researchers worldwide.',
+    thumbnail: '/assets/img/projects/artstor-small.png',
+    thumbnailalt: 'Artstor Vocabulary Warehouse',
+  },
+  {
+    title: 'WiDroid',
+    link: 'http://widroid.blogspot.com',
+    role: 'Final Year Project · GIK Institute',
+    stack: 'Java · C# · Android',
+    details:
+      "Developed WiDroid, an Android app that turns mobile devices into wireless controllers, touchpad, keyboard, game controller, presentation remote, and media player. Built the Android client in Java and the backend server in C# as my bachelor's final year project in 2012.",
+    thumbnail: '/assets/img/projects/widroid-small.png',
+    thumbnailalt: 'WiDroid final year project',
+  },
+];

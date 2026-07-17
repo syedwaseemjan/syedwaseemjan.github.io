@@ -1,0 +1,77 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE } from '../../consts';
+import { formatDate, readingTime } from '../../lib/utils';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const readTime = readingTime(post.body ?? '');
+const description =
+  (post.body ?? '')
+    .replace(/[#>*_`~\[]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .split(' ')
+    .slice(0, 50)
+    .join(' ') || SITE.description;
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={description}
+  canonicalPath={`/blog/${post.id}`}
+  isArticle={true}
+  publishedTime={post.data.date}
+>
+  <section class="section-post">
+    <div class="post">
+      <h1 class="heading-1 mb-sm">{post.data.title}</h1>
+      <div class="post__meta">
+        <span class="post__date-posted">
+          {formatDate(post.data.date)}
+          {post.data.meta && ` • ${post.data.meta}`}
+        </span>
+        <span class="post__title">{SITE.title}</span>
+        <span class="post__readtime">{readTime}</span>
+        <span class="post__categories">
+          {
+            post.data.categories.map((category) => (
+              <a href={`/tags/${category}`} class="tag">
+                # {category}
+              </a>
+            ))
+          }
+        </span>
+      </div>
+
+      <article class="post__content">
+        <Content />
+      </article>
+
+      <div id="disqus_thread"></div>
+      <script is:inline define:vars={{ shortname: SITE.disqusShortname }}>
+        (function () {
+          var d = document,
+            s = d.createElement('script');
+          s.src = 'https://' + shortname + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+      <noscript
+        >Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript"
+          >comments powered by Disqus.</a
+        ></noscript
+      >
+    </div>
+  </section>
+</BaseLayout>

@@ -1,6 +1,28 @@
-_site
-.sass-cache
-.jekyll-cache
-.jekyll-metadata
-vendor
+---
+# build output
+dist/
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# env
+.env
+.env.production
+
+# macOS
 .DS_Store
+
+# legacy Jekyll (if any remain locally)
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata/
+vendor/
+.bundle/

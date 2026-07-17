@@ -1,0 +1,36 @@
+---
+import { formatDate, readingTime, excerpt } from '../lib/utils';
+
+interface Props {
+  title: string;
+  href: string;
+  date: Date;
+  body: string;
+  categories: string[];
+  meta?: string;
+}
+
+const { title, href, date, body, categories, meta } = Astro.props;
+const readTime = readingTime(body);
+const summary = excerpt(body);
+---
+
+<div class="post-item">
+  <a class="heading-2 heading-2--link mb-sm" href={href}>{title}</a>
+
+  <p class="post-item__content">{summary}</p>
+
+  <div class="post-item__meta">
+    {formatDate(date)}{meta && ` • ${meta}`}
+    | {readTime}
+    <div class="post-item__categories">
+      {
+        categories.map((category) => (
+          <a href={`/tags/${category}`} class="tag">
+            # {category}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</div>

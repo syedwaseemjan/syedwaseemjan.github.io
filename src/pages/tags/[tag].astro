@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostSummary from '../../components/PostSummary.astro';
+import { SITE, TAGS } from '../../consts';
+
+export function getStaticPaths() {
+  return TAGS.map((tag) => ({ params: { tag } }));
+}
+
+const { tag } = Astro.params;
+const posts = (await getCollection('blog'))
+  .filter((post) => post.data.categories.includes(tag!))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title={`#${tag} | ${SITE.title}`} canonicalPath={`/tags/${tag}`}>
+  <section class="section-tag">
+    <h3 class="heading-2 mb-md">#{tag}</h3>
+    {
+      posts.map((post) => (
+        <PostSummary
+          title={post.data.title}
+          href={`/blog/${post.id}`}
+          date={post.data.date}
+          body={post.body ?? ''}
+          categories={post.data.categories}
+          meta={post.data.meta}
+        />
+      ))
+    }
+  </section>
+</BaseLayout>

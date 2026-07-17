@@ -1,0 +1,72 @@
+@use '../abstracts' as *;
+
+.header {
+    height: 6.4rem;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    background-color: $color-white;
+    border-bottom: $line;
+    padding: 0 3rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include respond(tab-land) {
+        position: static;
+    }
+
+    &__link {
+        font-size: 1.8rem;
+        text-decoration: none;
+        color: $color-grey-dark-1;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+
+        &:hover {
+            color: $color-primary;
+        }
+    }
+}
+
+.main-nav {
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 0.4rem;
+        list-style: none;
+    }
+
+    &__link:link,
+    &__link:visited {
+        cursor: pointer;
+        padding: 0.6rem 1.2rem;
+        font-size: 1.5rem;
+        font-weight: 500;
+        text-decoration: none;
+        color: $color-grey-dark-2;
+        border-radius: 0.4rem;
+        transition: color 0.15s, background-color 0.15s;
+
+        &:hover {
+            color: $color-grey-dark-1;
+            background-color: $color-grey-light-1;
+        }
+    }
+
+    &__link--cta:link,
+    &__link--cta:visited {
+        color: $color-primary;
+        font-weight: 600;
+
+        &:hover {
+            color: $color-primary-dark;
+            background-color: rgba($color-primary, 0.08);
+        }
+    }
+}

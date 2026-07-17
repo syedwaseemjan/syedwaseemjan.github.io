@@ -1,0 +1,18 @@
+---
+interface Props {
+  title: string;
+  author: string;
+  image_url: string;
+  amazon_url: string;
+}
+
+const { title, author, image_url, amazon_url } = Astro.props;
+---
+
+<a href={amazon_url} target="_blank" class="book">
+  <figure class="book__box">
+    <img src={`/assets/img/books/${image_url}`} alt={title} class="book__img" />
+    <figcaption class="book__caption book__caption--title">{title}</figcaption>
+    <figcaption class="book__caption book__caption--author">{author}</figcaption>
+  </figure>
+</a>

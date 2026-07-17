@@ -1,0 +1,95 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../consts';
+import '../styles/main.scss';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+  isArticle?: boolean;
+  publishedTime?: Date;
+}
+
+const {
+  title,
+  description = SITE.description,
+  canonicalPath = Astro.url.pathname,
+  isArticle = false,
+  publishedTime,
+} = Astro.props;
+
+const pageTitle = title ?? SITE.title;
+const ogImage = absoluteOgImage();
+const canonical = new URL(canonicalPath === '/' ? '/' : canonicalPath.replace(/\/$/, ''), SITE.url).href;
+
+function absoluteOgImage() {
+  return `${SITE.url}/assets/img/favicons/android-chrome-512x512.png`;
+}
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png" />
+    <link rel="manifest" href="/assets/img/favicons/site.webmanifest" />
+    <link rel="alternate" type="application/rss+xml" title={SITE.title} href="/feed.xml" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+
+    <meta property="og:site_name" content={SITE.title} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    {isArticle ? (
+      <>
+        <meta property="og:type" content="article" />
+        <meta property="og:article:author" content={SITE.author} />
+        {publishedTime && (
+          <meta property="og:article:published_time" content={publishedTime.toISOString()} />
+        )}
+        <meta property="og:url" content={canonical} />
+        <link rel="canonical" href={canonical} />
+      </>
+    ) : (
+      <>
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonical} />
+        <link rel="canonical" href={canonical} />
+      </>
+    )}
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content={`@${SITE.twitterUsername}`} />
+    <meta name="twitter:creator" content={`@${SITE.twitterUsername}`} />
+    <meta property="twitter:title" content={pageTitle} />
+    <meta property="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-75526RYB6M"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-75526RYB6M');
+    </script>
+  </head>
+  <body>
+    <Header />
+    <main class="container">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
