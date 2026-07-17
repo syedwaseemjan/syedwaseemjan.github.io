@@ -13,7 +13,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     title: 'XTEL',
-    link: null,
+    link: 'https://xtech.ai/',
     period: 'Aug 2025 - Present',
     role: 'Lead Software Engineer',
     details:
