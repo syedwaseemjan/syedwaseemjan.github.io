@@ -1,6 +1,6 @@
 .footer {
-    padding: 2rem 0;
-    background-color: $color-grey-dark-1;
+    padding: 3rem 0;
+    background-color: $color-grey-light-1;
     border-top: $line;
 }
 
@@ -9,11 +9,30 @@
     margin: 0 auto;
 }
 
+.footer-nav {
+    margin: 0 3rem 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+
+    &__link:link,
+    &__link:visited {
+        font-size: 1.4rem;
+        color: $color-grey-dark-2;
+        text-decoration: none;
+
+        &:hover {
+            color: $color-primary;
+        }
+    }
+}
+
 .footer-about {
-    color: $color-white;
+    color: $color-grey-dark-1;
     display: flex;
     justify-content: space-evenly;
-    margin: 1rem 3rem 4rem;
+    margin: 1rem 3rem 3rem;
 
     @include respond(phone) {
         flex-direction: column;
@@ -28,13 +47,14 @@
     }
 
     &__item {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
         list-style: none;
+        color: $color-grey-dark-2;
     }
 }
 
 .social-links {
-    margin: 3rem;
+    margin: 2rem 3rem 0;
     display: flex;
     justify-content: center;
 
@@ -43,28 +63,31 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        row-gap: 1rem;
-
-        & > :not(:last-child) {
-            margin-right: 4rem;
-        }
+        gap: 2rem 3rem;
     }
     
     &__link:link,
     &__link:visited {
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
         text-decoration: none;
         font-size: 1.4rem;
-        color: $color-white;
+        color: $color-grey-dark-2;
+
         &:hover {
-            background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
-            -webkit-background-clip: text;
-            color: transparent;
-            transform: scale(1.2);
+            color: $color-primary;
         }
     }
-    &__link:hover &__icon {
-        color: $color-primary;
-        
+
+    &__icon {
+        color: inherit;
     }
+}
+
+.footer-copy {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 1.3rem;
+    color: $color-grey-dark-3;
 }

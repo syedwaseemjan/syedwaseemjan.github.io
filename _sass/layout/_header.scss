@@ -1,13 +1,11 @@
 .header {
-    height: 8rem;
+    height: 6.4rem;
     position: fixed;
     top: 0;
     right: 0;
     left: 0;
     z-index: 1030;
-    background-image: linear-gradient(to right,
-        rgba($color-primary-light, .85), 
-        rgba($color-primary-dark, .85));
+    background-color: $color-white;
     border-bottom: $line;
     padding: 0 3rem;
 
@@ -19,62 +17,54 @@
         position: static;
     }
 
-    @include respond(tab-port) {
-        flex-direction: column;
-        height: auto;
-        row-gap: 1rem;
-    }
-
     &__link {
-        font-size: 3rem;
+        font-size: 1.8rem;
         text-decoration: none;
-        text-transform: uppercase;
-        color: $color-white;
-        font-weight: 400;
-        letter-spacing: 1.75rem;
-        text-align: center;
-    }
+        color: $color-grey-dark-1;
+        font-weight: 600;
+        letter-spacing: -0.02em;
 
-    &__avatar {
-        width: 10rem;
-        border-radius: 50%;
-        box-shadow: $shadow-light;
-        transform: translateY(2rem);
-
-        @include respond(tab-port) {
-            transform: translateY(0);
+        &:hover {
+            color: $color-primary;
         }
     }
 }
 
 .main-nav {
-    align-self: stretch;
-
     &__list {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        height: 100%;
+        align-items: center;
+        gap: 0.4rem;
         list-style: none;
     }
 
     &__link:link,
     &__link:visited {
         cursor: pointer;
-        padding: 0 2rem;
-        font-size: 1.6rem;
+        padding: 0.6rem 1.2rem;
+        font-size: 1.5rem;
+        font-weight: 500;
         text-decoration: none;
-        color: $color-white;
-        display: flex;
-        align-items: center;
-        height: 100%;
+        color: $color-grey-dark-2;
+        border-radius: 0.4rem;
+        transition: color 0.15s, background-color 0.15s;
 
         &:hover {
-            background-color: $color-primary-dark;
+            color: $color-grey-dark-1;
+            background-color: $color-grey-light-1;
         }
+    }
 
-        @include respond(tab-port) {
-            font-size: 2rem;
+    &__link--cta:link,
+    &__link--cta:visited {
+        color: $color-primary;
+        font-weight: 600;
+
+        &:hover {
+            color: $color-primary-dark;
+            background-color: rgba($color-primary, 0.08);
         }
     }
 }

@@ -27,17 +27,17 @@
   <link rel="manifest" href="/assets/img/favicons/site.webmanifest">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,400italic,700italic">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 
-  <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
   <link rel="stylesheet" href="/assets/css/main.css">
 
   <!-- OpenGraph -->
   <meta property="og:site_name" content="{{ site.title }}">
   <meta property="og:title" content="{{ title }}">
   <meta property="og:description" content="{{ description }}">
-  <meta property="og:image" content="{{ '/images/favicons/android-chrome-512x512.png' | absolute_url }}">
+  <meta property="og:image" content="{{ '/assets/img/favicons/android-chrome-512x512.png' | absolute_url }}">
 
   {% if page.id %}
   <meta property="og:type" content="article">
@@ -58,7 +58,7 @@
   <meta name="twitter:creator" content="@{{ site.twitter_username }}">
   <meta property="twitter:title" content="{{ title }}">
   <meta property="twitter:description" content="{{ description }}">
-  <meta name="twitter:image" content="{{ '/images/favicons/android-chrome-512x512.png' | absolute_url }}">
+  <meta name="twitter:image" content="{{ '/assets/img/favicons/android-chrome-512x512.png' | absolute_url }}">
   <!-- end of Twitter cards -->
 
   <!-- Global site tag (gtag.js) - Google Analytics -->

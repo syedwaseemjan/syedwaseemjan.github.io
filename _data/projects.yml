@@ -1,20 +1,53 @@
+- title: Tasq.io
+  link: https://www.tasq.io/
+  role: Full Stack Software Engineer
+  stack: Python · AWS · PostgreSQL
+  details: >-
+    At Tasq I work across backend architecture, infrastructure, and full-stack
+    development. I led the migration of multiple repositories into a cohesive
+    monolithic architecture using Polylith, introduced automated linting and
+    formatting tooling, and drove AWS cost optimization initiatives. Read more
+    in my posts on
+    <a href="/blog/migration-to-polylith">repository consolidation</a> and
+    <a href="/blog/saving-aws-costs-at-tasq">AWS cost reduction</a>.
+  thumbnail: null
+  thumbnailalt: Tasq.io
+
 - title: Chef Galaxy
   link: null
-  details: I co-founded Chef Galaxy, a social marketplace aimed at connecting Patrons with Chefs to curate memorable culinary experiences for events like birthdays, weddings, and other gatherings. The platform featured a robust backend built with Python and Flask, handling the intricacies of matching Patrons with Chefs, while the frontend used vanilla JavaScript and Bootstrap to create a seamless user experience. Chef Galaxy was deployed on AWS, leveraging EC2 for scalable compute power, S3 for storage, VPC for network management, Elasticache for caching, and Opensearch for efficient search functionality. Though Chef Galaxy ultimately didn’t achieve long-term success, it was a valuable venture that deepened my understanding of full-stack development, cloud deployment, and the unique dynamics of the food-tech industry.
+  role: Co-founder & Lead Engineer
+  stack: Python · Flask · AWS · JavaScript
+  details: >-
+    Co-founded a social marketplace connecting patrons with chefs for events
+    and gatherings. As the sole engineer, I built the full stack Python/Flask
+    backend, vanilla JavaScript frontend, and AWS deployment across EC2, S3,
+    VPC, ElastiCache, and OpenSearch. The venture didn't reach long-term
+    success, but it was formative experience in full-stack development, cloud
+    architecture, and building a product from zero.
   thumbnail: /assets/img/projects/chef-galaxy-small.png
   thumbnailalt: Chef Galaxy
+
 - title: Vocabulary Warehouse
   link: https://www.artstor.org/
-  details: I developed highly interactive graphical interfaces for ARTstor, a digital library boasting over one million images spanning the arts, architecture, humanities, and sciences. Utilizing ExtJS4 and JavaScript, I extensively customized ExtJS components to significantly enhance the user experience, ensuring that the interface was both intuitive and engaging. My work included providing robust cross-browser support, particularly for Internet Explorer, which presented unique challenges. Additionally, I leveraged advanced features of ExtJS to implement custom themes and facilitate internationalization, ensuring that the platform was accessible and user-friendly for a diverse audience of scholars, educators, and art enthusiasts. This project honed my skills in front-end development and deepened my understanding of creating tailored solutions for complex digital libraries.
+  role: Frontend Engineer
+  stack: ExtJS · JavaScript
+  details: >-
+    Built highly interactive graphical interfaces for ARTstor, a digital library
+    of over one million images across the arts, architecture, humanities, and
+    sciences. Customized ExtJS components for cross-browser support, theming,
+    and internationalization, serving scholars, educators, and researchers
+    worldwide.
   thumbnail: /assets/img/projects/artstor-small.png
   thumbnailalt: Artstor Vocabulary Warehouse
-- title: My Personal Website
-  link: https://syedwaseemjan.github.io
-  details: I designed and built this personal website without using any templates or frameworks using only vanilla CSS. Applied <a href="https://sass-guidelin.es/#the-7-1-pattern" target="_blank">7-1 Sass Architecture</a>, <a href="http://getbem.com/introduction/" target="_blank">CSS BEM methodogy</a> and used CSS3 flexbox, grid and some cool animations. Additionally, I added dozens of media queries to provide support for <a href="https://github.com/syedwaseemjan/syedwaseemjan.github.io/blob/main/_sass/abstracts/_mixins.scss" target="_blank">different screen sizes</a>. My personal website also contains a link to my <a href="/blog" target="_blank">personal blog</a>.
-  thumbnail: /assets/img/projects/personal-website-small.png
-  thumbnailalt: Waseem's Personal Website
-- title: Widroid
+
+- title: WiDroid
   link: http://widroid.blogspot.com
-  details: As part of my Bachelor's Final Year Project, I developed WiDroid, a free Android app that allows users to transform their Android devices into versatile wireless controllers, including a touchpad, keyboard, game controller, steering controller, PowerPoint presentation controller, and media player controller. Developed in 2012, WiDroid featured a backend server written in C# while the Android client app was crafted using Java. Ironically, the project's website, widroid.blogspot.com, remains online even after 12 years, showcasing the enduring relevance of the app. This project not only enhanced my technical skills in mobile and server-side development but also provided valuable insights into user interface design and wireless communication protocols.
+  role: Final Year Project · GIK Institute
+  stack: Java · C# · Android
+  details: >-
+    Developed WiDroid, an Android app that turns mobile devices into wireless
+    controllers, touchpad, keyboard, game controller, presentation remote,
+    and media player. Built the Android client in Java and the backend server
+    in C# as my bachelor's final year project in 2012.
   thumbnail: /assets/img/projects/widroid-small.png
-  thumbnailalt: Final year project
+  thumbnailalt: WiDroid final year project

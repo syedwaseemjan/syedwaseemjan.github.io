@@ -1,17 +1,16 @@
 .tag {
-	opacity: .9;
     text-decoration: none;
-    color: $color-white;
-    font-weight: 600;
+    color: $color-primary-dark;
+    font-weight: 500;
     text-transform: capitalize;
     line-height: 1rem;
     font-size: 1.2rem;
     display: inline-block;
-    padding: .8rem 1.2rem;
-    background: linear-gradient(to right, $color-primary-light, $color-primary-dark);
-    border-radius: .8rem;
+    padding: .4rem 1rem;
+    background-color: rgba($color-primary, 0.08);
+    border-radius: .4rem;
 
     &:hover {
-        opacity: 1;
+        background-color: rgba($color-primary, 0.15);
     }
 }

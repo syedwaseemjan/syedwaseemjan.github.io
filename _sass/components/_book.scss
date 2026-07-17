@@ -18,7 +18,7 @@
 
         &::before {
             content: "";
-            background: linear-gradient(to top, $color-primary, rgba($color-primary-light, .3));
+            background: linear-gradient(to top, rgba($color-grey-dark-1, .7), transparent);
             position: absolute;
             top: 0;
             left: 0;
