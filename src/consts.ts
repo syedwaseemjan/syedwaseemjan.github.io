@@ -3,7 +3,7 @@ export const SITE = {
   author: 'Waseem Jan',
   email: 'syedwaseemjan@gmail.com',
   description:
-    'Full-stack software engineer with 14 years of experience building scalable systems on AWS. Writing about backend architecture, DevOps, and engineering leadership.',
+    'Software engineer with 14 years of experience. Currently at XTEL. Writing about backend work, AWS, and things learned along the way.',
   url: 'https://syedwaseemjan.github.io',
   experienceYears: 14,
   twitterUsername: 'syedwaseemjan',

@@ -7,44 +7,43 @@ import { projects } from '../data/projects';
 <BaseLayout title={`Work | ${SITE.title}`} canonicalPath="/projects">
   <section class="section-projects">
     <h2 class="heading-2 heading-2--dark mb-md">Work</h2>
-    <p class="text text--lead mb-hg">
-      Over {SITE.experienceYears} years I've worked across startups, enterprise platforms, and cloud
-      infrastructure. Many projects can't be shown here due to proprietary restrictions, these are
-      the highlights.
+    <p class="text text--lead mb-lg">
+      Places I've spent time building things over the last {SITE.experienceYears} years.
     </p>
-    {
-      projects.map((project) => (
-        <div class="project">
-          <div class="project__text">
-            {project.link ? (
-              <a
-                href={project.link}
-                class="heading-2 heading-2--link mb-sm"
-                target="_blank"
-                rel="noopener noreferrer">
-                {project.title}
-              </a>
-            ) : (
-              <h3 class="heading-2 heading-2--dark mb-sm">{project.title}</h3>
-            )}
-            {(project.role || project.stack) && (
-              <p class="project__meta">
-                {project.role}
-                {project.role && project.stack && ' · '}
-                {project.stack && <span class="project__stack">{project.stack}</span>}
-              </p>
-            )}
-            <p set:html={project.details} />
-          </div>
-          {project.thumbnail ? (
-            <img src={project.thumbnail} alt={project.thumbnailalt} class="project__img" />
-          ) : (
-            <div class="project__placeholder" aria-hidden="true">
-              {project.title}
+
+    <ol class="work-list">
+      {
+        projects.map((project) => (
+          <li class="work-item">
+            <div class="work-item__body">
+              <p class="work-item__period">{project.period}</p>
+              <div class="work-item__heading">
+                {project.link ? (
+                  <a
+                    href={project.link}
+                    class="work-item__title"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    {project.title}
+                  </a>
+                ) : (
+                  <h3 class="work-item__title">{project.title}</h3>
+                )}
+                <span class="work-item__role">{project.role}</span>
+              </div>
+              <p class="work-item__details" set:html={project.details} />
             </div>
-          )}
-        </div>
-      ))
-    }
+            <img
+              src={project.thumbnail}
+              alt={project.thumbnailalt}
+              class:list={['work-item__img', project.visual === 'mark' && 'work-item__img--mark']}
+              loading="lazy"
+              width="160"
+              height="120"
+            />
+          </li>
+        ))
+      }
+    </ol>
   </section>
 </BaseLayout>
