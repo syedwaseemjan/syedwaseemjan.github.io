@@ -6,37 +6,10 @@ const year = new Date().getFullYear();
 
 <footer class="footer">
   <div class="footer-content">
-    <nav class="footer-nav">
+    <nav class="footer-nav" aria-label="Footer">
       <a href="/books" class="footer-nav__link">Books</a>
-      <a href={`mailto:${SITE.email}`} class="footer-nav__link">Contact</a>
+      <a href="/feed.xml" class="footer-nav__link">RSS</a>
     </nav>
-
-    <div class="footer-about">
-      <div class="footer-about__box">
-        <h3 class="heading-3 mb-sm">Background</h3>
-        <ul class="footer-about__list">
-          <li class="footer-about__item">CS since 2008</li>
-          <li class="footer-about__item">B.Sc. Software Engineering, 2012</li>
-          <li class="footer-about__item">{SITE.experienceYears} years in industry</li>
-        </ul>
-      </div>
-      <div class="footer-about__box">
-        <h3 class="heading-3 mb-sm">Focus areas</h3>
-        <ul class="footer-about__list">
-          <li class="footer-about__item">Backend architecture</li>
-          <li class="footer-about__item">AWS &amp; DevOps</li>
-          <li class="footer-about__item">Python &amp; JavaScript</li>
-        </ul>
-      </div>
-      <div class="footer-about__box">
-        <h3 class="heading-3 mb-sm">Lately</h3>
-        <ul class="footer-about__list">
-          <li class="footer-about__item">Promotion &amp; pricing systems</li>
-          <li class="footer-about__item">Model-to-optimizer pipelines</li>
-          <li class="footer-about__item">Keeping old APIs movable</li>
-        </ul>
-      </div>
-    </div>
 
     <div class="social-links">
       <ul class="social-links__list">
@@ -50,7 +23,9 @@ const year = new Date().getFullYear();
           <a
             href={`https://linkedin.com/in/${SITE.linkedUsername}`}
             title="LinkedIn"
-            class="social-links__link">
+            class="social-links__link"
+            target="_blank"
+            rel="noopener noreferrer">
             <i class="social-links__icon fab fa-linkedin" aria-hidden="true"></i>
             <span>LinkedIn</span>
           </a>
@@ -59,7 +34,9 @@ const year = new Date().getFullYear();
           <a
             href={`https://github.com/${SITE.githubUsername}`}
             title="GitHub"
-            class="social-links__link">
+            class="social-links__link"
+            target="_blank"
+            rel="noopener noreferrer">
             <i class="social-links__icon fab fa-github" aria-hidden="true"></i>
             <span>GitHub</span>
           </a>
@@ -68,7 +45,9 @@ const year = new Date().getFullYear();
           <a
             href={`https://stackoverflow.com/users/${SITE.stackoverflowUsername}`}
             title="Stack Overflow"
-            class="social-links__link">
+            class="social-links__link"
+            target="_blank"
+            rel="noopener noreferrer">
             <i class="social-links__icon fab fa-stack-overflow" aria-hidden="true"></i>
             <span>Stack Overflow</span>
           </a>
