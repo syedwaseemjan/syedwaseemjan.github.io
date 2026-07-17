@@ -15,14 +15,16 @@ const readTime = readingTime(body);
 const summary = excerpt(body);
 ---
 
-<div class="post-item">
-  <a class="heading-2 heading-2--link mb-sm" href={href}>{title}</a>
+<article class="post-item">
+  <a class="post-item__link heading-2 heading-2--link" href={href}>{title}</a>
 
   <p class="post-item__content">{summary}</p>
 
   <div class="post-item__meta">
-    {formatDate(date)}{meta && ` • ${meta}`}
-    | {readTime}
+    <span class="post-item__details">
+      {formatDate(date)}{meta && ` • ${meta}`}
+      | {readTime}
+    </span>
     <div class="post-item__categories">
       {
         categories.map((category) => (
@@ -32,5 +34,6 @@ const summary = excerpt(body);
         ))
       }
     </div>
+    <span class="post-item__more" aria-hidden="true">Read &rarr;</span>
   </div>
-</div>
+</article>

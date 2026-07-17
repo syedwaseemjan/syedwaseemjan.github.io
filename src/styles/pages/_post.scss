@@ -1,30 +1,113 @@
 @use '../abstracts' as *;
 
-.post {
+// Blog index — scoped so tag pages keep the existing .post-item look
+.section-blog {
+    max-width: 72rem;
+    margin-left: auto;
+    margin-right: auto;
 
-    @media only screen and (min-width: 56.25em) {
-        width: 80rem;
-        margin: 0 auto;
+    .post-item {
+        margin-bottom: 0;
+        padding: 3.2rem 0;
+        background-color: transparent;
+        box-shadow: none;
+        border: none;
+        border-bottom: $line;
+        border-radius: 0;
+
+        &:last-of-type {
+            border-bottom: none;
+            padding-bottom: 1.6rem;
+        }
+
+        &:hover {
+            box-shadow: none;
+        }
+
+        &__content {
+            max-width: 60rem;
+            margin: 0;
+            color: $color-grey-dark-2;
+            line-height: 1.7;
+        }
+
+        &__meta {
+            margin-top: 1.6rem;
+            padding-top: 0;
+            border-top: none;
+            gap: 1.2rem;
+            font-size: 1.35rem;
+            letter-spacing: 0.01em;
+        }
     }
+}
+
+.section-post {
+    max-width: 72rem;
+    margin-left: auto;
+    margin-right: auto;
+
+    .heading-1 {
+        margin-bottom: 1.6rem;
+        line-height: 1.25;
+    }
+}
+
+.post {
+    width: 100%;
+    margin: 0 auto;
 
     &__meta {
-        font-size: 1.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.4rem 0;
+        font-size: 1.4rem;
         color: $color-grey-dark-2;
+        letter-spacing: 0.01em;
 
         & > :not(:last-child):after {
             content: "";
-            border-right: 1px solid #ddd;
-            margin: 0 .8rem 0 1rem;
+            display: inline-block;
+            width: 1px;
+            height: 1.2em;
+            vertical-align: middle;
+            background-color: $color-grey-light-2;
+            margin: 0 1.2rem 0 1.4rem;
+            border: none;
         }
+    }
+
+    &__categories {
+        display: inline-flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        vertical-align: middle;
     }
 
     &__content {
         color: $color-grey-dark-1;
-        margin: 4rem 0 8rem 0;
-        font-size: 1.6rem;
+        margin: 4.8rem 0 8rem 0;
+        font-size: 1.7rem;
+        line-height: 1.8;
+
+        > *:first-child {
+            margin-top: 0;
+        }
 
         p {
-            margin: 2rem 0;
+            margin: 2.4rem 0;
+        }
+
+        a {
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 0.22em;
+            transition: color 0.15s ease;
+
+            &:hover {
+                color: $color-primary;
+            }
         }
 
         div.highlight {
@@ -32,20 +115,24 @@
         }
 
         pre.highlight {
-            border: 1px solid #ddd;
-            padding: .8rem 1.2rem;
-            -webkit-border-radius: .3rem;
-            -moz-border-radius: .3rem;
-            border-radius: .3rem;
-            font-size: 1.5rem;
+            border: $line;
+            background-color: $color-grey-light-1;
+            padding: 1.6rem 2rem;
+            border-radius: 0.6rem;
+            font-size: 1.45rem;
+            line-height: 1.6;
             overflow-y: hidden;
-            overflow-x: scroll;
+            overflow-x: auto;
         }
 
         img {
+            display: block;
             max-width: 100%;
+            height: auto;
+            margin: 3.2rem auto;
+            border-radius: 0.6rem;
+            border: $line;
         }
-
 
         h1,
         h2,
@@ -53,11 +140,15 @@
         h4,
         h5,
         h6 {
-            margin: 4rem 0 2rem;
+            margin: 4.8rem 0 1.6rem;
+            line-height: 1.3;
+            letter-spacing: -0.02em;
         }
 
         h2 {
             font-size: 2.6rem;
+            padding-bottom: 0.8rem;
+            border-bottom: $line;
         }
 
         h3 {
@@ -68,43 +159,51 @@
             font-size: 1.9rem;
         }
 
-        p {
-            line-height: 1.8;
-        }
-
         blockquote {
-            border-left: .4rem solid $color-grey-light-2;
-            padding-left: 2rem;
-            font-size: 1.6rem;
-            opacity: .6;
+            border-left: 0.3rem solid $color-primary;
+            padding: 0.4rem 0 0.4rem 2.4rem;
+            margin: 3.6rem 0;
+            font-size: 1.7rem;
+            color: $color-grey-dark-2;
             font-style: italic;
-            margin: 3rem 0;
+            opacity: 1;
         }
 
         ul,
         ol {
-            margin-left: 5.35rem;
+            margin: 2.4rem 0 2.4rem 5.35rem;
+
+            li {
+                margin-bottom: 0.8rem;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
         }
 
         pre,
         code {
             border: $line;
             background-color: $color-grey-light-1;
-            padding: .8rem 1.2rem;
-            -webkit-border-radius: .3rem;
-            -moz-border-radius: .3rem;
-            border-radius: .3rem;
-            font-size: 1.5rem;
+            padding: 1.6rem 2rem;
+            border-radius: 0.6rem;
+            font-size: 1.45rem;
             overflow-y: hidden;
-            overflow-x: scroll;
+            overflow-x: auto;
         }
 
         code {
-            padding: 0;
+            padding: 0.15rem 0.45rem;
+            border-radius: 0.35rem;
+            font-size: 0.9em;
         }
 
         pre code {
             border: none;
+            padding: 0;
+            background: transparent;
+            font-size: inherit;
         }
 
         .highlight pre,
@@ -118,7 +217,7 @@
         .anchor:visited,
         .anchor:hover,
         .anchor:active {
-            font-size: .7rem;
+            font-size: 0.7rem;
             color: $color-grey-light-3;
             vertical-align: middle;
         }
@@ -127,11 +226,43 @@
             border: 1px solid $color-black;
             background-color: $color-grey-dark-1;
             color: $color-white;
-            border-radius: .3rem;
+            border-radius: 0.6rem;
         }
 
         pre.terminal code {
             background-color: $color-grey-dark-1;
+            color: $color-white;
         }
+
+        hr {
+            border: none;
+            border-top: $line;
+            margin: 4.8rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 3.2rem 0;
+            font-size: 1.5rem;
+
+            th,
+            td {
+                padding: 1rem 1.2rem;
+                border-bottom: $line;
+                text-align: left;
+            }
+
+            th {
+                color: $color-grey-dark-2;
+                font-weight: 600;
+            }
+        }
+    }
+
+    &__comments {
+        margin-top: 6.4rem;
+        padding-top: 3.2rem;
+        border-top: $line;
     }
 }

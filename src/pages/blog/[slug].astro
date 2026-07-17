@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Giscus from '../../components/Giscus.astro';
 import { SITE } from '../../consts';
 import { formatDate, readingTime } from '../../lib/utils';
 
@@ -57,21 +58,7 @@ const description =
         <Content />
       </article>
 
-      <div id="disqus_thread"></div>
-      <script is:inline define:vars={{ shortname: SITE.disqusShortname }}>
-        (function () {
-          var d = document,
-            s = d.createElement('script');
-          s.src = 'https://' + shortname + '.disqus.com/embed.js';
-          s.setAttribute('data-timestamp', +new Date());
-          (d.head || d.body).appendChild(s);
-        })();
-      </script>
-      <noscript
-        >Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript"
-          >comments powered by Disqus.</a
-        ></noscript
-      >
+      <Giscus />
     </div>
   </section>
 </BaseLayout>

@@ -13,7 +13,13 @@ export const SITE = {
   resumeUrl:
     'https://drive.google.com/file/d/12-vCKn7S7EDdAovRh1Cra-pUFwUMo22w/view?usp=drive_link',
   gaId: 'G-75526RYB6M',
-  disqusShortname: 'waseems-personal-website',
+  giscus: {
+    repo: 'syedwaseemjan/syedwaseemjan.github.io',
+    repoId: 'R_kgDOGuoWeg',
+    category: 'Announcements',
+    // From https://giscus.app after enabling Discussions + installing the Giscus app
+    categoryId: '',
+  },
 } as const;
 
 export const TAGS = ['aws', 'chefgalaxy', 'life', 'backend'] as const;
