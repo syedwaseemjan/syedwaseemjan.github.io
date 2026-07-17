@@ -4,15 +4,28 @@ interface Props {
   author: string;
   image_url: string;
   amazon_url: string;
+  note?: string;
 }
 
-const { title, author, image_url, amazon_url } = Astro.props;
+const { title, author, image_url, amazon_url, note } = Astro.props;
 ---
 
-<a href={amazon_url} target="_blank" class="book">
-  <figure class="book__box">
-    <img src={`/assets/img/books/${image_url}`} alt={title} class="book__img" />
-    <figcaption class="book__caption book__caption--title">{title}</figcaption>
-    <figcaption class="book__caption book__caption--author">{author}</figcaption>
-  </figure>
-</a>
+<article class:list={['book', note && 'book--noted']}>
+  <a href={amazon_url} target="_blank" rel="noopener noreferrer" class="book__cover-link">
+    <img
+      src={`/assets/img/books/${image_url}`}
+      alt=""
+      class="book__img"
+      loading="lazy"
+      width="72"
+      height="108"
+    />
+  </a>
+  <div class="book__body">
+    <a href={amazon_url} target="_blank" rel="noopener noreferrer" class="book__title">
+      {title}
+    </a>
+    <p class="book__author">{author}</p>
+    {note && <p class="book__note">{note}</p>}
+  </div>
+</article>

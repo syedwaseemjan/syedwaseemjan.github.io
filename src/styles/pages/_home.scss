@@ -18,37 +18,25 @@
 }
 
 .section-books {
-    margin-top: 4rem;
+    margin-top: 2rem;
 
     @include respond(tab-port) {
-        margin-top: 3rem;
-    }
-
-    @include respond(phone) {
-        margin-top: 0rem;
+        margin-top: 1rem;
     }
 
     &__category:not(:last-of-type) {
-        margin-bottom: 8rem;
+        margin-bottom: 5.6rem;
     }
 
     &__list {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, 20rem);
-        justify-content: space-between;
-        grid-row-gap: 10rem;
-
-        @include respond(phone) {
-            grid-template-columns: repeat(auto-fill, 16rem);
-        }
+        display: block;
+        max-width: 64rem;
     }
+
     &__heading {
         display: block;
-        margin-bottom: 3rem;
-
-        @include respond(phone) {
-            text-align: center;
-        }
+        margin-bottom: 1.6rem;
+        color: $color-grey-dark-1;
     }
 }
 

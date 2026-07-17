@@ -1,97 +1,81 @@
 @use '../abstracts' as *;
 
 .book {
-    transition: all .2s;
+    display: grid;
+    grid-template-columns: 7.2rem minmax(0, 1fr);
+    column-gap: 1.6rem;
+    align-items: start;
+    padding: 1.6rem 0;
+    border-bottom: $line;
 
-	&__box {
+    &:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    &:first-child {
+        padding-top: 0;
+    }
+
+    &__cover-link {
         display: block;
-        width: 100%;
-        height: 28rem;
-        overflow: hidden;
-        position: relative;
-        transition: all .4s;
-        border-radius: 1rem;
-        box-shadow: $shadow-light;
-        object-fit: cover;
-
-        @include respond(phone) {
-            height: 24rem;
-        }
-
-        &::before {
-            content: "";
-            background: linear-gradient(to top, rgba($color-grey-dark-1, .7), transparent);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 28rem;
-            visibility: hidden;
-            opacity: 0;
-            z-index: 1;
-
-            @include respond(phone) {
-                height: 26rem;
-            }
-        }
+        flex-shrink: 0;
     }
+
     &__img {
-        width: 100%;
-        height: 100%;
-        transition: all .4s;
+        display: block;
+        width: 7.2rem;
+        height: 10.8rem;
         object-fit: cover;
+        object-position: top;
+        border-radius: 0.3rem;
+        border: $line;
+        background-color: $color-grey-light-1;
+        transition: border-color 0.15s, box-shadow 0.15s;
     }
 
-    &:hover &__img {
-        transform: scale(1.1);
+    &__body {
+        min-width: 0;
+        padding-top: 0.2rem;
     }
 
-    &:hover &__box::before {
-        visibility: visible;
-        opacity: 1;
-    }
+    &__title {
+        display: inline;
+        font-size: 1.6rem;
+        font-weight: 600;
+        line-height: 1.35;
+        color: $color-grey-dark-1;
+        text-decoration: none;
 
-    &__caption {
-        line-height: 1.2;
-        text-align: center;
-        width: 100%;
-        z-index: 1;
-        color: $color-white;
-        position: absolute;
-        bottom: 2rem;
-        left: 50%;
-        opacity: 0;
-        transition: transform .4s cubic-bezier(.165, .85, .45, 1) .2s, opacity .4s cubic-bezier(.165, .85, .45, 1) .2s;
-        transform: translate3d(-50%, 0, 0);
-
-        &--title {
-            font-size: 1.8rem;
-            font-weight: bold;
-        }
-        &--author {
-            font-size: 1.4rem;
-            font-weight: 300;
-        }
-
-        @include respond(tab-port) {
-            &--title {
-                opacity: 1;
-                background: $color-primary;
-                padding: .5rem 0;
-            }
+        &:hover,
+        &:focus-visible {
+            color: $color-primary;
         }
     }
 
-    &:hover &__caption {
-        opacity: 1;
+    &__author {
+        margin: 0.4rem 0 0;
+        font-size: 1.4rem;
+        line-height: 1.4;
+        color: $color-grey-dark-3;
+    }
 
-        &--title {
-            transform: translate3d(-50%, -50%, 0);
-        }
+    &__note {
+        margin: 1rem 0 0;
+        max-width: 52rem;
+        font-size: 1.5rem;
+        line-height: 1.6;
+        color: $color-grey-dark-2;
+    }
 
-        &--author {
-            transform: translate3d(-50%, 50%, 0);
-        }
-        
+    &--noted {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    &:hover &__img,
+    &:focus-within &__img {
+        border-color: $color-grey-light-3;
+        box-shadow: $shadow-light;
     }
 }

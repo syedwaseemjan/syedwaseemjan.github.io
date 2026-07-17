@@ -2,28 +2,36 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Book from '../components/Book.astro';
 import { SITE } from '../consts';
-import { booksNovels, booksSelfHelp, booksTechnical } from '../data/books';
+import { booksNovels, booksNonfiction, booksTechnical } from '../data/books';
 ---
 
 <BaseLayout title={`Books | ${SITE.title}`} canonicalPath="/books">
   <section class="section-books">
+    <h2 class="heading-2 heading-2--dark mb-md">Books</h2>
+    <p class="text text--lead mb-lg">
+      I do not finish everything I start, and I do not love everything I finish. These are the ones
+      that stayed with me, plus a few that simply helped me do the work. A handful have a short note.
+      The rest are here because I am glad I read them.
+    </p>
+
     <div class="section-books__category">
-      <h2 class="heading-2 heading-2--dark mb-hg">Here is the list of the few books I have read.</h2>
-      <h3 class="heading-2 section-books__heading">Novels</h3>
-      <div class="section-books__list">
-        {booksNovels.map((book) => <Book {...book} />)}
-      </div>
-    </div>
-    <div class="section-books__category">
-      <h3 class="heading-2 section-books__heading">Self Help</h3>
-      <div class="section-books__list">
-        {booksSelfHelp.map((book) => <Book {...book} />)}
-      </div>
-    </div>
-    <div class="section-books__category">
-      <h3 class="heading-2 section-books__heading">Technical Books</h3>
+      <h3 class="heading-3 section-books__heading">Technical</h3>
       <div class="section-books__list">
         {booksTechnical.map((book) => <Book {...book} />)}
+      </div>
+    </div>
+
+    <div class="section-books__category">
+      <h3 class="heading-3 section-books__heading">Nonfiction</h3>
+      <div class="section-books__list">
+        {booksNonfiction.map((book) => <Book {...book} />)}
+      </div>
+    </div>
+
+    <div class="section-books__category">
+      <h3 class="heading-3 section-books__heading">Novels</h3>
+      <div class="section-books__list">
+        {booksNovels.map((book) => <Book {...book} />)}
       </div>
     </div>
   </section>
