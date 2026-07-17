@@ -1,35 +1,33 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../consts';
 ---
 
 <BaseLayout
-  description="Software engineer with 14 years of experience. Currently at XTEL, previously Tasq, BriteCore, and co-founder of Chef Galaxy."
+  description={`I'm a software engineer in Kamra, Pakistan. Currently at XTEL, previously Tasq and BriteCore. I write about backend work and things learned along the way.`}
   canonicalPath="/"
 >
   <section class="section-about">
-    <h1 class="heading-2 heading-2--dark">About</h1>
-    <p class="text">
-      Waseem Jan is a software engineer currently at XTEL, working on tools that help consumer goods
-      companies plan promotions and pricing. Before that he spent time at Tasq and BriteCore, and
-      earlier co-founded <strong>Chef Galaxy</strong>, a marketplace for hiring chefs. It didn't last,
-      but building it end to end taught him a lot.
+    <h1 class="heading-2 heading-2--dark mb-md">About</h1>
+
+    <p class="text text--lead mb-lg">
+      Software engineer in Kamra, Pakistan. Full stack, though I spend more time on the backend.
+      I care about making complicated systems behave in ways you can actually understand.
     </p>
+
     <p class="text">
-      Along the way he's worn DevOps and frontend hats as well as backend ones.
+      These days I'm at XTEL, on promotion and pricing tools for consumer goods companies. Before
+      that: Tasq, BriteCore, and co-founding <strong>Chef Galaxy</strong>, a chef marketplace I
+      built end to end that didn't last, but taught me a lot. Longer versions are on <a href="/projects">Work</a> and the <a href="/blog">blog</a>.
     </p>
+
     <p class="text">
-      He lives in Kamra, Pakistan with his wife <b>Yusaira</b> and two sons, <b>Azlan</b> and
-      <b>Zaman</b>. He's also fond of parrots and keeps an aviary of
-      <a href="https://lafeber.com/pet-birds/species/cockatiel/" target="blank">cockatiels</a> and
-      <a href="https://lafeber.com/pet-birds/species/budgie-parakeet/" target="blank">budgies</a>.
+      At home I'm with my wife <b>Yusaira</b> and our sons <b>Azlan</b> and <b>Zaman</b>. I keep an
+      aviary of <a href="https://lafeber.com/pet-birds/species/cockatiel/" target="_blank" rel="noopener noreferrer">cockatiels</a> and <a href="https://lafeber.com/pet-birds/species/budgie-parakeet/" target="_blank" rel="noopener noreferrer">budgies</a>, and I studied Software Engineering at the <a href="https://giki.edu.pk" target="_blank" rel="noopener noreferrer">GIK Institute</a>.
     </p>
+
     <p class="text">
-      He holds a bachelor's degree in Software Engineering from the
-      <a href="https://giki.edu.pk" target="blank">GIK Institute</a>.
-    </p>
-    <p class="text">
-      Don't forget to read his <a href="/blog" class="btn-text">blog &rarr;</a> and feel free to email
-      him at syedwaseemjan@gmail.com.
+      Say hello at <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
     </p>
   </section>
 </BaseLayout>

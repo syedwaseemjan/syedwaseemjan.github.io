@@ -17,6 +17,22 @@
     }
 }
 
+.section-about {
+    max-width: 64rem;
+    margin-left: auto;
+    margin-right: auto;
+
+    .text {
+        margin: 2.4rem 0;
+        line-height: 1.75;
+        color: $color-grey-dark-1;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
 .section-books {
     margin-top: 2rem;
 
