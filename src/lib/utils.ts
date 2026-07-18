@@ -1,4 +1,4 @@
-/** Reading time: ~180 wpm, minimum 1 min (matches Jekyll helper). */
+/** Reading time: ~180 wpm, minimum 1 min. */
 export function readingTime(htmlOrText: string): string {
   const text = htmlOrText.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
   const words = text ? text.split(' ').length : 0;
@@ -6,7 +6,7 @@ export function readingTime(htmlOrText: string): string {
   return `${minutes} min read`;
 }
 
-/** Approximate Jekyll auto-excerpt (first paragraph / ~50 words). */
+/** First-paragraph excerpt, capped at ~50 words. */
 export function excerpt(markdown: string, wordLimit = 50): string {
   const withoutFm = markdown.replace(/^---[\s\S]*?---\n*/, '');
   const firstPara = withoutFm.split(/\n\s*\n/).find((p) => p.trim()) ?? withoutFm;

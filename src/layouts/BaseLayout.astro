@@ -77,12 +77,12 @@ function absoluteOgImage() {
     <meta property="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-75526RYB6M"></script>
-    <script is:inline>
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${SITE.gaId}`}></script>
+    <script is:inline define:vars={{ gaId: SITE.gaId }}>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-75526RYB6M');
+      gtag('config', gaId);
     </script>
   </head>
   <body>

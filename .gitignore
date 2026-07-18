@@ -18,11 +18,3 @@ pnpm-debug.log*
 
 # macOS
 .DS_Store
-
-# legacy Jekyll (if any remain locally)
-_site/
-.sass-cache/
-.jekyll-cache/
-.jekyll-metadata/
-vendor/
-.bundle/
