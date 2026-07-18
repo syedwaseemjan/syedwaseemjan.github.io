@@ -76,7 +76,7 @@ export const projects: Project[] = [
     period: 'Jan 2015 - Dec 2016',
     role: 'Co-founder & sole engineer',
     details:
-      'A marketplace where people could find and hire chefs for dinners, catering, and events. I built the whole thing, from the Flask backend and frontend to the database and the AWS setup underneath. It never really took off, but failing at my own product taught me more than a lot of jobs that went fine. I wrote about that in <a href="/blog/what-i-learned-from-my-failed-startup">What I learned from my failed startup</a>.',
+      'A marketplace where people could find and hire chefs for dinners, catering, and events. I built the whole thing, from the Flask backend and frontend to the database and the AWS setup underneath. It never really took off, but failing at my own product taught me more than a lot of jobs that went fine. I wrote about that in <a href="/blog/what-i-learned-from-my-failed-startup">Four years on Chef Galaxy</a>.',
     thumbnail: '/assets/img/projects/chef-galaxy-small.png',
     thumbnailalt: 'Chef Galaxy',
     visual: 'photo',
