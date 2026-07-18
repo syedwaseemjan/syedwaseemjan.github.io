@@ -1,73 +1,55 @@
 ---
-title:  "From Chaos to Cohesion, Migrating Multiple Repositories to a Monolithic Architecture"
+title:  "How we merged several repos into one monolith at Tasq"
 date: 2024-04-13T12:43:00
 categories:
   - backend
 ---
 
-At Tasq.io I led a challenging yet rewarding initiative, transitioning several loosely connected repositories into a cohesive monolithic repository. This task however wasn’t just about merging code, it also involved addressing fundamental issues within each repo from missing unit tests to inconsistent code quality. Through a structured migration process and the introduction of automated tools like Black, Ruff, and Sourcery, I transformed our development workflow into one that’s maintainable.
+At Tasq.io we had several repositories that were loosely connected but lived completely separate lives. Shared logic got copied from one place to another. Dependencies were tracked separately in each repo. CI/CD pipelines had to be maintained for every project on its own. Working across them felt messier than it needed to be, and I ended up leading the effort to pull everything into a single monolith.
+
+It wasn't just a merge job. Looking at those repos closely, a lot of basic things were missing. Unit tests were thin or absent. Code style varied from file to file. The same utility functions existed in more than one place, so fixing a bug often meant hunting for every copy. If we were going to move everything into one repo, we had to clean that up along the way, not after.
 
 
-#### **Why Move to a Monolith?**
+#### **Why we made the move**
 
-Managing multiple repositories can complicate code management leading to issues like:
-   - **Code Duplication**: Shared logic is often duplicated across projects.
-   - **Dependency Management**: Each repository requires separate dependency tracking.
-   - **Deployment Inefficiencies**: CI/CD pipelines become challenging to maintain across repos.
+The pain was practical. When the same helper lived in three repos, a small change meant three pull requests and three chances to miss something. Dependency updates were the same story. You bump a library in one place, forget another, and suddenly two projects are out of sync. Deployments were harder than they should have been too, because each pipeline had its own quirks.
 
-Moving to a monolithic repo using [Polylith’s modular approach](https://polylith.gitbook.io/polylith) presented a solution that allowed us to consolidate shared code, simplify dependency handling, and centralize deployment.
+We chose [Polylith](https://polylith.gitbook.io/polylith) for the structure of the monolith. The idea appealed to me because it keeps things modular without forcing you back into separate repositories. Shared code can live once, and applications can still be composed from smaller pieces.
 
 
-#### **The Initial Challenges**
+#### **What we walked into**
 
-The transition wasn’t without hurdles. The codebases lacked essential elements like:
-1. **Unit Tests**: A lack of unit tests made it challenging to ensure that functionality remained intact during the migration.
-2. **Code Quality**: Without standardized linting or formatting, code readability and maintainability were inconsistent.
-3. **Code Duplication**: Shared functions and utilities were duplicated across repositories, making updates complex and error-prone.
+Before any code moved, the gaps were obvious.
 
-These challenges meant that, in addition to migrating code, I had to improve code quality and enforce new standards across the monolith.
+Unit tests were scarce. Without them, I couldn't tell whether something still worked after it landed in the new repo. Code quality was uneven because there was no shared linting or formatting, so readability depended on whoever touched the file last. Duplication was everywhere. Shared functions had drifted apart over time, and updating one version while leaving another behind was a real risk.
 
-
-#### **Using Polylith’s Approach to Structure the Monolith**
-
-The Polylith architectural style helped us structure the monolith in a way that balanced modularity with code reuse:
-   - **Components**: Independent, reusable modules containing business logic.
-   - **Bases**: Containers that allow components to interact and function as coherent applications.
-   - **Projects**: Representing top-level applications, these projects leveraged shared components without redundant code.
+So the migration became two jobs at once. Move the code, and raise the bar for what “done” meant.
 
 
-#### **Building with Pants for Scalability**
+#### **How Polylith shaped the layout**
 
-Using [Pants build](https://www.pantsbuild.org/) enabled us to manage the growing codebase efficiently:
-   - **Selective Builds**: Pants allows building only the changed code, significantly reducing build times.
-   - **Dependency Isolation**: With Pants, we could isolate dependencies per module, avoiding version conflicts and unnecessary bloat.
-   - **Optimized Testing**: By testing only impacted modules, Pants helped streamline the CI process, saving time and resources.
+Polylith gave us a way to keep the monolith organized without turning it into a pile of folders. Components are reusable modules with business logic. Bases are the layer where components come together into something runnable. Projects are the top-level applications that reuse those components instead of copying them.
 
-
-#### **Improving Code Quality with Automated Tools**
-
-After the migration, I introduced several automated tools to improve code quality, enforce consistency, and reduce technical debt:
-   - **Black**: An automatic code formatter that enforced a unified style across the monolith, making the codebase cleaner and more readable.
-   - **Ruff**: A fast, Python linter that ensured our code adhered to best practices, catching potential bugs and enforcing style consistency.
-   - **Sourcery**: A tool to detect and remove code smells, simplify logic, and provide intelligent code suggestions, Sourcery helped maintain cleaner and more efficient code.
-
-With these tools, I configured a GitHub workflow for automated linting and formatting, ensuring code quality checks were part of our CI/CD pipeline.
+That split mattered. We got one repository, but we didn't lose the ability to reason about boundaries.
 
 
-#### **Incrementally Adding Unit Tests**
+#### **Pants for builds that didn't drag**
 
-The lack of unit tests in the initial repos posed a risk to functionality during migration. Here’s how I approached testing:
-   - **Module-by-Module Testing**: Before migrating each repository, I added unit tests for its core functions, focusing on critical components first.
-   - **Automation**: After migration, unit tests were integrated into the GitHub workflow, enabling automated testing for each pull request.
-   - **Code Coverage Tracking**: I set up code coverage tracking to measure test completeness and ensure no gaps.
+As the monolith grew, full rebuilds and full test runs would have slowed everyone down. [Pants](https://www.pantsbuild.org/) helped there. It builds only what changed, keeps dependencies isolated per module so version conflicts don't spill everywhere, and runs tests against the modules that are actually affected. CI got faster because we stopped paying for work that didn't need to happen.
 
 
-The transition to a monolith not only streamlined our development process but also brought improvements in code quality. Important conclusions:
-   - **Reduced Complexity**: A single repository reduced the complexity of working across multiple repos.
-   - **Enhanced Code Quality**: Automated tools like Black, Ruff, and Sourcery maintained consistent, high-quality code.
-   - **Reduced Redundancy**: Consolidating duplicated code reduced technical debt and improved maintainability.
-   - **Optimized Build and Testing**: With Pants, our CI/CD process became more efficient, reducing time spent on builds and tests.
+#### **Making quality automatic**
+
+After the code was in one place, I wanted quality checks to stop depending on memory. I added Black for consistent formatting, Ruff as a fast linter, and Sourcery to catch messy patterns and suggest cleaner ones.
+
+These ran in a GitHub workflow, so every pull request got formatting and linting without someone having to remember to run the tools locally.
 
 
-It was an opportunity to improve some processes and establish a robust framework for sustainable growth. By combining Polylith’s modular approach, Pants build, and automated quality tools, I transformed our codebase into a maintainable monolith. This took a significant amount of time and required many changes, but the results were well worth the effort.
+#### **Tests, one module at a time**
 
+I didn't try to write a full suite for everything on day one. Before migrating a repository, I added tests around its core behavior, enough that we'd notice if something broke. After migration, those tests became part of the same GitHub workflow as the linting. I also set up coverage tracking so we could see what was still untested instead of guessing.
+
+
+Looking back, the biggest wins were simple ones. One repo meant less jumping around and fewer places for the same bug to hide. Black, Ruff, and Sourcery kept the style from drifting again. Duplicated helpers got consolidated. Pants kept builds and tests from becoming a bottleneck.
+
+It took longer than a straight copy-paste would have, and it needed a lot of small changes along the way. But we ended up with a monolith that was easier to work in day to day, and a setup that new work could grow into without repeating the same mess.
