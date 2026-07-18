@@ -1,3 +1,5 @@
+import { SITE } from '../consts';
+
 /** Reading time: ~180 wpm, minimum 1 min. */
 export function readingTime(htmlOrText: string): string {
   const text = htmlOrText.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
@@ -31,7 +33,7 @@ export function formatDate(date: Date): string {
   });
 }
 
-export function absoluteUrl(path: string, site = 'https://syedwaseemjan.github.io'): string {
+export function absoluteUrl(path: string, site = SITE.url): string {
   const base = site.replace(/\/$/, '');
   const p = path.startsWith('/') ? path : `/${path}`;
   return `${base}${p === '/' ? '/' : p.replace(/\/$/, '')}`;

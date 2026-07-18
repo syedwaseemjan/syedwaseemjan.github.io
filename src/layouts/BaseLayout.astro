@@ -25,7 +25,7 @@ const ogImage = absoluteOgImage();
 const canonical = new URL(canonicalPath === '/' ? '/' : canonicalPath.replace(/\/$/, ''), SITE.url).href;
 
 function absoluteOgImage() {
-  return `${SITE.url}/assets/img/favicons/android-chrome-512x512.png`;
+  return `${SITE.url}/assets/img/og-default.png`;
 }
 ---
 
@@ -52,6 +52,11 @@ function absoluteOgImage() {
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:secure_url" content={ogImage} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={SITE.author} />
     {isArticle ? (
       <>
         <meta property="og:type" content="article" />
@@ -70,11 +75,11 @@ function absoluteOgImage() {
       </>
     )}
 
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content={`@${SITE.twitterUsername}`} />
     <meta name="twitter:creator" content={`@${SITE.twitterUsername}`} />
-    <meta property="twitter:title" content={pageTitle} />
-    <meta property="twitter:description" content={description} />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
     <script async src={`https://www.googletagmanager.com/gtag/js?id=${SITE.gaId}`}></script>

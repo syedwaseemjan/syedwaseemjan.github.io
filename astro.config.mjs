@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://syedwaseemjan.github.io',
+  site: 'https://waseem.is-a.dev',
   trailingSlash: 'never',
 });
