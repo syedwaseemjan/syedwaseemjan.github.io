@@ -43,7 +43,7 @@ export const projects: Project[] = [
     period: 'Nov 2022 - May 2024',
     role: 'Senior Full Stack Engineer',
     details:
-      'Oil and gas operators used Tasq to watch equipment, spot odd behavior, and automate the follow-up. I led a small team of three and spent most of my time on the backend. That meant speeding up slow APIs, folding a pile of separate services into one repo we could actually reason about, and trimming about $20k a year off our AWS bill. I wrote about the <a href="/blog/migration-to-polylith">repo consolidation</a> and the <a href="/blog/saving-aws-costs-at-tasq">cost work</a> if you want the longer versions.',
+      'Oil and gas operators used Tasq to watch equipment, spot odd behavior, and automate the follow-up. I led a small team of three and spent most of my time on the backend. That meant speeding up slow APIs, folding a pile of separate services into one repo we could actually reason about, and trimming about $20k a year off our AWS bill. I wrote about the <a href="/blog/migration-to-polylith">repo consolidation</a>, the <a href="/blog/bringing-structure-to-repos">PR guidelines</a>, and the <a href="/blog/saving-aws-costs-at-tasq">cost work</a> if you want the longer versions.',
     thumbnail: '/assets/img/projects/tasq-small.jpg',
     thumbnailalt: 'Tasq AI well monitoring dashboard',
     visual: 'photo',
@@ -54,7 +54,7 @@ export const projects: Project[] = [
     period: 'May 2018 - June 2022',
     role: 'Senior Full Stack Engineer',
     details:
-      'Four years on a cloud platform used by property and casualty insurers to configure policies and coverage, eventually more than a hundred companies. I hired and led the group that built BriteLines, a product definition service and rating engine. The win I still remember is a cache job for large risks that used to run for 23 minutes and time out. We got it down to about 12 seconds on Lambda.',
+      'Four years on a cloud platform used by property and casualty insurers to configure policies and coverage, eventually more than a hundred companies. I hired and led the group that built BriteLines, a product definition service and rating engine. The win I still remember is a cache job for large risks that used to run for 23 minutes and time out. We got it down to about 12 seconds on Lambda. I wrote about the <a href="/blog/britelines-cache-generation">cache speedup</a> and the <a href="/blog/too-many-lambdas-one-database">Lambda stampede on MySQL</a>.',
     thumbnail: '/assets/img/projects/britelines-small.jpg',
     thumbnailalt: 'BriteLines policy types configuration',
     visual: 'photo',
@@ -65,7 +65,7 @@ export const projects: Project[] = [
     period: 'Jan 2017 - Dec 2017',
     role: 'Senior Software Engineer',
     details:
-      'A digital asset platform used by universities, museums, and libraries to manage and share large image collections. I spent most of the year on DevOps and mentoring two developers. Moving deployments onto Docker cut downtime from roughly eight hours to one, and a lot of the rest was Nginx, monit, cron, and small scripts that kept the machines honest.',
+      'A digital asset platform used by universities, museums, and libraries to manage and share large image collections. I spent most of the year on DevOps and mentoring two developers. Moving deployments onto Docker cut downtime from roughly eight hours to one, and a lot of the rest was Nginx, monit, cron, and small scripts that kept the machines honest. Longer version of the <a href="/blog/docker-cut-deploy-downtime">Docker deploy work</a> is on the blog.',
     thumbnail: '/assets/img/projects/artstor-small.png',
     thumbnailalt: 'Artstor Vocabulary Warehouse',
     visual: 'photo',
@@ -76,7 +76,7 @@ export const projects: Project[] = [
     period: 'Jan 2015 - Dec 2016',
     role: 'Co-founder & sole engineer',
     details:
-      'A marketplace where people could find and hire chefs for dinners, catering, and events. I built the whole thing, from the Flask backend and frontend to the database and the AWS setup underneath. It never really took off, but failing at my own product taught me more than a lot of jobs that went fine. I wrote about that in <a href="/blog/what-i-learned-from-my-failed-startup">Four years on Chef Galaxy</a>.',
+      'A marketplace where people could find and hire chefs for dinners, catering, and events. I built the whole thing, from the Flask backend and frontend to the database and the AWS setup underneath. It never really took off, but failing at my own product taught me more than a lot of jobs that went fine. I wrote about that in <a href="/blog/what-i-learned-from-my-failed-startup">Four years on Chef Galaxy</a>, and about the <a href="/blog/chefgalaxy-aws-architecture">AWS setup</a>.',
     thumbnail: '/assets/img/projects/chef-galaxy-small.png',
     thumbnailalt: 'Chef Galaxy',
     visual: 'photo',
