@@ -39,7 +39,7 @@ I am less interested in whether they name every option. I am interested in wheth
 
 Some people start listing technologies. Redis. Kafka. Kubernetes. Microservices. The list grows and the diagnosis never starts. Others freeze because they expected a coding pad and a sorted array.
 
-A few give one correct idea and stop. “Add an index.” Fine. Which column? How would you prove it helped? What if the plan still shows a sequential scan? The interview is the next three questions, not the first slogan.
+A few give one correct idea and stop. “Add an index.” Fine. Which column? How would you prove it helped? What if the plan still shows a sequential scan? That first answer is easy. I care about whether they can keep going.
 
 I also watch for people who only know the happy path of a framework. They have used Django or FastAPI for years and still cannot say what happens when a hundred workers hit one database, or why an async endpoint still blocks if the code inside it is synchronous. Years of shipping features is not the same as understanding the machine under those features.
 
