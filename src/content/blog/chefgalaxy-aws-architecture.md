@@ -1,81 +1,56 @@
 ---
-title:  "Chef Galaxy's AWS architecture explained"
+title:  "How I host Chef Galaxy on AWS"
 date: 2016-05-13T12:43:00
 categories:
   - aws
   - chefgalaxy
 ---
 
-Chef Galaxy(Co-founded by me) is a website that connects customers with chefs for their events like birthdays and weddings, in other words, it's an **Upwork** for foodies. It also provides a social network for foodies, in other words, it's a **Facebook** for foodies. Additionally, it has a knowledge engine where customers can ask questions related to food and professional chefs can provide answers, in other words, it's a **Quora** for foodies.
+I co-founded Chef Galaxy. It connects customers with chefs for events like birthdays and weddings. Think of it as an Upwork for hiring a chef. We also have a social feed around food and a Q&A section where people ask food questions and chefs answer. That is a lot of surface area for a young product, and all of it has to live somewhere.
 
-**Some of its core modules include:**
-1. Event cost calculator based on the dishes selected (Based on its properties like ingredients, Main Course, Organic, etc) and chef hired (Based on properties like Experience, Education, Rank, Location, etc). 
-2. Chef Rank calculator based on his/her education, experience, language skills, feedback score, activity score, reliability score.
-3. Automated disputes resolution between chefs and customers.
+A few pieces of the product drive most of the backend work.
 
+1. An event cost calculator based on the dishes selected (ingredients, main course, organic, and so on) and the chef hired (experience, education, rank, location).
+2. A chef rank calculator based on education, experience, language skills, feedback score, activity score, and reliability score.
+3. Automated dispute resolution between chefs and customers.
 
-**Tech stack:**
-1. Our web application is built in **Python Flask**. 
-2. **Celery** tasks are used for scheduling customer orders, payments, dispute resolutions, etc.
-3. Frontend is simple **Jinja** templates using **Jquery**, **Bootstrap** and vanilla **Javascript**. 
-4. Database is **Postgres** and **Redis** cache is used for notifications and as a Celery messaging queue.
-5. **Elasticsearch** for advance searching for dishes, chefs, and also for searching some items in the knowledge section.
-6. For logs, we are using Sentry.
-7. And of course, everything is deployed on **AWS**.
+The web app is **Python Flask**. **Celery** handles scheduled work like orders, payments, and dispute flows. The frontend is **Jinja** templates with **jQuery**, **Bootstrap**, and plain **JavaScript**. Data lives in **Postgres**. **Redis** handles notifications and acts as the Celery broker. **Elasticsearch** covers search across dishes, chefs, and the knowledge section. Errors go to Sentry. The whole thing runs on **AWS**.
 
-
-#### Here is how our AWS architecture looks
+#### What the AWS layout looks like
 
 <img src="/assets/img/posts/chefgalaxy-aws-architecture/img-1.png" alt="Detailed AWS Deployment design" />
 
-In order to provide a reliable, secure, and highly available service to our customers we have deployed our product in AWS using a **3-tier architecture**. 
+We deploy it as a **three-tier architecture** on AWS. The presentation layer is public. The business layer and the data layer are private. Users never talk to those private layers directly. When we need to reach them ourselves, we come in through an **OpenVPN** instance in the public layer.
 
-> A three-tier architecture is a software architecture pattern where the application is broken down into three logical tiers: the presentation layer, the business logic layer, and the data storage layer
+For availability we run across two Availability Zones, `us-east-1a` and `us-east-1b`. If one zone fails, traffic can keep going through the other.
 
-**Presentation** layer is the public layer, any infrastructure hosted inside it is directly accessible to the public. Users can directly interact with it. Other layers i-e **Business logic** layer and the **Data storage** layer are private layers, they are not directly accessible to the users. Users can interact with them with the help of a proxy server (Bastion server) hosted inside the public layer.
+Each zone has three subnets, one per layer. The public subnets are attached to an Internet Gateway through their route tables. The business-layer subnets stay private but reach the internet through a **NAT Gateway**, enough for package updates and calls to services like S3, without taking unsolicited inbound traffic from the internet. The data-layer subnets have no internet path. Managed services there do not need one.
 
-Every layer is made of subnets and subnets are made public or private but before we go to the definition of the subnet, let's also discuss Availability Zones.
+#### Presentation layer
 
-> Availability Zones are physical data centers in distinct locations within an AWS Region that are engineered to be isolated from failures in other Availability Zones.
+This layer holds the **Elastic Load Balancer**. It exposes a public endpoint, terminates HTTPS, and spreads requests across the app instances in both zones. Default health checks keep unhealthy instances out of rotation. The same public subnet in `us-east-1a` also holds the OpenVPN instance we use to reach app servers, the database, and Redis.
 
-In order to make our application highly available, we have hosted it in two Availability Zones. The two availability zones selected for Chef Galaxy are `us-east-1a` and `us-east-1b`. This makes our system highly available and redundant because if one of the availability zones goes down or fails, customers' requests will be redirected to the other one.
+#### Business layer
 
-Each Availability Zone is divided into three layers with the help of three subnets.
+Two **Auto Scaling Groups** span both zones, one for the Flask app and one for Elasticsearch. The app group keeps at least two EC2 instances, ideally one in each zone. If a zone goes down, ASG can place both in the remaining zone. A target tracking policy adds instances when CPU climbs. Launch configurations and user data install what the Flask app needs on boot.
 
-> A subnet is a range of IP addresses. You can attach AWS resources, such as EC2 instances and RDS DB instances, to subnets. You can create subnets to group instances together according to your security and operational needs.
+**Celery** workers run on the same EC2 instances as Flask. That is enough for our size.
 
-The two subnets in the first layer in each AZ are made public by attaching them to the Internet Gateway. It is attached to the Internet Gateway through a Route Table.
-Subnets in the second and third layers are made private by just **NOT** attaching them to the Internet Gateway, though we have attached the subnets in the second layer to the Nat Gateway. Nat Gateway is used to give internet and other AWS services access to applications hosted in private subnets, for example, to update Linux libraries or access S3 on an EC2 instance, but still preventing unsolicited inbound connections from the Internet. Our third subnet has no inbound or outbound internet connectivity because it doesn't need one. We will explain it in a bit.
+The Elasticsearch group keeps at least one instance. We reach it through a Route 53 private hosted zone. We run our own cluster instead of AWS Elasticsearch Service because our queries use Groovy scripts for location and distance work, and dynamic scripting is not supported on the managed service yet.
 
-Let's go through each layer one by one.
+Security groups on the app instances allow SSH from inside the VPC on port 22 so we can reach them through OpenVPN.
 
-### Our Presentation layer:
+#### Data layer
 
-Our presentation layer consists of AWS elastic load balancer. It has a public endpoint that users can call directly. ELB is responsible for equally distributing the customer requests between our EC2 hosted applications in the second layer in two Availability Zones. ELB can automatically scale to handle the increased workload. We are also using default health checks so that ELB can send requests only to healthy EC2 instances. Additionally, it is also responsible for decrypting our HTTPS requests.
+This layer holds **RDS Postgres** and **ElastiCache Redis**. RDS has a standby in `us-east-1b`. ElastiCache has a replica in `us-east-1b` as well. Neither needs internet access. AWS handles patching for those services. We can still reach them from our side through the OpenVPN instance when we have to.
 
-We also have an OpenVPN EC2 instance in our `us-east-1a` public subnet to give us access to our application servers, database, and Redis cache.
+#### What I would change
 
+There is plenty of room to improve.
 
-### Our Business layer:
+1. Store the DB password in **Secrets Manager** instead of an environment variable.
+2. For scheduling future events, look at CloudWatch Events or DynamoDB TTL instead of leaning so hard on Celery.
+3. Move the app off bare EC2 toward ECS or Lambda.
+4. Switch to the managed Elasticsearch service once it supports the dynamic scripting we need.
 
-Our business layer has two Auto Scaling Groups configured across both Availability Zones for our Flask app and Elasticsearch. App ASG is configured to maintain at the minimum two EC2 instances, one in each availability zone but if one of the AZ is out of service, it will create all instances in the same AZ. It has a target tracking policy to increase the number of EC2 instances based on the CPU usage of existing EC2 instances. Everything required to run the Python Flask based application on the EC2 instance is installed on the run through launch configuration and user data.
-
-Elasticsearch ASG is configured to maintain at the minimum 1 EC2 instance. These instances are accessed through Route53's private hosted zone. The reason for hosting Elasticsearch ourselves instead of using AWS service for Elasticsearch is that we are using some groovy scripts in our queries for some advance searching which involves location and distance finding and dynamic scripts are not supported yet in AWS Elasticsearch service.
-
-Our Celery workers also run along with our Flask application on the same EC2 instance.
-
-The security group on the EC2 instance allows inbound traffic from within the VPC on Port 22 to allow us to SSH into them through our OpenVPN instance in a public subnet.
-
-
-### Our Database layer:
-
-In addition to the RDS Postgres instance, our database subnet also contains an Elasticache instance. **RDS** has a standby instance in `us-east-1b`, and **Elasticache** has a read replica in `us-east-1b`. Both of them cannot access the internet but it's not needed as AWS is responsible for all the security patches and updates. Though the infrastructure in this layer cannot access the internet but this infrastructure can be accessed from the outside world through the OpenVPN instance in our public subnet.
-
-#### Can we make any improvements to this architecture?
-O yes, of course. There is a lot of room for improvement.
-
-1. Using Secret Manager to store DB password. Currently, we are using an environment variable. 
-2. Instead of using celery for scheduling future events, either use Cloudwatch events or DynamoDB TTL.
-3. Instead of using EC2 for application, try ECS (Elastic Container Service) or Lambda.
-4. Use AWS Elasticsearch Domain when it supports dynamic scripting instead of our own cluster.
-
+I built this setup myself. Some of it is bigger than we need today. Still, putting a real multi-AZ, auto-scaled VPC together end to end teaches you more than any diagram ever will.
