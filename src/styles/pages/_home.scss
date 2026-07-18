@@ -22,6 +22,34 @@
     margin-left: auto;
     margin-right: auto;
 
+    &__intro {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        margin-bottom: 2.4rem;
+
+        @include respond(phone) {
+            gap: 1.6rem;
+            margin-bottom: 2rem;
+        }
+    }
+
+    &__portrait {
+        display: block;
+        width: 12rem;
+        height: 12rem;
+        flex-shrink: 0;
+        object-fit: cover;
+        border-radius: 0.6rem;
+        border: 1px solid $color-grey-light-2;
+        background-color: $color-white;
+
+        @include respond(phone) {
+            width: 8.8rem;
+            height: 8.8rem;
+        }
+    }
+
     .text {
         margin: 2.4rem 0;
         line-height: 1.75;
