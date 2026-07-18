@@ -5,9 +5,9 @@ categories:
   - backend
 ---
 
-At BriteCore I worked on BriteLines, the product definition and rating service for property and casualty insurers. Carriers configure coverages, rate tables, and rules there. Quoting and rating need that configuration constantly, so we did not want every premium calculation hitting the database.
+At BriteCore I work on BriteLines, the product definition and rating service for property and casualty insurers. Carriers configure coverages, rate tables, and rules there. Quoting and rating need that configuration constantly, so we do not want every premium calculation hitting the database.
 
-The rating engine already read from Redis. Once a product version’s shape was cached, rating stayed on the cache. The pain was not the read path. It was building the cache in the first place.
+The rating engine already reads from Redis. Once a product version’s shape is cached, rating stays on the cache. The pain was not the read path. It was building the cache in the first place.
 
 #### **What we were building**
 
@@ -35,10 +35,10 @@ We used Django’s debug tooling to see the query log for a generation run. Whic
 
 The main win was boring on purpose. Prefetch the calculations and rate tables for the related risk types in bulk. Keep hashes of them in memory while the serializer resolves references, instead of asking the database again for each edge in the graph. Once those round trips were gone, the same Lambda work that had been timing out finished in seconds.
 
-#### **What I keep from it**
+#### **The lesson**
 
 N+1 is famous because it is common, and common because ORMs hide the cost until the data gets large. People ignore it on small products, then treat the timeout as an infrastructure problem. More memory, longer Lambda limits, bigger connection pools. Sometimes you need those. Often you are just asking the database the same question a thousand times.
 
-The lesson I still use is to separate the read path from the build path. Our rating engine was already doing the right thing with Redis. The build path was the one that assumed “serialize the graph” would stay cheap. When a client’s configuration got big enough, that assumption failed in public.
+The lesson is to separate the read path from the build path. Our rating engine was already doing the right thing with Redis. The build path was the one that assumed “serialize the graph” would stay cheap. When a client’s configuration got big enough, that assumption failed in public.
 
 If a background job only hurts on the largest tenant, start with the query log for that tenant’s shape. The fix is usually unglamorous. Prefetch what you walk. Load related data once. We did not invent any of that. We just finally measured the generation path carefully enough to apply it where it counted.

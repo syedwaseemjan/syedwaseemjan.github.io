@@ -5,7 +5,7 @@ categories:
   - backend
 ---
 
-At BriteCore, BriteLines rebuilt product caches in the background. Change a product version and we queued work on SQS. Each message started a Lambda that rebuilt the cache for one risk type and wrote it to Redis.
+At BriteCore, BriteLines rebuilds product caches in the background. Change a product version and we queue work on SQS. Each message starts a Lambda that rebuilds the cache for one risk type and writes it to Redis.
 
 A risk type is one category on a policy, like a vehicle or a building. A product version is a dated cut of the full product config. A full version reset means rebuild the cache for every risk type in that cut, not just the one that changed.
 
@@ -21,8 +21,6 @@ The symptoms sat next to the [slow serializer problems we had elsewhere](/blog/b
 
 We wrote a small helper that staggered jobs when we enqueued them. SQS accepts a `DelaySeconds` value on each message, so instead of dumping every risk type job onto the queue at once, we assigned delays across the batch and Lambdas woke up in waves.
 
-*(Update, years later. AWS now has a maximum concurrency setting on the SQS event source, so you can cap how many Lambdas that queue runs at once without spreading delays yourself. Reserved concurrency on the function is another ceiling. If I were wiring this up today, I would set those first and skip the stagger helper unless I still needed finer control.)*
-
 The idea was simple. Keep some parallelism so a full reset does not drag forever. Cap how many workers hit MySQL at once so the connection limit stops being the bottleneck. We were not trying to make one job faster. We were trying to stop a healthy fan out from drowning the database.
 
 #### **Why this is easy to miss**
@@ -31,7 +29,7 @@ Fan out feels like the cloud doing its job. You have a queue, you have Lambdas, 
 
 I have seen the same pattern outside BriteLines. People migrate a table with a swarm of workers, warm a cache for every tenant at deploy time, or fan out “just regenerate everything.” Each worker looks innocent. Together they exhaust a shared resource that is not in the Lambda metrics you stare at first.
 
-#### **What I keep from it**
+#### **The lesson**
 
 After you fix the work inside one job, look at how many of those jobs you start together. If the shared dependency is a database with a fixed connection pool, limiting concurrency can matter as much as speeding up any single worker.
 
