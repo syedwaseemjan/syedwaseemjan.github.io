@@ -160,9 +160,9 @@
 
     &__img {
         display: block;
-        width: 14rem;
+        width: 20rem;
         height: auto;
-        max-height: 11rem;
+        max-height: 14rem;
         object-fit: cover;
         object-position: top;
         border-radius: 0.4rem;
@@ -170,8 +170,8 @@
         margin-top: 2.4rem;
 
         @include respond(phone) {
-            width: 12rem;
-            max-height: 9rem;
+            width: 16rem;
+            max-height: 11rem;
             margin-top: 0;
         }
 

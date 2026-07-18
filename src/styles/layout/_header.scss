@@ -1,6 +1,7 @@
 @use '../abstracts' as *;
 
 .header {
+    flex-shrink: 0;
     height: 6.4rem;
     position: fixed;
     top: 0;

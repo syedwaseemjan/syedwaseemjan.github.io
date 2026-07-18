@@ -1,6 +1,7 @@
 @use '../abstracts' as *;
 
 .footer {
+    flex-shrink: 0;
     padding: 4rem 3rem 3.2rem;
     background-color: $color-grey-light-1;
     border-top: $line;

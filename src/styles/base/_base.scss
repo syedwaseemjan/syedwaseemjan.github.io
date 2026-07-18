@@ -23,14 +23,18 @@ html {
 
 body {
     background-color: $color-white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .container {
-    min-height: calc(100vh - 22rem);
+    flex: 1 0 auto;
     max-width: 114rem;
     margin: 0 auto;
     margin-top: 8rem;
     padding: 3rem;
+    width: 100%;
 
     @include respond(tab-land) {
         margin-top: 3rem;

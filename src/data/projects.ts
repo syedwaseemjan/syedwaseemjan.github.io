@@ -27,9 +27,9 @@ export const projects: Project[] = [
     role: 'Lead Software Engineer',
     details:
       "These days I work on a platform that helps consumer goods companies plan promotions and pricing. My corner of it sits between the models and the optimizer. I check that predictions are sane before they shape a plan, catch bad configuration early, and slowly replace older APIs without breaking the workflows people already rely on. A lot of the job is making a complicated pipeline fail clearly instead of mysteriously.",
-    thumbnail: '/assets/img/projects/xtel.svg',
-    thumbnailalt: 'Illustration for promotion and pricing work at XTEL',
-    visual: 'mark',
+    thumbnail: '/assets/img/projects/xtel-small.jpg',
+    thumbnailalt: 'XTEL promo calendar and plan optimization',
+    visual: 'photo',
   },
   {
     kind: 'gap',
@@ -44,9 +44,9 @@ export const projects: Project[] = [
     role: 'Senior Full Stack Engineer',
     details:
       'Oil and gas operators used Tasq to watch equipment, spot odd behavior, and automate the follow-up. I led a small team of three and spent most of my time on the backend. That meant speeding up slow APIs, folding a pile of separate services into one repo we could actually reason about, and trimming about $20k a year off our AWS bill. I wrote about the <a href="/blog/migration-to-polylith">repo consolidation</a> and the <a href="/blog/saving-aws-costs-at-tasq">cost work</a> if you want the longer versions.',
-    thumbnail: '/assets/img/projects/tasq.svg',
-    thumbnailalt: 'Illustration for industrial analytics work at Tasq',
-    visual: 'mark',
+    thumbnail: '/assets/img/projects/tasq-small.jpg',
+    thumbnailalt: 'Tasq AI well monitoring dashboard',
+    visual: 'photo',
   },
   {
     title: 'BriteCore',
@@ -55,9 +55,9 @@ export const projects: Project[] = [
     role: 'Senior Full Stack Engineer',
     details:
       'Four years on a cloud platform used by property and casualty insurers to configure policies and coverage, eventually more than a hundred companies. I hired and led the group that built BriteLines, a product definition service and rating engine. The win I still remember is a cache job for large risks that used to run for 23 minutes and time out. We got it down to about 12 seconds on Lambda.',
-    thumbnail: '/assets/img/projects/britecore.svg',
-    thumbnailalt: 'Illustration for insurance platform work at BriteCore',
-    visual: 'mark',
+    thumbnail: '/assets/img/projects/britelines-small.jpg',
+    thumbnailalt: 'BriteLines policy types configuration',
+    visual: 'photo',
   },
   {
     title: 'Active Capital / Artstor',
