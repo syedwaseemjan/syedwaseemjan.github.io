@@ -15,12 +15,12 @@ import { projects } from '../data/projects';
       {
         projects.map((project) =>
           project.kind === 'gap' ? (
-            <li class="work-item work-item--gap">
+            <li id={project.id} class="work-item work-item--gap">
               <p class="work-item__period">{project.period}</p>
               <p class="work-item__details">{project.details}</p>
             </li>
           ) : (
-            <li class="work-item">
+            <li id={project.id} class="work-item">
               <div class="work-item__body">
                 <p class="work-item__period">{project.period}</p>
                 <div class="work-item__heading">

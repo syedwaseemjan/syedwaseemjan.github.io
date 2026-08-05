@@ -7,7 +7,7 @@ categories:
   - chefgalaxy
 ---
 
-Chef Galaxy had a lot of work that had to happen later. Not later as in a few seconds later. Later as in next month.
+<a href="/work#chef-galaxy" target="_blank" rel="noopener noreferrer">Chef Galaxy</a> had a lot of work that had to happen later. Not later as in a few seconds later. Later as in next month.
 
 A customer hires a chef for a wedding in November. It is August. When the event date arrives we close the event. A few hours after that we mark the order complete, and if nobody opens a dispute we close the order and pay the chef. Around that there is a pile of shorter deadlines. A chef has a day to accept an order or the system rejects it for them. A customer has half a day to pay or the order cancels itself. If a dispute is opened, the chef gets a day to respond, and if they stay quiet we resolve it and move the money.
 

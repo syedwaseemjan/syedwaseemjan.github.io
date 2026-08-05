@@ -15,8 +15,9 @@ export function excerpt(markdown: string, wordLimit = 50): string {
   const plain = firstPara
     .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
     .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
-    .replace(/[#>*_`~]/g, '')
+    // Tags go first, otherwise stripping markdown punctuation eats the closing bracket
     .replace(/<[^>]+>/g, '')
+    .replace(/[#>*_`~]/g, '')
     .replace(/\s+/g, ' ')
     .trim();
   const words = plain.split(' ');

@@ -1,5 +1,7 @@
 export interface WorkRole {
   kind?: 'role';
+  /** Anchor target, so other pages can deep link to this entry */
+  id: string;
   title: string;
   link: string | null;
   period: string;
@@ -13,6 +15,8 @@ export interface WorkRole {
 
 export interface WorkGap {
   kind: 'gap';
+  /** Anchor target, so other pages can deep link to this entry */
+  id: string;
   period: string;
   details: string;
 }
@@ -21,6 +25,7 @@ export type Project = WorkRole | WorkGap;
 
 export const projects: Project[] = [
   {
+    id: 'xtel',
     title: 'XTEL',
     link: 'https://xtech.ai/',
     period: 'Aug 2025 - Present',
@@ -33,11 +38,13 @@ export const projects: Project[] = [
   },
   {
     kind: 'gap',
+    id: 'career-break',
     period: 'May 2024 - Aug 2025',
     details:
       'Took a break after almost a decade of remote work. Time to relax, and to sharpen skills by reading books and blogs and watching videos. Then came back at XTEL.',
   },
   {
+    id: 'tasq',
     title: 'Tasq.io',
     link: 'https://www.tasq.io/',
     period: 'Nov 2022 - May 2024',
@@ -49,6 +56,7 @@ export const projects: Project[] = [
     visual: 'photo',
   },
   {
+    id: 'britecore',
     title: 'BriteCore',
     link: 'https://britecore.com/',
     period: 'May 2018 - June 2022',
@@ -60,6 +68,7 @@ export const projects: Project[] = [
     visual: 'photo',
   },
   {
+    id: 'artstor',
     title: 'Active Capital / Artstor',
     link: 'https://www.artstor.org/',
     period: 'Jan 2017 - Dec 2017',
@@ -71,6 +80,7 @@ export const projects: Project[] = [
     visual: 'photo',
   },
   {
+    id: 'chef-galaxy',
     title: 'Chef Galaxy',
     link: null,
     period: 'Jan 2015 - Dec 2016',
@@ -82,6 +92,7 @@ export const projects: Project[] = [
     visual: 'photo',
   },
   {
+    id: 'crossover',
     title: 'Crossover',
     link: null,
     period: 'Jun 2012 - May 2015',

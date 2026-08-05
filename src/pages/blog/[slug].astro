@@ -18,6 +18,10 @@ const { Content } = await render(post);
 const readTime = readingTime(post.body ?? '');
 const description =
   (post.body ?? '')
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+    // Tags go first, otherwise stripping markdown punctuation eats the closing bracket
+    .replace(/<[^>]+>/g, ' ')
     .replace(/[#>*_`~\[]/g, ' ')
     .replace(/\s+/g, ' ')
     .trim()
