@@ -6,25 +6,25 @@ categories:
   - convo
 ---
 
-At Convo I interviewed about twenty mid and senior Python engineers. They were all for the same role with the same bar, and the conversation was almost the same every time.
+At Convo I interviewed about twenty mid and senior Python engineers. They were all for the same role with the same bar, and every one of them started with the same question.
 
-I do not ask live coding puzzles and I do not ask people to recite syntax. After fourteen years I still mix up Python’s `append` with JavaScript’s `push`. I am a Python developer and I still cannot keep every detail of every language in my head. So I stopped pretending that remembering trivia is what makes someone good at the job. These interviews were for Python roles, and I cared about concepts, not whether someone could recall a method name under pressure.
+I do not ask live coding puzzles and I do not ask people to recite syntax. After fourteen years I still mix up Python’s `append` with JavaScript’s `push`. I am a Python developer and I still cannot hold every detail of both languages in my head. So I stopped pretending that remembering trivia is what makes someone good at the job. These interviews were for Python roles, and I cared about concepts, not whether someone could recall a method name under pressure.
 
 #### **The questions I keep coming back to**
 
-I open with something plain.
+Every interview opens with the same plain question.
 
 > We have a slow application. How would you make it faster?
 
 Then I follow wherever the answer goes. Databases, queries, indexes, `EXPLAIN ANALYZE`, replication, sharding, partitioning. Processes and threads, and how the OS actually schedules work. Async code. The GIL. Queues. Caching. Whatever the candidate reaches for, I dig.
 
-My other favourite is just as open.
+That first question usually fills most of the hour. When there is time left over, I ask a second one that is just as open.
 
 > What happens when you type a URL in the browser and hit enter?
 
-That one pulls in DNS, TCP, TLS, HTTP, load balancers, caches, and the browser itself. It is the same idea. A short prompt, and then a long walk through whatever they know.
+That one pulls in DNS, TCP, TLS, HTTP, load balancers, caches, and the browser itself. It works the same way. A short prompt, and then a long walk through whatever they know.
 
-I ask almost everyone one of these on purpose. The question is not clever. The digging is the interview.
+Neither question is clever. The digging is the interview.
 
 #### **What good answers look like**
 
@@ -32,7 +32,11 @@ Strong candidates do not jump to a tool. They ask what “slow” means. Is it o
 
 When we land on the database, the people I trust talk about reading a query plan before they talk about buying a bigger instance. They know an index can help and that the wrong index can hurt. They can explain when replication helps reads and when it only moves the problem. They bring up sharding and partitioning as last resorts with clear tradeoffs, not as the first idea that sounds senior.
 
-On concurrency, good answers stay practical. Threads, processes, async, and the GIL are not buzzwords to them. They can say what Python can do in parallel and what it cannot, and when a queue is the right place to push work off the request path. When they mention caching, they have a reason for it. They can say what is cached, how it is invalidated, and what happens when the cache is wrong.
+On concurrency, good answers stay practical. Threads, processes, async, and the GIL are not buzzwords to them. They can say what Python can do in parallel and what it cannot, and when a queue is the right place to push work off the request path.
+
+Caching gets its own test. Anyone can say the word. The ones I trust can tell me what is cached, how it is invalidated, and what happens when the cache is wrong.
+
+If we get to the URL question, I want the same behaviour on a different path. A weak answer stops at the browser sending a request and getting HTML back. A good one walks through the DNS lookup and where that gets cached, what the TCP handshake costs, what TLS actually agrees on, and where a load balancer or a CDN sits in the middle. The best ones tie it back to the first question and point at the places in that path where things get slow.
 
 I am less interested in whether they name every option. I am more interested in whether they can keep breaking the problem down without getting lost or defensive.
 
@@ -48,7 +52,7 @@ I also watch for people who only know the happy path of a framework. They have u
 
 I stopped asking candidates to reverse a linked list on a whiteboard. I stopped asking for the exact signature of a standard library function. Watching someone code while a timer runs does not tell me if they can find why a system is slow.
 
-Those exercises are easy to grade. They are also easy to game with practice, and they reward people who memorize patterns over people who think carefully. I still need people who can write code. I learn that from how they reason about real systems, from their past work, and from follow up questions about designs they have owned. I do not learn it from whether they remember that Python uses `append`.
+Those exercises are easy to grade. They are also easy to game with practice, and they reward people who memorize patterns over people who think carefully. I still need people who can write code, so I get at it a different way. I ask them to walk me through something they built and then I keep asking why until we are down at the code itself. Where the retries live. What they did about a race condition. Why one function ended up doing too much and what they would change now. Someone who has actually written the thing can go that deep. I do not learn any of this from whether they remember that Python uses `append`.
 
 I also stopped asking a dozen disconnected trivia questions. One deep thread tells me more than ten shallow ones. If someone can stay with a slow app for forty minutes and keep finding the next place to look, I trust them more than someone who can recite definitions and never apply them.
 
