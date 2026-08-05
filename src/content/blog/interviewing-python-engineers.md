@@ -3,6 +3,7 @@ title:  "What I look for when I interview Python engineers"
 date: 2026-02-10T12:00:00
 categories:
   - backend
+  - convo
 ---
 
 At Convo I interviewed about twenty mid and senior Python engineers. Same role. Same bar. Almost the same conversation every time.

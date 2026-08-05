@@ -3,6 +3,7 @@ title:  "Cutting $20k a year from our AWS bill at Tasq"
 date: 2024-02-24T09:21:00
 categories:
   - backend
+  - tasq
 ---
 
 At Tasq the AWS bill kept climbing as we grew. Nothing dramatic day to day, just a steady rise that got hard to ignore. Most of it sat in network traffic, storage, and monitoring. I dug into the invoices and the setup behind them, and three things kept showing up. Private VPC Lambdas were reaching DynamoDB and S3 through the NAT Gateway. S3 had versioning and storage classes that no longer matched how we used the data. CloudWatch logs had no real retention story, so they just kept growing.

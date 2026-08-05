@@ -3,6 +3,7 @@ title:  "Getting our pull requests under control at Tasq"
 date: 2023-06-11T11:30:00
 categories:
   - backend
+  - tasq
 ---
 
 When I joined Tasq, there was no shared way of shipping code. Some people pushed straight to main. Others opened pull requests with no description, no testing notes, and no real review. You often found out about a change only after it was already live, and bugs that a second pair of eyes would have caught slipped through.

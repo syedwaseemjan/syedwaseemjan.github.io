@@ -3,6 +3,7 @@ title:  "How we merged several repos into one monolith at Tasq"
 date: 2024-04-13T12:43:00
 categories:
   - backend
+  - tasq
 ---
 
 At Tasq.io we had several repositories that were loosely connected but lived completely separate lives. Shared logic got copied from one place to another. Dependencies were tracked separately in each repo. CI/CD pipelines had to be maintained for every project on its own. Working across them felt messier than it needed to be, and I ended up leading the effort to pull everything into a single monolith.

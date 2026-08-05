@@ -3,6 +3,7 @@ title:  "API migration without breaking workflows"
 date: 2021-08-16T12:00:00
 categories:
   - backend
+  - britecore
 ---
 
 At BriteCore I changed how our APIs stored and returned data while other teams kept calling the same endpoints. A cleaner design inside the service was easy. Doing it without breaking their apps was not.

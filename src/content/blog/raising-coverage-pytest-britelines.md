@@ -3,6 +3,7 @@ title:  "Raising coverage to 92% with 900+ tests"
 date: 2021-06-14T12:00:00
 categories:
   - backend
+  - britecore
 ---
 
 At BriteCore I work on BriteLines. We migrated our suite from Django `TestCase` style to pytest, crossed **900 tests**, and landed near **92%** coverage on the app code we chose to measure.

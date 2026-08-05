@@ -3,6 +3,7 @@ title:  "Cache generation went from 23 minutes to 12 seconds"
 date: 2021-07-19T12:00:00
 categories:
   - backend
+  - britecore
 ---
 
 At BriteCore I work on BriteLines, the product definition and rating service for property and casualty insurers. Carriers configure coverages, rate tables, and rules there. Quoting and rating need that configuration constantly, so we do not want every premium calculation hitting the database.

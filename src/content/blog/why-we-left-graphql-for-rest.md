@@ -3,6 +3,7 @@ title:  "Why we left GraphQL for REST"
 date: 2021-07-05T12:00:00
 categories:
   - backend
+  - britecore
 ---
 
 We built our product APIs on GraphQL so clients could ask for exactly the fields they need. We recently moved them to REST. GraphQL is fine, it just did not fit how our product works.

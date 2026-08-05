@@ -3,6 +3,7 @@ title:  "Docker cut our deploy from eight hours to one"
 date: 2017-08-15T12:00:00
 categories:
   - backend
+  - activecapital
 ---
 
 At Active Capital IT we run a digital asset management platform for universities, museums, and libraries. People upload large image collections and videos. The app converts formats, builds thumbnails, pulls out metadata, and writes the results to a network mounted drive that all four servers can see. Celery handles that work in the background. Videos go through a separate Kaltura server. We left that part alone for now.

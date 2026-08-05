@@ -21,4 +21,13 @@ export const SITE = {
   },
 } as const;
 
-export const TAGS = ['aws', 'chefgalaxy', 'life', 'backend'] as const;
+export const TAGS = [
+  'aws',
+  'chefgalaxy',
+  'life',
+  'backend',
+  'britecore',
+  'tasq',
+  'convo',
+  'activecapital',
+] as const;

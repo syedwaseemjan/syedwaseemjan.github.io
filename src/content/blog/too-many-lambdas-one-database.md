@@ -3,6 +3,7 @@ title:  "Too many Lambdas, one database"
 date: 2021-06-28T12:00:00
 categories:
   - backend
+  - britecore
 ---
 
 At BriteCore, BriteLines rebuilds product caches in the background. Change a product version and we queue work on SQS. Each message starts a Lambda that rebuilds the cache for one risk type and writes it to Redis.
