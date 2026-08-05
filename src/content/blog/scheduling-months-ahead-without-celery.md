@@ -1,5 +1,5 @@
 ---
-title:  "Scheduling work months ahead, and why Celery was wrong for it"
+title:  "Scheduling work months ahead, and why Celery ETA was the wrong tool"
 date: 2024-09-10T12:00:00
 categories:
   - aws
@@ -36,6 +36,10 @@ event.event_ending_task_id = task.task_id
 ```
 
 That is it. One call, and Celery promises to run it whenever the event is, which could be three months out. It reads beautifully. That is exactly the problem, because the line hides where that promise is actually being kept.
+
+I did not pick `eta` because I had never heard of Celery Beat. Beat was well documented, and I already used it for things like updating exchange rates once a month. The reason I reached for `eta` was precision, mixed with a fear about load. I wanted the close to fire at the event time, the complete to fire three hours after, and the dispute resolve to fire exactly a day later. A Beat poller that runs every minute can only promise to notice something that is already due, so the job might run up to a minute late, and for money and order state that felt sloppy. Running it once an hour would have made that gap worse. Running it every minute felt like I would be hammering the database for no reason. `eta` looked like the way out of that trap. Fire at this timestamp. Done. No polling. No wasted work.
+
+Looking back, that was inexperience wearing a reasonable costume. A one minute query that asks Postgres for due rows on a small index is almost free at the size we were. I bought clock precision and paid for it with durability, visibility, and a visibility timeout I could never set correctly. A minute late on closing a wedding that was booked two months ago is noise. Losing the task, or running it twice, is not.
 
 #### The task sits in a worker's memory
 
@@ -140,7 +144,7 @@ RETURNING id, job_type, payload;
 
 Periodic tasks were never the weak part of Celery. Running one job every minute is exactly what Celery is good at. My mistake was asking Celery to remember something for three months instead of asking Postgres to remember it and asking Celery to check the clock.
 
-The cost is that a job can fire up to a minute late. For a reminder about an event next week, nobody notices.
+The cost is that a job can fire up to a minute late. That is the precision I was trying to protect with `eta`. For closing an event, completing an order, or auto resolving a quiet dispute, a minute does not matter. The thing that mattered was still having the job at all when the day arrived.
 
 #### What I would use on AWS today
 
