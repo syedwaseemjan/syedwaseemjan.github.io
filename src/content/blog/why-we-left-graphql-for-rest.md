@@ -5,7 +5,7 @@ categories:
   - backend
 ---
 
-We built our product APIs with GraphQL so clients could ask for the fields they need. We are moving those APIs to REST now. GraphQL is fine, it just did not fit how our product works.
+We built our product APIs on GraphQL so clients could ask for exactly the fields they need. We recently moved them to REST. GraphQL is fine, it just did not fit how our product works.
 
 I will use a small example.
 
@@ -16,7 +16,7 @@ I will use a small example.
 
 #### **We mostly load and update known things**
 
-GraphQL helps when different screens need different fields from the same data. The developer of each screen already knows what that screen needs. Screen A wants the product name and category names. Screen B wants the product name, settings, and status. Screen C wants almost everything.
+GraphQL is great when different screens need different fields from the same data. The developer of each screen already knows what that screen needs. Screen A wants the product name and category names. Screen B wants the product name, settings, and status. Screen C wants almost everything.
 
 The server cannot ship one perfect response for all of them. Without GraphQL you usually pick one of these.
 
@@ -24,9 +24,9 @@ The server cannot ship one perfect response for all of them. Without GraphQL you
 * Many small REST calls
 * Many custom endpoints, one per screen
 
-GraphQL lets each screen ask for its own field list in the query.
+GraphQL lets each screen ask for its own field list in the query. That is a real strength, but it was not our problem.
 
-That was not our main problem. Almost every request already knew which thing it wanted, like get this product, update this category, or change this setting.
+Our problem was different. Almost every request already knew the exact thing it wanted, like get this product, update this category, or change this setting. The hard part was pointing at that thing, not choosing which fields to return.
 
 ```python
 # GraphQL
@@ -46,7 +46,7 @@ query GetProduct($id: ID!) {
 # GET /products/home-insurance/categories
 ```
 
-When you already know which product or category you want, a URL is easier to follow than a query. We already knew which one we wanted, and we did not need a custom field list for each screen.
+When you already know which product or category you want, a URL is easier to follow than a query.
 
 
 #### **We had to pass the same ids over and over**
@@ -66,15 +66,18 @@ query {
 """
 ```
 
-Our settings did not work like comments. A category name alone was not enough to load settings. Settings for `roof` under product `home` in version 3 are not the same as settings for `roof` under another product, or under version 5. So the nested `settings` field needed product and version, not only the parent category.
+Our settings did not work like that. The same category name meant different settings depending on which product and version you were in. Settings for `roof` under product `home` at version `v3` are not the same as settings for `roof` under another product, or under version `v5`.
+
+You would expect that once we picked the product and its version at the top, the nested fields could just read that scope from the parent. Ours did not. Each nested field asked for the version again.
 
 ```python
 query = """
 query {
-  product(id: "home") {
-    categories(product_id: "home") {
+  product(id: "home", version: "v3") {
+    categories {
       name
-      settings(product_id: "home", version_id: "v3") {
+      inheritance_status(version_id: "v3")
+      settings(version_id: "v3") {
         key
         value
       }
@@ -84,11 +87,11 @@ query {
 """
 ```
 
-That is why `product_id` shows up again. The parent category did not carry "I am roof inside product home at version v3." Comments do not need that extra scope, our settings did.
+Notice `v3` shows up three times. The product already knew its version, but the fields under it did not read that from the parent, so every one asked again. That gets noisy fast, and it is easy to pass the wrong value on one of them.
 
-In short, we kept passing the same ids through nested fields that did not really use them, just so a deeper field could finally use them. `categories` takes `product_id` mainly to push it down. `settings` is where that id actually matters. That gets noisy fast, and it is easy to pass the wrong value somewhere in the middle.
+This is fixable in GraphQL. If every parent object carries its product and version, the children can read that scope from the parent instead of taking it as an argument. But our data had inheritance and versioning, so keeping every level correctly scoped was fiddly, and the arguments kept creeping back in.
 
-In REST the URL holds that scope once.
+In REST the URL holds that scope once, and every level below inherits it for free.
 
 ```python
 # GET /products/home/categories?version=v3
@@ -163,8 +166,8 @@ We also had extra auth rules for GraphQL, like skipping normal CSRF checks. REST
 
 #### **When GraphQL still makes sense**
 
-GraphQL is useful when many clients need different fields from the same data, and those needs change a lot.
+GraphQL is a good fit when many clients need different fields from the same data, and those needs change a lot. If we were building a rich dashboard over loosely related data, we would think hard about keeping it.
 
-That was not our case. We work with products, categories, settings, and versions, and most calls already know which one they want.
+That was not our case. We work with products, categories, settings, and versions, and most calls already know which one they want. Putting that scope in the URL made reads, writes, and permission checks all line up with how we already thought about the system.
 
-So we put that in the URL once with REST, instead of passing the same ids through nested GraphQL fields.
+So we moved those pieces to REST and kept the rest simple.
