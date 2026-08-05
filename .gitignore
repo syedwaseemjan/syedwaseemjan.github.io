@@ -5,6 +5,8 @@ dist/
 
 # dependencies
 node_modules/
+chef_galaxy_workspace/
+BriteLines/
 
 # logs
 npm-debug.log*
