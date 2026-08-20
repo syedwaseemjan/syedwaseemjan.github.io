@@ -26,7 +26,7 @@ export type Project = WorkRole | WorkGap;
 export const projects: Project[] = [
   {
     id: 'xtel',
-    title: 'XTEL',
+    title: 'XTEL (via Convo)',
     link: 'https://xtech.ai/',
     period: 'Aug 2025 - Present',
     role: 'Lead Software Engineer',
@@ -69,7 +69,7 @@ export const projects: Project[] = [
   },
   {
     id: 'artstor',
-    title: 'Active Capital / Artstor',
+    title: 'Artstor (via Active Capital)',
     link: 'https://www.artstor.org/',
     period: 'Jan 2017 - Dec 2017',
     role: 'Senior Software Engineer',
