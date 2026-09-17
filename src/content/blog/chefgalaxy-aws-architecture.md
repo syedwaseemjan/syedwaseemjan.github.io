@@ -6,7 +6,7 @@ categories:
   - chefgalaxy
 ---
 
-I co-founded Chef Galaxy. It connects customers with chefs for events like birthdays and weddings. Think of it as an Upwork for hiring a chef. We also have a social feed around food and a Q&A section where people ask food questions and chefs answer. That is a lot of surface area for a young product, and all of it has to live somewhere.
+I co-founded Chef Galaxy. It connects customers with chefs for events like birthdays and weddings. Think of it as an Upwork for hiring a chef. We also have a social feed around food and a Q&A section where people ask food questions and chefs answer. That is a lot for a young product, and all of it has to live somewhere.
 
 A few pieces of the product drive most of the backend work.
 
@@ -53,4 +53,4 @@ There is plenty of room to improve.
 3. Move the app off bare EC2 toward ECS or Lambda.
 4. Switch to the managed Elasticsearch service once it supports the dynamic scripting we need.
 
-I built this setup myself. Some of it is bigger than we need today. Still, putting a real multi-AZ, auto-scaled VPC together end to end teaches you more than any diagram ever will.
+I built this setup myself. Some of it is bigger than we need today. Still, building a real multi-AZ, auto-scaled VPC end to end taught me more than reading a diagram would have.

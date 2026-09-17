@@ -25,9 +25,7 @@ The server cannot ship one perfect response for all of them. Without GraphQL you
 * Many small REST calls
 * Many custom endpoints, one per screen
 
-GraphQL lets each screen ask for its own field list in the query. That is a real strength, but it was not our problem.
-
-Our problem was different. Almost every request already knew the exact thing it wanted, like get this product, update this category, or change this setting. The hard part was pointing at that thing, not choosing which fields to return.
+GraphQL lets each screen ask for its own field list in the query. That is a real strength, but it was not our problem. Almost every request already knew the exact thing it wanted, like get this product, update this category, or change this setting. The hard part was pointing at that thing, not choosing which fields to return.
 
 ```python
 # GraphQL

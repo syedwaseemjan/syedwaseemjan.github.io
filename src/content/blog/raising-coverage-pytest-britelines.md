@@ -114,7 +114,7 @@ with pytest.raises(ValidationError, match="too short") as err:
 assert err.value.code == "min_length"
 ```
 
-Type, message, and fields in one block.
+You get the type, message, and fields in one block.
 
 
 #### **Keep the suite fast**
@@ -122,6 +122,6 @@ Type, message, and fields in one block.
 We run `pytest -n auto` with xdist so local and CI use multiple CPUs. Feedback stays short enough that people keep adding tests.
 
 
-#### **What stuck**
+#### **What we kept doing**
 
-Convert `TestCase` modules gradually. Prefer plain asserts, parametrize, fixtures, and `mocker`. Measure app code only. Skip tests that teach nothing. Make each test cheap to write and the coverage number mostly takes care of itself.
+Convert `TestCase` modules gradually. Prefer plain asserts, parametrize, fixtures, and `mocker`. Measure app code only. Skip tests that teach nothing. If you make each test cheap to write, the coverage number mostly takes care of itself.

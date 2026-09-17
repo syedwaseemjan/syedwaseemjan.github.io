@@ -6,7 +6,7 @@ categories:
   - chefgalaxy
 ---
 
-Chef Galaxy has a few parts that need to feel alive. Notifications show up when a chef gets hired or when a dispute moves forward. Customers and chefs message each other while planning an event. For both of these the user should not have to refresh the page to see something new.
+Chef Galaxy has a few parts that need to update without a page refresh. Notifications show up when a chef gets hired or when a dispute moves forward. Customers and chefs message each other while planning an event. For both of these the user should not have to refresh the page to see something new.
 
 I just finished this piece, and I want to write down why I built it the way I did, because the obvious answer was not the one I picked.
 
@@ -22,9 +22,9 @@ A websocket does something different. It starts as an HTTP request and then chan
 
 The number of active requests is therefore limited by the number of workers. The exact limit depends on how Apache is configured. As one example, Apache 2.2 with its prefork setup allows 256 active requests by default. That does not mean it can only serve 256 requests in total. If requests finish quickly, those workers can serve many more requests one after another.
 
-Long connections change the numbers. If 250 users each hold a worker, only six workers remain for pages and API calls. New requests wait until a worker becomes free. I could raise the limit or add more EC2 instances, but each worker still takes memory. I would be using more servers mostly to keep idle connections open.
+Long connections change the numbers. If 250 users each hold a worker, only six workers remain for pages and API calls, so new requests wait until a worker becomes free. I could raise the limit or add more EC2 instances, but each worker still takes memory. I would be using more servers mostly to keep idle connections open.
 
-#### Tornado was the going way to do it
+#### Tornado was the common way to do it
 
 When I looked around, the common answer in Python was **Tornado**. The fair comparison is not Tornado against Flask. Flask is the framework where I write the application. Apache and mod_wsgi are the server setup that runs it. Tornado includes its own HTTP server as well as a framework, and it supports websockets out of the box.
 
@@ -80,7 +80,7 @@ Either way solves the same problem. I just have to pick one for the live code.
 
 I could keep Flask and Apache for normal pages and run Tornado as a separate service for websockets. The load balancer could send websocket traffic to Tornado and everything else to Flask. Another option is to put the Flask application behind Tornado using its WSGI container, but that does not make the Flask code async. Its requests still do their work in the usual blocking way.
 
-Either choice means I now run a second kind of server. I have to watch another process, route traffic to it, deploy it alongside everything else, and handle blocking calls carefully in the live code. That is real work and a new thing to break. We are a small team and I am the one who would be paged when it breaks. So I passed on it.
+Either choice means I now run a second kind of server. I have to watch another process, route traffic to it, deploy it alongside everything else, and handle blocking calls carefully in the live code. That is real work and a new thing to break. We are a small team and I am the one who would be paged when it breaks, so I passed on it.
 
 #### Gevent and Eventlet could keep the Flask style
 
@@ -112,11 +112,11 @@ The switch between green threads is implicit. It happens when code reaches an op
 
 This is less rewriting than moving the live code to Tornado, but it is not free. Every library has to behave correctly after patching. Debugging can also be harder because the switch happens inside a call rather than at a visible `yield`. I would also replace Apache and mod_wsgi for this traffic. Common choices were **Gunicorn** with a Gevent or Eventlet worker, Eventlet's own WSGI server, or Gevent's `pywsgi` server. I could run one of those for the whole app, or keep Apache for normal pages and put only the live traffic on that server.
 
-That still means a new server to deploy and debug, plus a patching model I have to trust across Redis, Postgres, and Elasticsearch. For a small team, that is more moving parts than I want right now. So I passed on Gevent and Eventlet too.
+That still means a new server to deploy and debug, plus a patching model I have to trust across Redis, Postgres, and Elasticsearch. For a small team, that is more moving parts than I want right now, so I passed on Gevent and Eventlet too.
 
 #### Server sent events was the other option
 
-There is a lighter option than websockets called server sent events. The server keeps one connection open and pushes updates down to the browser. It only goes one way though, from server to browser. That is fine for notifications, but our messaging is two way. Customers and chefs both send and both receive. So server sent events would cover the notifications and leave the messages out.
+There is a lighter option than websockets called server sent events. The server keeps one connection open and pushes updates down to the browser. It only goes one way though, from server to browser. That is fine for notifications, but our messaging is two way. Customers and chefs both send and both receive, so server sent events would cover the notifications and leave the messages out.
 
 That is the main reason I skipped it. I did not want one tool for notifications and a different tool for messages, when one plain approach can carry both. On top of that it still keeps a connection open. Under Apache and mod_wsgi that holds a worker for as long as the stream lasts. That is closer to the long polling capacity problem than to the websocket problem. Websockets fail first because WSGI cannot upgrade the connection. Server sent events can stay on HTTP, but they still leave a worker busy while nothing is happening.
 
@@ -158,7 +158,7 @@ Unlike websockets, long polling can run through WSGI because every connection is
 
 Timeouts make long polling more awkward. The Elastic Load Balancer closes an idle connection after 60 seconds by default. Apache and the browser can have their own limits too. I could make long polling return after about 30 or 45 seconds and reconnect before the load balancer cuts it off, but this still needs error handling for dropped connections and it still holds one worker per waiting user for much longer. So I stayed with short polling on a sensible timer.
 
-#### The honest downsides
+#### The downsides
 
 Polling is not free and it is not perfect. Some requests come back empty, so there is a bit of waste when nothing is happening. And it is not truly instant, there is a small gap between something happening and the next check. For notifications and our messaging, a few seconds of delay is fine. Nobody hiring a chef needs message delivery down to the millisecond.
 

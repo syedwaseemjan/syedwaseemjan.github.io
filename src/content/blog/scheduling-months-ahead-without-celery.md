@@ -35,11 +35,11 @@ task = close_event.apply_async(
 event.event_ending_task_id = task.task_id
 ```
 
-That is it. One call, and Celery promises to run it whenever the event is, which could be three months out. It reads beautifully. That is exactly the problem, because the line hides where that promise is actually being kept.
+That is it. One call, and Celery promises to run it whenever the event is, which could be three months out. It looks simple, which is the problem, because that one line hides where the promise is actually being kept.
 
-I did not pick `eta` because I had never heard of Celery Beat. Beat was well documented, and I already used it for things like updating exchange rates once a month. The reason I reached for `eta` was precision, mixed with a fear about load. I wanted the close to fire at the event time, the complete to fire three hours after, and the dispute resolve to fire exactly a day later. A Beat poller that runs every minute can only promise to notice something that is already due, so the job might run up to a minute late, and for money and order state that felt sloppy. Running it once an hour would have made that gap worse. Running it every minute felt like I would be hammering the database for no reason. `eta` looked like the way out of that trap. Fire at this timestamp. Done. No polling. No wasted work.
+I did not pick `eta` because I had never heard of Celery Beat. Beat was well documented, and I already used it for things like updating exchange rates once a month. The reason I reached for `eta` was precision, mixed with a fear about load. I wanted the close to fire at the event time, the complete to fire three hours after, and the dispute resolve to fire exactly a day later. A Beat poller that runs every minute can only promise to notice something that is already due, so the job might run up to a minute late, and for money and order state that felt sloppy. Running it once an hour would have made that gap worse. Running it every minute felt like I would be hammering the database for no reason. `eta` looked like the way out of that trap, fire at this timestamp, done, no polling, no wasted work.
 
-Looking back, that was inexperience wearing a reasonable costume. A one minute query that asks Postgres for due rows on a small index is almost free at the size we were. I bought clock precision and paid for it with durability, visibility, and a visibility timeout I could never set correctly. A minute late on closing a wedding that was booked two months ago is noise. Losing the task, or running it twice, is not.
+Looking back, that was inexperience that just sounded reasonable. A one minute query that asks Postgres for due rows on a small index is almost free at the size we were. I got clock precision, but I paid for it with worse durability, worse visibility, and a visibility timeout I could never set correctly. Being a minute late on closing a wedding that was booked two months ago does not matter, but losing the task, or running it twice, does.
 
 #### The task sits in a worker's memory
 
@@ -47,7 +47,7 @@ When you call `apply_async` with an `eta`, Celery does not hold the message anyw
 
 The worker does not freeze while it waits. It keeps taking and running other tasks. One worker can hold several future jobs in memory at the same time and still stay busy. If you have ten workers and twenty events booked for next month, those twenty close tasks just sit in memory across the workers. The workers keep working. The problem is not capacity. The problem is where the future work lives.
 
-So the close task for a November wedding is a Python object living inside a Celery process from August. Nothing about that process is designed to be alive in November.
+So the close task for a November wedding is a Python object living inside a Celery process from August. That process is not meant to still be running in November.
 
 Every deploy restarts the workers. We deployed often. On a clean shutdown Celery tries to put unacknowledged messages back on the broker, so most of the time it recovers. On a hard kill, an out of memory error, an instance that Auto Scaling decided to replace, or an EC2 host that just went away, that recovery does not happen. I had chef payouts and event closings sitting in the memory of a process that could disappear at any moment.
 
@@ -55,9 +55,9 @@ Every deploy restarts the workers. We deployed often. On a clean shutdown Celery
 
 This is the part I only half understood back then.
 
-A real broker like RabbitMQ tracks who is holding each message. The worker sends back an acknowledgement when it finishes the work. If the worker crashes, or its network drops, the broker watches that connection close and puts the message back on the queue right away. There is no timer in that story. The dead connection is the signal.
+A real broker like RabbitMQ tracks who is holding each message. The worker sends back an acknowledgement when it finishes the work. If the worker crashes, or its network drops, the broker watches that connection close and puts the message back on the queue right away. There is no timer involved. When the connection dies, the broker knows right away and puts the message back.
 
-Redis cannot do any of that. It is a data store. It has no idea what a consumer is and it never tracks who read a value, so it can never tell anyone that a worker disappeared. The library Celery uses to talk to Redis builds the missing piece itself. There is even a setting named `ack_emulation` whose whole job is to imitate the acknowledgement part of AMQP.
+Redis cannot do any of that. It is a data store, so it has no idea what a consumer is and it never tracks who read a value, which means it can never tell anyone that a worker disappeared. The library Celery uses to talk to Redis builds the missing piece itself. There is even a setting named `ack_emulation` whose whole job is to imitate the acknowledgement part of AMQP.
 
 The only way to imitate it is with a clock. When a worker takes a message, the library moves that message into a holding area in Redis and stamps it with the time. Acknowledging it means removing it from the holding area. Redis itself never watches that holding area. The Celery workers do. As they run, each worker periodically asks Redis for stamps older than the visibility timeout and pushes those messages back onto the queue for somebody else.
 
@@ -74,15 +74,15 @@ The official fix is to raise the visibility timeout so it is longer than your lo
 BROKER_TRANSPORT_OPTIONS = {"visibility_timeout": 1209600}
 ```
 
-Fourteen days. Look at that number next to a wedding booked two months out. My close task and my complete task were both tied to the event date, so plenty of them were scheduled further ahead than fourteen days. The setting did not even cover my longest delay. Past that window a Celery worker's sweep would decide the holder was gone and hand the same task out again. I had written the timeout that everyone writes, patted myself on the back, and still left my longest running jobs exposed to the exact loop it was meant to stop.
+Fourteen days. Look at that number next to a wedding booked two months out. My close task and my complete task were both tied to the event date, so plenty of them were scheduled further ahead than fourteen days. The setting did not even cover my longest delay. Past that window a Celery worker's sweep would decide the holder was gone and hand the same task out again. I had written the timeout that everyone writes, felt good about it, and still left my longest running jobs exposed to the exact loop it was meant to stop.
 
 And there is no good number to put there anyway. The Celery docs say straight out that raising it is not recommended, because it is really an answer to a different question. It says how long to wait before recovering a genuinely lost task after a crash. Set it to cover a two month event and you are also telling that sweep to leave any truly dead task sitting for two months. Far future work simply does not belong here.
 
-I mostly got away with it. A duplicate close on an event that is already closed does nothing the second time, because the handler checks the state first. But the same tasks also paid chefs and refunded customers, and those are not things you want fired twice. The only reason a double payout never bit me is that those handlers happened to check state too. That was luck dressed up as design.
+I mostly got away with it. A duplicate close on an event that is already closed does nothing the second time, because the handler checks the state first. But the same tasks also paid chefs and refunded customers, and those are not things you want fired twice. The only reason a double payout never bit me is that those handlers happened to check state too. That was luck, not a real design.
 
 #### Redis was holding data I could not afford to lose
 
-Redis on ElastiCache was our cache and our notification store. It was fine for both. Then it quietly became the system of record for every future payment and every dispute deadline, because that is where the Celery messages lived.
+Redis on ElastiCache was our cache and our notification store. It was fine for both. Then it became the system of record for every future payment and every dispute deadline, because that is where the Celery messages lived.
 
 A cache is a thing you are allowed to lose. If ElastiCache failed over, or a node restarted, or we hit the memory limit and eviction kicked in, the answer was supposed to be that we rebuild it and move on. That answer stops working when the lost data is the list of chefs we owe money to.
 
@@ -92,20 +92,20 @@ The real cost showed up in normal product work.
 
 A customer moves the wedding from November to December. Now the close task is scheduled for the wrong day. A dispute opens on an order. Now the complete task that would have paid the chef has to be stopped. Change any of these and you have to reach back into Celery and cancel what you queued.
 
-I did handle this, and the handling is the tell. Every one of these tasks came back with an id, and I saved that id on the row it belonged to. There are columns all over the schema for exactly this, `event_ending_task_id` on the event, `scheduled_task_id` on the order, `dispute_resolving_task_id` on the dispute, `auction_ending_task_id` on the auction. When something changed I looked up the id and called revoke.
+I did handle this, and the way I handled it shows the problem. Every one of these tasks came back with an id, and I saved that id on the row it belonged to. There are columns all over the schema for exactly this, `event_ending_task_id` on the event, `scheduled_task_id` on the order, `dispute_resolving_task_id` on the dispute, `auction_ending_task_id` on the auction. When something changed I looked up the id and called revoke.
 
 ```python
 def revoke_task(task_id):
     celery.control.revoke(task_id)
 ```
 
-Think about what that is. I was keeping a pointer, in Postgres, to a job that was living somewhere inside Celery. The real thing I cared about, the fact that this event closes on this date, was not a row I could read. It was a message held in a worker, and all my database had was its tracking number. To move a date I revoked the old task and scheduled a new one and swapped the id. To cancel I revoked and hoped the worker holding it got the message. I could not run a query to see everything due next week. The schedule was not data. It was a side effect I was chasing with sticky notes.
+Think about what that is. I was keeping a pointer, in Postgres, to a job that was living somewhere inside Celery. The real thing I cared about, the fact that this event closes on this date, was not a row I could read. It was a message held in a worker, and all my database had was its tracking number. To move a date I revoked the old task and scheduled a new one and swapped the id. To cancel I revoked and hoped the worker holding it got the message. I could not run a query to see everything due next week. The schedule was not data I could query. It was a side effect I was chasing with ids saved in the database.
 
 And there is a slower problem. A task queued in August runs in November against November's code. If I changed the arguments of `close_event` in September, the messages already sitting in workers still carried the old arguments. Three month old messages meeting three month newer code is not a fun thing to debug.
 
 #### What I should have done, with what already existed
 
-It just needed a table.
+All it needed was a table.
 
 ```sql
 CREATE TABLE scheduled_jobs (
@@ -171,7 +171,7 @@ scheduler.create_schedule(
 
 The important bits are all things Celery could not give me. The schedule is a real object with a name, so cancelling a booking is a `delete_schedule` call. It retries on failure and drops what it cannot deliver into a dead letter queue. `ActionAfterCompletion` cleans it up after it fires, which matters because completed schedules still count against your account limit. The default limit is a million schedules per region, and you can ask for more, so one schedule per booking is completely normal usage.
 
-The closest thing in 2016 was CloudWatch Events rules, which were built for cron style jobs and capped at a small number per account. You could not make one per booking. That is a real gap that got filled.
+The closest thing in 2016 was CloudWatch Events rules, which were built for cron style jobs and capped at a small number per account. You could not make one per booking. That gap got filled later.
 
 **Step Functions** is the better fit for the dispute flow, because that flow is not one alarm, it is a sequence of waits and decisions. A Standard workflow can wait up to a year, and a `Wait` state can wait until a timestamp you pass in.
 
@@ -218,7 +218,7 @@ There is also a callback pattern where the workflow pauses and hands out a token
 
 **DynamoDB TTL** comes up constantly for this, and I nearly wrote it into an old design myself. You set an expiry timestamp on an item, the item gets deleted, and a stream sends that deletion to a Lambda. It is free and it is very little code.
 
-The catch is in the AWS docs and it is not subtle. DynamoDB deletes expired items on a best effort basis and typically within forty eight hours of the expiry time. Not at the expiry time. Up to two days after it. That is fine for cleaning up old sessions. It is not fine for closing an order on time, and it is definitely not fine for paying a chef.
+The catch is in the AWS docs and it is not hard to miss. DynamoDB deletes expired items on a best effort basis and typically within forty eight hours of the expiry time, not at the expiry time, and sometimes up to two days after it. That is fine for cleaning up old sessions. It is not fine for closing an order on time, and it is definitely not fine for paying a chef.
 
 **Redis TTL with keyspace notifications** has the same shape of problem, only worse. Two things go wrong here.
 
@@ -244,6 +244,6 @@ def complete_order(user_id, order_id):
         ...
 ```
 
-That check is what saved me. If the task ran twice, the second run saw the order was already past `live` and quietly did nothing. Without it, every redelivery from that fourteen day timeout becomes a real bug. With it, a duplicate is a wasted database read. The lesson is that this check is not optional decoration. It is the thing standing between at least once delivery and a double payout, so write it on purpose rather than hoping it is there.
+That check is what saved me. If the task ran twice, the second run saw the order was already past `live` and quietly did nothing. Without it, every redelivery from that fourteen day timeout becomes a real bug. With it, a duplicate is a wasted database read. The lesson is that this check is not extra polish. It is the thing standing between at least once delivery and a double payout, so write it on purpose rather than hoping it is there.
 
-The real lesson from Chef Galaxy is simple. Store the future work in a database row next to the booking. Then you can look it up, change the date, or cancel it like any other data. How you wake up and run that row later is a separate choice. Celery, EventBridge, or a small poller can all do that part. I did the opposite. I hid the future work inside Celery, so I could not look it up, could not change it easily, and could not trust it to still be there after a restart.
+The main thing I took from Chef Galaxy is this. Store the future work in a database row next to the booking. Then you can look it up, change the date, or cancel it like any other data. How you wake up and run that row later is a separate choice. Celery, EventBridge, or a small poller can all do that part. I did the opposite. I hid the future work inside Celery, so I could not look it up, could not change it easily, and could not trust it to still be there after a restart.

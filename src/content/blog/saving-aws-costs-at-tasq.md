@@ -13,7 +13,7 @@ I was asked to bring the cost down without making the system slower or less secu
 
 #### **Where the money was going**
 
-The NAT Gateway was the loudest line item. Lambdas in the private VPC talked to DynamoDB and S3 the long way, out through the gateway and back in. That path works, but you pay for every byte that takes it. On S3, a lot of buckets still had versioning on and no lifecycle rules, so old object versions and cold data sat in the expensive class. CloudWatch was similar. We logged a lot, kept it forever, and paid for both the storage and the transfer.
+The NAT Gateway was the biggest line item. Lambdas in the private VPC talked to DynamoDB and S3 the long way, out through the gateway and back in. That path works, but you pay for every byte that takes it. On S3, a lot of buckets still had versioning on and no lifecycle rules, so old object versions and cold data sat in the expensive class. CloudWatch was similar. We logged a lot, kept it forever, and paid for both the storage and the transfer.
 
 None of this looked wrong when we first set it up. It just stopped being the right setup once traffic and data volume grew.
 
@@ -45,6 +45,6 @@ CloudWatch logs had been around **$3,500 a year**. After retention and cleanup t
 
 Across the three changes, we cut about **$20,000 a year** from the AWS bill. Most of that came from getting DynamoDB and S3 off the NAT Gateway. Performance and security were better for it too, mainly because that traffic no longer left the private network.
 
-I still check the bill when something grows. Costs drift if you set things once and walk away. The useful part of this work for me was learning to read the invoice against the architecture, then fix the mismatch instead of accepting it as the price of scaling.
+I still check the bill when something grows, because costs drift if you set things once and walk away. What I learned from this was to read the invoice against the architecture, then fix the mismatch instead of accepting it as the price of scaling.
 
 If your AWS spend is climbing for the same reasons, start with NAT traffic to managed services, S3 lifecycle and versioning, and log retention. Those three were enough for us.

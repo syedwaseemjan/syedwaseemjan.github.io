@@ -27,12 +27,12 @@ That trigger Lambda loaded the enabled wells for an operator and put one SQS mes
 
 Setpoint recommendations had that shape. Lost production checks had that shape. Creating and closing work tickets had their own schedules that scanned DynamoDB and pushed more SNS and SQS traffic downstream.
 
-It was easy to follow. The cost showed up as we scaled. Every hour we reprocessed wells that had no new data. A well that just got a fresh Parquet file still waited until the next schedule tick.
+It was easy to follow. The cost showed up as we scaled. Every hour we reprocessed wells that had no new data, and a well that just got a fresh Parquet file still waited until the next schedule tick.
 
 
 #### **Moving the trigger to ingest**
 
-The useful moment is when new signals land for a well. That is when a model has something new to look at. So after the ingest Lambda finished writing to Rockset, it published a small SNS message per well.
+The useful moment is when new signals land for a well, because that is when a model has something new to look at. So after the ingest Lambda finished writing to Rockset, it published a small SNS message per well.
 
 ```python
 sns.publish(
@@ -48,7 +48,7 @@ sns.publish(
 
 The payload named the operator, the well, and which signal types were in that batch. Volume and pressure are the ones that mattered for the models below.
 
-SNS is a publish and subscribe topic. You publish once, and any number of subscribers can get a copy. It is good at fan out, but it is not a backlog. SNS pushes the message and moves on. There is nowhere for work to sit if a consumer is slow, and failure handling is thin compared to a queue.
+SNS is a publish and subscribe topic. You publish once, and any number of subscribers can get a copy. It is good at fan out, but it is not a backlog, because SNS pushes the message and moves on. There is nowhere for work to sit if a consumer is slow, and failure handling is thin compared to a queue.
 
 That is why we did not point SNS straight at the model Lambdas. Each model got its own SQS queue subscribed to the topic, and the Lambda listened to that queue. SNS still fans the ingest completion out to lost production, setpoints, and anything else we add later, without the ingest Lambda knowing about them. SQS is where messages can pile up, retry, and land on a dead letter queue if a worker keeps failing. Other subscribers keep moving while one model is backed up.
 
@@ -74,7 +74,7 @@ Once a message does land, the Lambda runs for that well only. If the well looks 
 
 Quiet wells stopped waking models. Busy wells got a run soon after their Parquet file was ingested instead of waiting on the next schedule rule. A bad message for one well stayed on that consumer's queue and did not block other wells or other models. Adding a new model meant a new queue, a filter for the signal types it needed, and a Lambda. We did not have to bolt another fleet wide schedule onto the system.
 
-The unit of work changed from "every enabled well on this timer" to "this well just got new data." That was the whole migration.
+The unit of work changed from "every enabled well on this timer" to "this well just got new data," and that was the whole migration.
 
 
 If you are building something similar, start from the moment new data is already in the store you query. Publish from there. Put SNS in front when more than one consumer will care. Put SQS behind each consumer so retries and backlog stay local. Filter at the subscription so workers only wake for the signal types they need.

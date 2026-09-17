@@ -17,7 +17,7 @@ The problems were ordinary ones, but they stacked up.
 
 PRs were inconsistent. Many had no note on what broke, how it was fixed, or how to test it. People worked in isolation, so the rest of the team had little idea what was landing. Reviews were light or missing, which meant quality issues and style drift showed up late, when they cost more to fix.
 
-I wanted something simple enough that people would actually follow it, not a binder of process nobody opens.
+I wanted something simple enough that people would actually follow it, not a long process document that nobody opens.
 
 
 #### **A workflow you can see**
@@ -35,7 +35,7 @@ I added checklists in GitHub so the same questions got asked every time.
 
 There was a **peer review** and **code review** checklist covering clarity, behavior, and acceptance criteria. A **testing** checklist pushed for real coverage before approval. A **pre-merge** checklist caught the boring stuff we used to forget, especially documentation and migrations.
 
-None of this was clever. It just made the baseline harder to miss.
+None of this was fancy. It just made the basic steps harder to miss.
 
 
 #### **Peer review and sentinel review**
@@ -44,7 +44,7 @@ Reviews needed clearer roles, so I split them.
 
 A **sentinel review** came from a senior engineer with merge access. That was the quality gate. A PR did not leave the review stage without it. A **peer review** came from engineers without merge access. That kept juniors in the loop, spread knowledge, and caught issues early without blocking the merge path.
 
-I also wrote down what a good review was aiming for. **Quality**, **appropriateness**, **acceptance criteria**, **learning**, and **documentation**. Having those five written down stopped reviews from becoming either rubber stamps or endless style debates.
+I also wrote down what a good review was aiming for: **quality**, **appropriateness**, **acceptance criteria**, **learning**, and **documentation**. Having those five written down stopped reviews from becoming either rubber stamps or endless style debates.
 
 
 #### **Labels for tracking**
@@ -78,4 +78,4 @@ I also wrote a short note on tone. Reviewers should explain why a change matters
 
 After the guidelines and the move to trunk-based development, the day to day felt different. PRs had context. Reviews had a purpose. Merges were smaller and less scary. The team spent less time asking where something stood and more time improving the code itself.
 
-The useful part for me was learning that process only works when it is visible, light, and owned by the people using it. You do not need a heavyweight system. You need enough structure that shipping stops depending on who happens to be careful that week.
+What I learned is that process only works when it is visible, light, and owned by the people using it. You do not need a heavy system. You need enough structure that shipping does not depend on who happens to be careful that week.

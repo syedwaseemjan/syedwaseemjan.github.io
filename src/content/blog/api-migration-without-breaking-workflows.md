@@ -6,7 +6,7 @@ categories:
   - britecore
 ---
 
-At BriteCore I changed how our APIs stored and returned data while other teams kept calling the same endpoints. A cleaner design inside the service was easy. Doing it without breaking their apps was not.
+At BriteCore I changed how our APIs stored and returned data while other teams kept calling the same endpoints. A cleaner design inside the service was easy, but doing it without breaking their apps was not.
 
 
 #### **JSON Schema for long lived states**
@@ -83,7 +83,7 @@ Both classes ship in the same deploy. Old behaviour stays in `.v1`. New behaviou
 
 #### **Change storage without changing the response**
 
-Sometimes we split one database table into two. Callers never saw it. We joined the pieces into one response on the way out and split them again on the way in. The JSON stayed familiar even when the tables got stranger.
+Sometimes we split one database table into two. Callers never saw it. We joined the pieces into one response on the way out and split them again on the way in. The JSON stayed familiar even when the tables underneath got more complicated.
 
 
 #### **Hide new behaviour behind a query parameter**
