@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE } from '../consts';
+import { openSource } from '../data/opensource';
 import { projects } from '../data/projects';
 ---
 
@@ -52,5 +53,29 @@ import { projects } from '../data/projects';
         )
       }
     </ol>
+
+    <div id="open-source" class="section-projects__oss">
+      <h2 class="heading-2 heading-2--dark mb-md">Open Source Projects</h2>
+      <p class="text text--lead mb-lg">
+        Libraries and commands I keep in public. A couple of them are the code behind posts on the
+        blog.
+      </p>
+      <ul class="oss-list">
+        {
+          openSource.map((project) => (
+            <li id={project.id} class="oss-list__item">
+              <a
+                href={project.link}
+                class="oss-list__name"
+                target="_blank"
+                rel="noopener noreferrer">
+                {project.title}
+              </a>
+              : <span set:html={project.details} />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </section>
 </BaseLayout>
