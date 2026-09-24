@@ -62,7 +62,7 @@ export const projects: Project[] = [
     period: 'May 2018 - June 2022',
     role: 'Senior Full Stack Engineer',
     details:
-      'Four years on a cloud platform used by property and casualty insurers to configure policies and coverage, eventually more than a hundred companies. I hired and led the group that built BriteLines, a product definition service and rating engine. The win I still remember is a cache job for large risks that used to run for 23 minutes and time out. We got it down to about 12 seconds on Lambda. I wrote about the <a href="/blog/britelines-cache-generation">cache speedup</a> and the <a href="/blog/too-many-lambdas-one-database">Lambda stampede on MySQL</a>.',
+      'Four years on a cloud platform used by property and casualty insurers to configure policies and coverage, eventually more than a hundred companies. I led the group that built BriteLines, a product definition service and rating engine. The win I still remember is a cache job for large risks that used to run for 23 minutes and time out. We got it down to about 12 seconds on Lambda. I wrote about the <a href="/blog/britelines-cache-generation">cache speedup</a> and the <a href="/blog/too-many-lambdas-one-database">Lambda stampede on MySQL</a>.',
     thumbnail: '/assets/img/projects/britelines-small.jpg',
     thumbnailalt: 'BriteLines policy types configuration',
     visual: 'photo',
