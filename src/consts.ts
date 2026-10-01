@@ -11,7 +11,7 @@ export const SITE = {
   linkedUsername: 'syedwaseemjan',
   stackoverflowUsername: '818731/waseem',
   resumeUrl:
-    'https://drive.google.com/file/d/1j2OdgHK5vPKqxwcvkbROPmaeU8jjW3lp/view?usp=sharing',
+    'https://drive.google.com/file/d/1uIe7ihIW0lAWxoeNkCEBGM9ec-BIGRUv/view?usp=sharing',
   gaId: 'G-75526RYB6M',
   giscus: {
     repo: 'syedwaseemjan/syedwaseemjan.github.io',
